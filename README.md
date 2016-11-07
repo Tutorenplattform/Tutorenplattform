@@ -36,6 +36,7 @@ Wenn SEW VM nicht vorhanden / gewünscht:
 
 - [x] Innerhalb der CMD in den Ordner wechseln, in den der Inhalt des Repositorys geclonet wurde.
 - [x] Dann den Befehl ```composer install``` ausführen
+- [x] Die Datei ```.env.example``` in die Datei ```.env``` kopieren (```cp .env.example .env```)
 
 ### 4. In PHPStorm öffnen
 
