@@ -34,7 +34,7 @@ Wenn SEW VM nicht vorhanden / gewünscht:
 
 ### 3. Laravel Projekt einrichten
 
-- [x] Innerhalb der Bash in den Ordner wechseln, in den der Inhalt des Repositorys geclonet wurde
+- [x] Innerhalb der Bash in den Ordner wechseln, in den der Inhalt des Repositorys gecloned wurde
 - [x] Dann den Befehl ```composer install``` ausführen
 - [x] Die Datei ```.env.example``` in die Datei ```.env``` kopieren (```cp .env.example .env```)
 - [x] Innerhalb der Datei ```.env``` den Parameter ```APP_KEY``` (Wert für diesen Parameter, siehe Slack #general) und die DB Zugangsdaten anpassen
