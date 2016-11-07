@@ -37,7 +37,7 @@ Wenn SEW VM nicht vorhanden / gewünscht:
 - [x] Innerhalb der Bash in den Ordner wechseln, in den der Inhalt des Repositorys geclonet wurde.
 - [x] Dann den Befehl ```composer install``` ausführen
 - [x] Die Datei ```.env.example``` in die Datei ```.env``` kopieren (```cp .env.example .env```)
-- [x] Innhalb der Datei ```.env``` den Parameter ```APP_KEY``` (Wert für diesen Parameter, siehe Slack #general) und die DB Zugangsdaten anpassen
+- [x] Innerhalb der Datei ```.env``` den Parameter ```APP_KEY``` (Wert für diesen Parameter, siehe Slack #general) und die DB Zugangsdaten anpassen
 
 ### 4. In PHPStorm öffnen
 
