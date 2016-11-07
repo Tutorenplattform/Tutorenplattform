@@ -7,13 +7,16 @@
 - [Git](https://git-scm.com/)
 - [JetBrains PHPStorm](https://www.jetbrains.com/phpstorm/download/)
 - SEW VM
-	* PHP >= 7.0.1
-	* OpenSSL PHP Extension
-	* PDO PHP Extension
-	* Mbstring PHP Extension
-	* Tokenizer PHP Extension
-	* XML PHP Extension
-	* Composer
+
+Wenn SEW VM nicht vorhanden / gewünscht:
+* PHP >= 7.0.1
+* OpenSSL PHP Extension
+* PDO PHP Extension
+* Mbstring PHP Extension
+* Tokenizer PHP Extension
+* XML PHP Extension
+* Composer
+* MySQL
 
 ### 1. Git einrichten
 
