@@ -32,7 +32,12 @@ Wenn SEW VM nicht vorhanden / gewünscht:
 - [x] ```git clone https://github.com/Tutorenplattform/Tutorenplattform.git```
   - Im Falle eines Fehlers: [Überprüfen](https://github.com/settings/emails), ob die in Schritt 1 angegebene E-Mail wirklich mit dem GitHub-Konto verknüpft ist, für das das Repository freigegeben wurde
 
-### 3. In PHPStorm öffnen
+### 3. Laravel Projekt einrichten
+
+- [x] Innerhalb der CMD in den Ordner wechseln, in den der Inhalt des Repositorys geclonet wurde.
+- [x] Dann den Befehl ```composer install``` ausführen
+
+### 4. In PHPStorm öffnen
 
 - [x] Projektordner öffnen (*File › Open...*)
 
