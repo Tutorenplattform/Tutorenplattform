@@ -1,0 +1,15 @@
+{
+  "name": "Tutorenplattform",
+  "description": "HTL3R Tutorenplattform",
+  "homepage": "https://github.com/Tutorenplattform/Tutorenplattform",
+  "private": true,
+  "dependencies": {
+    "angular-animate": "^1.5.8",
+    "angular-bootstrap": "^2.2.0",
+    "angular": "^1.5.8",
+    "angular-touch": "^1.5.8",
+    "bootstrap": "^3.3.7",
+    "angular-ui-router": "^0.3.2",
+    "restangular": "^1.5.2"
+  }
+}
