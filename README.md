@@ -10,7 +10,7 @@
 - [Bower](https://bower.io/#install-bower)
 - SEW-VM
 
-Wenn SEW-VM nicht vorhanden:
+#### Wenn SEW-VM nicht vorhanden:
 * PHP >= 7.0.1
 * OpenSSL PHP Extension
 * PDO PHP Extension
