@@ -4,11 +4,13 @@
 
 ### Voraussetzungen
 
-- [Git](https://git-scm.com/)
+- [Git](https://git-scm.com/downloads)
 - [JetBrains PHPStorm](https://www.jetbrains.com/phpstorm/download/)
-- SEW VM
+- [NodeJS](https://nodejs.org/en/download/package-manager/)
+- [Bower](https://bower.io/#install-bower)
+- SEW-VM
 
-Wenn SEW VM nicht vorhanden / gewünscht:
+Wenn SEW-VM nicht vorhanden:
 * PHP >= 7.0.1
 * OpenSSL PHP Extension
 * PDO PHP Extension
@@ -34,12 +36,17 @@ Wenn SEW VM nicht vorhanden / gewünscht:
 
 ### 3. Laravel Projekt einrichten
 
-- [x] Innerhalb der Bash in den Ordner wechseln, in den der Inhalt des Repositorys gecloned wurde
+- [x] Innerhalb der Bash in den Projektordner wechseln
 - [x] Dann den Befehl ```composer install``` ausführen
 - [x] Die Datei ```.env.example``` in die Datei ```.env``` kopieren (```cp .env.example .env```)
 - [x] Innerhalb der Datei ```.env``` den Parameter ```APP_KEY``` (Wert für diesen Parameter, siehe Slack #general) und die DB Zugangsdaten anpassen
 
-### 4. In PHPStorm öffnen
+### 4. Bower-Dependencies laden
+
+- [x] Innerhalb der Bash in den Projektordner wechseln
+- [x] ```bower install```
+
+### 5. In PHPStorm öffnen
 
 - [x] Projektordner öffnen (*File › Open...*)
 
