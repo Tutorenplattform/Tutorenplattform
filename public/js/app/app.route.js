@@ -3,9 +3,13 @@
     angular.module('tp')
         .config(config);
 
-    config.$inject = ['$locationProvider', '$stateProvider', '$urlRouterProvider', '$urlMatcherFactoryProvider'];
+    config.$inject = ['$locationProvider', '$stateProvider', '$urlRouterProvider', '$urlMatcherFactoryProvider',
+        'RestangularProvider'];
 
-    function config($locationProvider, $stateProvider, $urlRouterProvider, $urlMatcherFactoryProvider) {
+    function config($locationProvider, $stateProvider, $urlRouterProvider, $urlMatcherFactoryProvider,
+                    RestangularProvider) {
+        RestangularProvider.setBaseUrl('/api/v1');
+
         $locationProvider.html5Mode(false).hashPrefix('');
 
         $urlMatcherFactoryProvider.defaultSquashPolicy(true);
