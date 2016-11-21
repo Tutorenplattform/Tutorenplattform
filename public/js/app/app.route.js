@@ -58,6 +58,15 @@
                         //return TutorService.all();
                     }
                 }
+            })
+            .state('tutor', {
+                url: '/tutor/{id:\\d+}',
+                parent: 'frontend',
+                views: {
+                    'frontend': {
+                        template: '<h1>Client-side: Not Yet Implemented</h1>'
+                    }
+                }
             });
 
         $stateProvider
