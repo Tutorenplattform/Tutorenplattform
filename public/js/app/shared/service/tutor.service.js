@@ -29,11 +29,11 @@
         }
 
         function update(tutor) {
-            tutor.put();
+            return tutor.put();
         }
 
         function destroy(tutor) {
-            tutor.delete();
+            return tutor.delete();
         }
     }
 
