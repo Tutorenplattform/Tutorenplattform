@@ -65,7 +65,7 @@
                 url: '/home',
                 parent: 'backend',
                 views: {
-                    '@backend': {
+                    'backend': {
                         templateUrl: 'templates/backend/general/home.html'
                     }
                 }
