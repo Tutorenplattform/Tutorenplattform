@@ -67,6 +67,17 @@
                         template: '<h1>Client-side: Not Yet Implemented</h1>'
                     }
                 }
+            })
+            .state('register', {
+                url: '/tutor/register',
+                parent: 'frontend',
+                views: {
+                    'frontend': {
+                        templateUrl: 'templates/frontend/tutand/register.html',
+                        controller: 'TutorRegistrationController',
+                        controllerAs: 'vm'
+                    }
+                }
             });
 
         $stateProvider
