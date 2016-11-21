@@ -16,6 +16,7 @@
 
     <!-- Shared Resources -->
     <script src="js/app/shared/shared.module.js"></script>
+    <script src="js/app/shared/service/tutor.service.js"></script>
 
     <!-- Authentication -->
     <script src="js/app/auth/auth.module.js"></script>
