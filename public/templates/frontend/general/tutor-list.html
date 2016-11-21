@@ -1,0 +1,14 @@
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="tutor in vm.tutors">
+            <td>{{ tutor.first_name }} {{ tutor.last_name }}</td>
+            <td><button ng-click="vm.viewTutor(tutor)">Ansehen</button></td>
+        </tr>
+    </tbody>
+</table>
