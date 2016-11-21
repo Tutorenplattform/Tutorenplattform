@@ -43,8 +43,15 @@
                 url: '/list',
                 parent: 'frontend',
                 views: {
-                    '@frontend': {
-                        templateUrl: 'templates/frontend/general/tutor-list.html'
+                    'frontend': {
+                        templateUrl: 'templates/frontend/general/tutor-list.html',
+                        controller: 'TutorListController',
+                        controllerAs: 'vm'
+                    }
+                },
+                resolve: {
+                    'tutors': function(TutorService) {
+                        //return TutorService.all();
                     }
                 }
             });
