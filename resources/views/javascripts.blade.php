@@ -28,3 +28,4 @@
 
     <!-- Backend -->
     <script src="js/app/backend/backend.module.js"></script>
+    <script src="js/app/backend/controller/teacher-list.controller.js"></script>
