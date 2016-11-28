@@ -5,7 +5,7 @@
 
     SubjectListController.$inject = ['subjects', 'SubjectService'];
 
-    function TeacherListController(subjects, SubjectService) {
+    function SubjectListController(subjects, SubjectService) {
         var vm = this;
 
         vm.refreshSubjects = refreshSubjects;
