@@ -15,6 +15,8 @@
         service.register = register;
         service.update = update;
         service.destroy = destroy;
+        service.report = report;
+        service.rate = rate;
 
         function all() {
             return tutorRest.getList();
@@ -38,6 +40,10 @@
 
         function report(tutor, report) {
             return tutor.one('report').post(report);
+        }
+
+        function rate(tutor, rating) {
+            return tutor.one('rate').post(rating);
         }
     }
 
