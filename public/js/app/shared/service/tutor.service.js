@@ -35,6 +35,10 @@
         function destroy(tutor) {
             return tutor.delete();
         }
+
+        function report(tutor, report) {
+            return tutor.one('report').post(report);
+        }
     }
 
 })();
