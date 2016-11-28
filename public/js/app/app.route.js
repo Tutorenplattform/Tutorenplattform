@@ -29,16 +29,16 @@
                 abstract: true,
                 templateUrl: 'templates/frontend/frontend.html',
                 permissions: {
-                    frontendUser: true
                     authenticated: true,
+                    side: 'frontend'
                 }
             })
             .state('backend', {
                 url: '/admin',
                 templateUrl: 'templates/backend/backend.html',
                 permissions: {
-                    backendUser: true
                     authenticated: true,
+                    side: 'backend'
                 }
             });
 
