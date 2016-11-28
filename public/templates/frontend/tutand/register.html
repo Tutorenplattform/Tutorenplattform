@@ -1,3 +1,28 @@
-<form name="registerForm" novalidate>
-    <input type="text">
+<form name="registerForm" novalidate ng-submit="vm.register()">
+    <div class="subject" ng-repeat="subject in vm.subjects">
+        <select ng-model="subject.name" required>
+            <option disabled>Fach wählen...</option>
+            <option ng-value="3">SEW</option>
+            <option ng-value="4">E</option>
+        </select>
+        <select ng-model="subject.teacher" required>
+            <option disabled>Lehrer wählen...</option>
+            <option ng-value="5">STR</option>
+            <option ng-value="6">STF</option>
+        </select>
+    </div>
+    <button ng-click="vm.addSubject()">+</button>
+    <select ng-model="vm.fields.grade" required>
+        <option disabled>Schulstufe wählen...</option>
+        <option ng-value="5">5. Schulstufe IT</option>
+    </select>
+    <input type="email" ng-model="vm.fields.email" placeholder="E-Mail">
+    <input type="tel" ng-model="vm.fields.tel" placeholder="Telefonnummer">
+    <input type="text" ng-model="vm.fields.preferredPlace" placeholder="Bevorzugter Ort">
+    <div class="day" ng-repeat="day in vm.days">
+        <span>{{ day.name }}</span>
+        <input type="time" ng-model="day.start">
+        <input type="time" ng-model="day.end">
+    </div>
+    <button type="submit">Registrieren</button>
 </form>
