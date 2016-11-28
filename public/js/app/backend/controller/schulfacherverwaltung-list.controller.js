@@ -3,7 +3,7 @@
     angular.module('tp.backend.controller')
         .controller('SubjectListController', SubjectListController);
 
-    TeacherListController.$inject = ['subjects', 'SubjectService'];
+    SubjectListController.$inject = ['subjects', 'SubjectService'];
 
     function TeacherListController(subjects, SubjectService) {
         var vm = this;
