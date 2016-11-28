@@ -21,6 +21,7 @@
 
     <!-- Authentication -->
     <script src="js/app/auth/auth.module.js"></script>
+    <script src="js/app/auth/service/user.service.js"></script>
 
     <!-- Frontend -->
     <script src="js/app/frontend/frontend.module.js"></script>
