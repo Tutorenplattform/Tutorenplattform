@@ -117,6 +117,22 @@
                         //return TeacherService.all();
                     }
                 }
+            })
+            .state('schulfaecherverwaltung', {
+                url: '/admin/schulfaecherverwaltung',
+                parent: 'backend',
+                views: {
+                    'backend': {
+                        templateUrl: 'templates/backend/admin/admin_schulfaecherverwaltung.html',
+                        controller: 'SubjectListController',
+                        controllerAs: 'vm'
+                    }
+                },
+                resolve: {
+                    'subjects': function(SubjectService) {
+                        //return SubjectService.all();
+                    }
+                }
             });
     }
 
