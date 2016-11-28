@@ -1,6 +1,6 @@
 (function() {
 
-    angular.module('tp.frontend.controller')
+    angular.module('tp.backend.controller')
         .controller('TutandListController', TutandListController);
 
     TutandListController.$inject = ['tutand', '$state'];
