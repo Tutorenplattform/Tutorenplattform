@@ -22,23 +22,23 @@
                 url: '/login',
                 templateUrl: 'templates/shared/login.html',
                 permissions: {
-                    loggedIn: false
+                    authenticated: false
                 }
             })
             .state('frontend', {
                 abstract: true,
                 templateUrl: 'templates/frontend/frontend.html',
                 permissions: {
-                    loggedIn: true,
                     frontendUser: true
+                    authenticated: true,
                 }
             })
             .state('backend', {
                 url: '/admin',
                 templateUrl: 'templates/backend/backend.html',
                 permissions: {
-                    loggedIn: true,
                     backendUser: true
+                    authenticated: true,
                 }
             });
 
