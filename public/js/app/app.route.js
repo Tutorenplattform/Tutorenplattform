@@ -21,6 +21,8 @@
             .state('login', {
                 url: '/login',
                 templateUrl: 'templates/shared/login.html',
+                controller: 'LoginController',
+                controllerAs: 'vm',
                 permissions: {
                     authenticated: false
                 }
