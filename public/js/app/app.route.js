@@ -102,6 +102,22 @@
                     }
                 }
             })
+            .state('teacherList', {
+                url:'/admin/teacherlist',
+                parent:'backend',
+                views: {
+                    'backend': {
+                        templateUrl: 'templates/backend/admin/teacher.html',
+                        controller: 'TeacherListController',
+                        controllerAs: 'vm'
+                    }
+                },
+                resolve: {
+                    'tutors': function(TeacherService) {
+                        //return TeacherService.all();
+                    }
+                }
+            });
     }
 
 })();
