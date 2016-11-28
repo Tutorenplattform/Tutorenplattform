@@ -66,7 +66,14 @@
                 parent: 'frontend',
                 views: {
                     'frontend': {
-                        template: '<h1>Client-side: Not Yet Implemented</h1>'
+                        templateUrl: 'templates/frontend/general/tutor-profile.html',
+                        controller: 'TutorProfileController',
+                        controllerAs: 'vm'
+                    }
+                },
+                resolve: {
+                    'tutor': function(TutorService, $stateParams) {
+                        //return TutorService.one($stateParams.id);
                     }
                 }
             })
