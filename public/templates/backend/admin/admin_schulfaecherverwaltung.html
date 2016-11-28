@@ -1,0 +1,20 @@
+<form method="post">
+    <span>Neues Fach anlegen: </span><input type="text" ng-model="subject">
+    <button>Fach anlegen</button>
+</form>
+
+<table>
+    <thead>
+    <tr>
+        <th>Fach</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="subject in vm.subjects">
+        <td>{{ subject.subjectname }}</td>
+        <td><button ng-click="vm.viewSubject(subject)">Ansehen</button></td>
+        <td><button class="glyphicon glyphicon-trash"></button></td>
+    </tr>
+    </tbody>
+</table>
