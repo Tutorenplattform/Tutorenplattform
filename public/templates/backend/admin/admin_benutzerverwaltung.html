@@ -1,0 +1,32 @@
+<h1>Tutor</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="tutor in vm.tutors">
+        <td>{{ tutor.first_name }} {{ tutor.last_name }}</td>
+        <td><button ng-click="vm.viewTutor(tutor)">Ansehen</button></td>
+    </tr>
+    </tbody>
+</table>
+
+<h1>Tutand</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>Name</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>{{tutand.first_name}} {{tutor.last_name}}</td>
+        <td><button ng-click="vm.viewTutand(tutand)">Ansehen</button></td>
+    </tr>
+    </tbody>
+</table>
