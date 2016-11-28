@@ -1,2 +1,7 @@
 <h1>{{ vm.tutor.first_name }} {{ vm.tutor.last_name }}</h1>
-<button ng-click="vm.report(tutor)">Melden</button>
+<button ng-click="vm.report()">Melden</button><br>
+<button ng-click="vm.rate(-1)">Nicht gut</button>
+<button ng-click="vm.rate(0)">Okay</button>
+<button ng-click="vm.rate(1)">Gut</button><br>
+<button ng-click="vm.startChat()">Chat starten</button>
+<button ng-click="vm.editProfile()">Bearbeiten</button>

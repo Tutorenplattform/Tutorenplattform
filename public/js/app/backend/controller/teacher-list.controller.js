@@ -12,7 +12,7 @@
 
         vm.viewTeacher = viewTeacher;
 
-        function viewTutor(teacher) {
+        function viewTeacher(teacher) {
             $state.go('teacher', {
                 id: teacher.id
             });

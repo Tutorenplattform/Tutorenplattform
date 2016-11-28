@@ -103,7 +103,7 @@
                 }
             })
             .state('teacherList', {
-                url:'/teacherlist',
+                url:'/teachers',
                 parent:'backend',
                 views: {
                     'backend': {
@@ -113,7 +113,7 @@
                     }
                 },
                 resolve: {
-                    'tutors': function(TeacherService) {
+                    'teachers': function(TeacherService) {
                         //return TeacherService.all();
                     }
                 }
