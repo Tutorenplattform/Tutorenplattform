@@ -18,6 +18,7 @@
     <script src="js/app/shared/shared.module.js"></script>
     <script src="js/app/shared/controller/login.controller.js"></script>
     <script src="js/app/shared/service/tutor.service.js"></script>
+    <script src="js/app/shared/service/teacher.service.js"></script>
 
     <!-- Authentication -->
     <script src="js/app/auth/auth.module.js"></script>
