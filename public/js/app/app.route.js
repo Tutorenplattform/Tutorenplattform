@@ -86,6 +86,9 @@
                         controller: 'TutorRegistrationController',
                         controllerAs: 'vm'
                     }
+                },
+                permissions: {
+                    type: 'tutand'
                 }
             });
 
