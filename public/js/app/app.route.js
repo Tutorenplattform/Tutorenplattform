@@ -103,8 +103,8 @@
                 }
             })
             .state('teacherList', {
-                url:'/teachers',
-                parent:'backend',
+                url: '/admin/teachers',
+                parent: 'backend',
                 views: {
                     'backend': {
                         templateUrl: 'templates/backend/admin/teacher.html',
@@ -117,39 +117,7 @@
                         //return TeacherService.all();
                     }
                 }
-            })
-            .state('tutandList', {
-                url:'/admin_benutzerverwaltung',
-                parent:'backend',
-                views: {
-                    'backend': {
-                        templateUrl: 'templates/backend/admin/admin_benutzerverwaltung.html',
-                        controller: 'TutandListController',
-                        controllerAs: 'vm'
-                    }
-                },
-                resolve: {
-                    'tutand': function(TutandService) {
-                        //return TutandService.all();
-                    }
-                }
-            })
-            .state('tutorList', {
-            url: '/admin_benutzerverwaltung',
-                parent: '/admin_benutzerverwaltung',
-                views: {
-                    'backend': {
-                        templateUrl: 'templates/backend/admin/admin_benutzerverwaltung.html',
-                        controller: 'TutorListController',
-                        controllerAs: 'vm'
-                    }
-                },
-                resolve: {
-                    'tutors': function(TutorService) {
-                        //return TutorService.all();
-                    }
-                }
-        });
+            });
     }
 
 })();
