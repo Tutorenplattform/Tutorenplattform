@@ -5,7 +5,7 @@
 
     TeacherListController.$inject = ['teachers', '$state'];
 
-    function TutorListController(teachers, $state) {
+    function TeacherListController(teachers, $state) {
         var vm = this;
 
         vm.teachers = [{id: 1, first_name: 'First', last_name: 'Last'}];
