@@ -10,6 +10,8 @@
             <option ng-value="5">STR</option>
             <option ng-value="6">STF</option>
         </select>
+        <input type="text" placeholder="Anmerkung" ng-model="subject.comment">
+        <button ng-click="vm.removeSubject($index)">-</button>
     </div>
     <button ng-click="vm.addSubject()">+</button>
     <select ng-model="vm.fields.grade" required>

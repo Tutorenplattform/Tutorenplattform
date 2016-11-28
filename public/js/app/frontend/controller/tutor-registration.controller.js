@@ -16,6 +16,7 @@
 
         vm.register = register;
         vm.addSubject = addSubject;
+        vm.removeSubject = removeSubject;
 
         init();
 
@@ -40,6 +41,10 @@
 
         function addSubject() {
             vm.subjects.push({});
+        }
+
+        function removeSubject(index) {
+            vm.subjects.splice(index, 1);
         }
     }
 
