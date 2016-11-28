@@ -1,13 +1,19 @@
 <table>
     <thead>
         <tr>
+            <th>Schulstufe</th>
             <th>Name</th>
+            <th>Bewertung</th>
+            <th>Fächer</th>
             <th></th>
         </tr>
     </thead>
     <tbody>
         <tr ng-repeat="tutor in vm.tutors">
+            <td>{{ tutor.grade.name }}</td>
             <td>{{ tutor.first_name }} {{ tutor.last_name }}</td>
+            <td>{{ tutor.rating }}</td>
+            <td><span ng-repeat="subject in tutor.subjects">{{ subject.name }} &nbsp;</span></td>
             <td><button ng-click="vm.viewTutor(tutor)">Ansehen</button></td>
         </tr>
     </tbody>
