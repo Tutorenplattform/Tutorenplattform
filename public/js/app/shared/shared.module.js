@@ -1,7 +1,8 @@
 (function() {
 
     var SUBMODULES = [
-        'tp.shared.service'
+        'tp.shared.service',
+        'tp.shared.controller'
     ];
 
     angular.module('tp.shared', SUBMODULES);
