@@ -2,6 +2,7 @@
 
     var LIBRARIES = [
         'restangular',
+        'satellizer',
         'ngAnimate',
         'ngTouch',
         'ui.bootstrap',

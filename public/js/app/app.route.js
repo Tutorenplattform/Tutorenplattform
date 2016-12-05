@@ -4,11 +4,12 @@
         .config(config);
 
     config.$inject = ['$locationProvider', '$stateProvider', '$urlRouterProvider', '$urlMatcherFactoryProvider',
-        'RestangularProvider'];
+        'RestangularProvider', '$authProvider', 'UserType'];
 
     function config($locationProvider, $stateProvider, $urlRouterProvider, $urlMatcherFactoryProvider,
-                    RestangularProvider) {
+                    RestangularProvider, $authProvider, UserType) {
         RestangularProvider.setBaseUrl('/api/v1');
+        $authProvider.loginUrl = '/api/v1/authenticate';
 
         $locationProvider.html5Mode(false).hashPrefix('');
 
@@ -30,6 +31,8 @@
             .state('frontend', {
                 abstract: true,
                 templateUrl: 'templates/frontend/frontend.html',
+                controller: 'FrontendNavController',
+                controllerAs: 'nav',
                 permissions: {
                     authenticated: true,
                     side: 'frontend'
@@ -38,6 +41,8 @@
             .state('backend', {
                 url: '/admin',
                 templateUrl: 'templates/backend/backend.html',
+                controller: 'BackendNavController',
+                controllerAs: 'nav',
                 permissions: {
                     authenticated: true,
                     side: 'backend'
@@ -88,7 +93,7 @@
                     }
                 },
                 permissions: {
-                    type: 'tutand'
+                    type: UserType.Tutand
                 }
             });
 
