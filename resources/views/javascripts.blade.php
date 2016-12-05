@@ -16,12 +16,23 @@
 
     <!-- Shared Resources -->
     <script src="js/app/shared/shared.module.js"></script>
+    <script src="js/app/shared/controller/login.controller.js"></script>
+    <script src="js/app/shared/service/tutor.service.js"></script>
+    <script src="js/app/shared/service/teacher.service.js"></script>
 
     <!-- Authentication -->
     <script src="js/app/auth/auth.module.js"></script>
+    <script src="js/app/auth/constant/user-type.constant.js"></script>
+    <script src="js/app/auth/service/user.service.js"></script>
 
     <!-- Frontend -->
     <script src="js/app/frontend/frontend.module.js"></script>
+    <script src="js/app/frontend/controller/tutor-list.controller.js"></script>
+    <script src="js/app/frontend/controller/tutor-registration.controller.js"></script>
+    <script src="js/app/frontend/controller/tutor-profile.controller.js"></script>
 
     <!-- Backend -->
     <script src="js/app/backend/backend.module.js"></script>
+    <script src="js/app/backend/controller/teacher-list.controller.js"></script>
+    <script src="js/app/backend/controller/tutand-list.controller.js"></script>
+    <script src="js/app/backend/controller/schulfacherverwaltung-list.controller.js"></script>

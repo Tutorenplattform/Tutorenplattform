@@ -3,9 +3,13 @@
     angular.module('tp')
         .config(config);
 
-    config.$inject = ['$locationProvider', '$stateProvider', '$urlRouterProvider', '$urlMatcherFactoryProvider'];
+    config.$inject = ['$locationProvider', '$stateProvider', '$urlRouterProvider', '$urlMatcherFactoryProvider',
+        'RestangularProvider'];
 
-    function config($locationProvider, $stateProvider, $urlRouterProvider, $urlMatcherFactoryProvider) {
+    function config($locationProvider, $stateProvider, $urlRouterProvider, $urlMatcherFactoryProvider,
+                    RestangularProvider) {
+        RestangularProvider.setBaseUrl('/api/v1');
+
         $locationProvider.html5Mode(false).hashPrefix('');
 
         $urlMatcherFactoryProvider.defaultSquashPolicy(true);
@@ -17,24 +21,26 @@
             .state('login', {
                 url: '/login',
                 templateUrl: 'templates/shared/login.html',
+                controller: 'LoginController',
+                controllerAs: 'vm',
                 permissions: {
-                    loggedIn: false
+                    authenticated: false
                 }
             })
             .state('frontend', {
                 abstract: true,
                 templateUrl: 'templates/frontend/frontend.html',
                 permissions: {
-                    loggedIn: true,
-                    frontendUser: true
+                    authenticated: true,
+                    side: 'frontend'
                 }
             })
             .state('backend', {
                 url: '/admin',
                 templateUrl: 'templates/backend/backend.html',
                 permissions: {
-                    loggedIn: true,
-                    backendUser: true
+                    authenticated: true,
+                    side: 'backend'
                 }
             });
 
@@ -43,9 +49,46 @@
                 url: '/list',
                 parent: 'frontend',
                 views: {
-                    '@frontend': {
-                        templateUrl: 'templates/frontend/general/tutor-list.html'
+                    'frontend': {
+                        templateUrl: 'templates/frontend/general/tutor-list.html',
+                        controller: 'TutorListController',
+                        controllerAs: 'vm'
                     }
+                },
+                resolve: {
+                    'tutors': function(TutorService) {
+                        //return TutorService.all();
+                    }
+                }
+            })
+            .state('tutor', {
+                url: '/tutor/{id:\\d+}',
+                parent: 'frontend',
+                views: {
+                    'frontend': {
+                        templateUrl: 'templates/frontend/general/tutor-profile.html',
+                        controller: 'TutorProfileController',
+                        controllerAs: 'vm'
+                    }
+                },
+                resolve: {
+                    'tutor': function(TutorService, $stateParams) {
+                        //return TutorService.one($stateParams.id);
+                    }
+                }
+            })
+            .state('register', {
+                url: '/tutor/register',
+                parent: 'frontend',
+                views: {
+                    'frontend': {
+                        templateUrl: 'templates/frontend/tutand/register.html',
+                        controller: 'TutorRegistrationController',
+                        controllerAs: 'vm'
+                    }
+                },
+                permissions: {
+                    type: 'tutand'
                 }
             });
 
@@ -54,11 +97,43 @@
                 url: '/home',
                 parent: 'backend',
                 views: {
-                    '@backend': {
+                    'backend': {
                         templateUrl: 'templates/backend/general/home.html'
                     }
                 }
             })
+            .state('teacherList', {
+                url: '/admin/teachers',
+                parent: 'backend',
+                views: {
+                    'backend': {
+                        templateUrl: 'templates/backend/admin/teacher.html',
+                        controller: 'TeacherListController',
+                        controllerAs: 'vm'
+                    }
+                },
+                resolve: {
+                    'teachers': function(TeacherService) {
+                        //return TeacherService.all();
+                    }
+                }
+            })
+            .state('schulfaecherverwaltung', {
+                url: '/admin/schulfaecherverwaltung',
+                parent: 'backend',
+                views: {
+                    'backend': {
+                        templateUrl: 'templates/backend/admin/admin_schulfaecherverwaltung.html',
+                        controller: 'SubjectListController',
+                        controllerAs: 'vm'
+                    }
+                },
+                resolve: {
+                    'subjects': function(SubjectService) {
+                        //return SubjectService.all();
+                    }
+                }
+            });
     }
 
 })();

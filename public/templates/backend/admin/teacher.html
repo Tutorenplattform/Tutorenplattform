@@ -1,0 +1,13 @@
+<table>
+    <thead>
+    <tr>
+        <th>Name</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="teacher in vm.teachers">
+        <td>{{ teacher.first_name }} {{ teacher.last_name }}</td>
+    </tr>
+    </tbody>
+    <button ng-click="vm.refreshTeachers()">Aktualisieren</button>
+</table>
