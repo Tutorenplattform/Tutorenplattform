@@ -4,11 +4,12 @@
         .config(config);
 
     config.$inject = ['$locationProvider', '$stateProvider', '$urlRouterProvider', '$urlMatcherFactoryProvider',
-        'RestangularProvider'];
+        'RestangularProvider', '$authProvider', 'UserType'];
 
     function config($locationProvider, $stateProvider, $urlRouterProvider, $urlMatcherFactoryProvider,
-                    RestangularProvider) {
+                    RestangularProvider, $authProvider, UserType) {
         RestangularProvider.setBaseUrl('/api/v1');
+        $authProvider.loginUrl = '/api/v1/authenticate';
 
         $locationProvider.html5Mode(false).hashPrefix('');
 
