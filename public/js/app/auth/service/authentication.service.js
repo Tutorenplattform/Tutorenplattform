@@ -64,12 +64,10 @@
             return allowed;
 
             function forEach(value, key) {
-                console.log('Needed: (' + key + '=' + value + ')...');
                 if (perms[key] != value) {
                     allowed = false;
                     return false;
                 }
-                console.log('Granted!');
             }
 
             function getStatePermissions(state) {

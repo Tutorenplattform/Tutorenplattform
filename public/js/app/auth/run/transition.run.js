@@ -11,12 +11,10 @@
         function transitionHandler(trans) {
             var toState = trans.$to();
             if (!Authentication.canVisit(toState)) {
-                console.log('Nope');
                 var home = Authentication.getHome();
                 var router = trans.router.stateService;
                 return router.target(home, {}, {location: 'replace'});
             }
-            console.log('Yes');
         }
     }
 
