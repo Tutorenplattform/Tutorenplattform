@@ -16,6 +16,7 @@
 
     <!-- Shared Resources -->
     <script src="js/app/shared/shared.module.js"></script>
+    <script src="js/app/shared/constant/globals.constant.js"></script>
     <script src="js/app/shared/controller/login.controller.js"></script>
     <script src="js/app/shared/service/tutor.service.js"></script>
     <script src="js/app/shared/service/teacher.service.js"></script>
