@@ -5,6 +5,7 @@
 
 <!-- AngularJS Library Modules -->
 <script src="bower_components/restangular/dist/restangular.js"></script>
+<script src="bower_components/satellizer/dist/satellizer.js"></script>
 <script src="bower_components/angular-animate/angular-animate.js"></script>
 <script src="bower_components/angular-touch/angular-touch.js"></script>
 <script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
