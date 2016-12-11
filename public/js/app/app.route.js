@@ -93,7 +93,7 @@
                     }
                 },
                 permissions: {
-                    type: 'tutand'
+                    type: UserType.Tutand
                 }
             });
 
