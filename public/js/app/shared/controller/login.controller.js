@@ -3,9 +3,9 @@
     angular.module('tp.shared.controller')
         .controller('LoginController', LoginController);
 
-    LoginController.$inject = ['$state'];
+    LoginController.$inject = ['Authentication'];
 
-    function LoginController($state) {
+    function LoginController(Authentication) {
         var vm = this;
 
         vm.fields = {};
@@ -13,7 +13,7 @@
         vm.login = login;
 
         function login() {
-            $state.go('tutorList');
+            Authentication.login();
         }
     }
 
