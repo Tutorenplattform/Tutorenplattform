@@ -2,7 +2,8 @@
 
     var SUBMODULES = [
         'tp.auth.service',
-        'tp.auth.constant'
+        'tp.auth.constant',
+        'tp.auth.run'
     ];
 
     angular.module('tp.auth', SUBMODULES);
