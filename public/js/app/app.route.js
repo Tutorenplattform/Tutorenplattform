@@ -31,6 +31,8 @@
             .state('frontend', {
                 abstract: true,
                 templateUrl: 'templates/frontend/frontend.html',
+                controller: 'FrontendNavController',
+                controllerAs: 'nav',
                 permissions: {
                     authenticated: true,
                     side: 'frontend'
