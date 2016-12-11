@@ -1,6 +1,7 @@
 (function() {
 
     var SUBMODULES = [
+        'tp.shared.constant',
         'tp.shared.service',
         'tp.shared.controller'
     ];
