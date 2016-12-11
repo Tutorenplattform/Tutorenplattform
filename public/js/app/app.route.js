@@ -41,6 +41,8 @@
             .state('backend', {
                 url: '/admin',
                 templateUrl: 'templates/backend/backend.html',
+                controller: 'BackendNavController',
+                controllerAs: 'nav',
                 permissions: {
                     authenticated: true,
                     side: 'backend'

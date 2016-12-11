@@ -37,5 +37,6 @@
 
     <!-- Backend -->
     <script src="js/app/backend/backend.module.js"></script>
+    <script src="js/app/backend/controller/nav.controller.js"></script>
     <script src="js/app/backend/controller/teacher-list.controller.js"></script>
     <script src="js/app/backend/controller/tutand-list.controller.js"></script>
