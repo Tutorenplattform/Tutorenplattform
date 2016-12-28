@@ -39,7 +39,8 @@
         }
 
         function report(tutor, report) {
-            return tutor.one('report').post(report);
+            tutor = tutor.pk_tutor_tutand_id || tutor;
+            return tutorRest.one(tutor).post('report', report);
         }
 
         function rate(tutor, rating) {
