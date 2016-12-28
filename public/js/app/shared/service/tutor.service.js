@@ -18,8 +18,8 @@
         service.report = report;
         service.rate = rate;
 
-        function all() {
-            return tutorRest.getList();
+        function all(constraints) {
+            return tutorRest.customGET('', constraints);
         }
 
         function one(id) {
