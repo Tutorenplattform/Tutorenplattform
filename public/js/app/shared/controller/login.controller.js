@@ -13,7 +13,7 @@
         vm.login = login;
 
         function login() {
-            Authentication.login();
+            Authentication.login(vm.fields);
         }
     }
 
