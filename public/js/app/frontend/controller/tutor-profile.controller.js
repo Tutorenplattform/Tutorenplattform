@@ -8,11 +8,19 @@
     function TutorProfileController(tutor, $state, TutorService) {
         var vm = this;
 
-        vm.tutor = {id: 1, first_name: 'First', last_name: 'Last'};
+        vm.tutor = {
+            vorname: "Hans",
+            nachname: "Mustermann",
+            klasse: "4AM",
+            id: 1,
+            faecher: ["AM", "D"],
+            bewertung_gut: 3,
+            bewertung_neutral: 1,
+            bewertung_schlecht: 0
+        };
 
         vm.report = report;
         vm.rate = rate;
-        vm.startChat = startChat;
         vm.editProfile = editProfile;
 
         function report(tutor) {
@@ -26,19 +34,12 @@
             var rating = {
                 rate: value
             };
-            TutorService.rate(tutor, rating);
-        }
-
-        function startChat() {
-            var params = {
-                id: tutor.id
-            };
-            $state.go('frontend.chat', params);
+            TutorService.rate(vm.tutor, rating);
         }
 
         function editProfile() {
             var params = {
-                id: tutor.id
+                id: vm.tutor.id
             };
             $state.go('editProfile', params);
         }
