@@ -1,10 +1,9 @@
 <h1>Login</h1>
 
-<form novalidate ng-submit="vm.login()">
-    <span>Moodle ID &#58;</span>
-    <input type="text" placeholder="Moodle-ID" ng-model="vm.fields.id">
-    <span>Moodle Passwort &#58;</span>
-    <input type="password" placeholder="Moodle-Passwort" ng-model="vm.fields.password">
-
-    <button type="submit">Anmelden</button>
+<form name="loginForm" novalidate ng-submit="vm.login()">
+    <span>Benutzer-ID:</span>
+    <input type="text" placeholder="Benutzer-ID" ng-model="vm.fields.user_name" required>
+    <span>Passwort:</span>
+    <input type="password" placeholder="Moodle-Passwort" ng-model="vm.fields.password" required>
+    <button type="submit" ng-disabled="loginForm.$invalid">Anmelden</button>
 </form>
