@@ -42,3 +42,4 @@
     <script src="js/app/backend/controller/tutand-list.controller.js"></script>
     <script src="js/app/backend/controller/schulfacherverwaltung-list.controller.js"></script>
     <script src="js/app/backend/service/subject.service.js"></script>
+    <script src="js/app/backend/service/tutand.service.js"></script>
