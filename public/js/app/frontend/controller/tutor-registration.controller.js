@@ -34,8 +34,8 @@
 
         function register() {
             var data = angular.copy(vm.fields);
-            data.subjects = subjects;
-            data.days = days;
+            data.subjects = vm.subjects;
+            data.days = vm.days;
             TutorService.register(vm.fields);
         }
 
