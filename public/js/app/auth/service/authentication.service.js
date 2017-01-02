@@ -46,7 +46,14 @@
         }
 
         function getAccountInfo() {
-            return temp ? {type: UserType.Tutor} : void 0; //TODO: Remove brake
+            var fakeAccount = {
+                type: UserType.Tutor,
+                pk_tutor_tutand_id: 1,
+                vorname: 'Max',
+                nachname: 'Mustermann'
+            };
+            return fakeAccount;
+            return temp ? fakeAccount : void 0; //TODO: Remove brake
             if (!isAuthenticated()) {
                 return;
             }
