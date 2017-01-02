@@ -116,7 +116,7 @@
                 }
             })
             .state('teacherList', {
-                url: '/admin/teachers',
+                url: '/teachers',
                 parent: 'backend',
                 views: {
                     'backend': {
@@ -132,7 +132,7 @@
                 }
             })
             .state('schulfaecherverwaltung', {
-                url: '/admin/schulfaecherverwaltung',
+                url: '/schulfaecherverwaltung',
                 parent: 'backend',
                 views: {
                     'backend': {
