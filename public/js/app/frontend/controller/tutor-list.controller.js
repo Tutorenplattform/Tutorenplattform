@@ -5,6 +5,13 @@
 
     TutorListController.$inject = ['tutors', '$state'];
 
+    /**
+     * This controller provides the background functionality for the list of tutors on the frontend side of the
+     * application.
+     * @param {Array.<Object<string, Object>>} tutors The list of tutors
+     * @param {$state} $state The service used to transition between states
+     * @constructor
+     */
     function TutorListController(tutors, $state) {
         var vm = this;
 
@@ -39,12 +46,21 @@
         vm.viewTutor = viewTutor;
         vm.getSubjects = getSubjects;
 
+        /**
+         * Redirects the user to the given tutor's profile.
+         * @param tutor The tutor whose profile the user would like to see
+         */
         function viewTutor(tutor) {
             $state.go('tutor', {
                 id: tutor.pk_tutor_tutand_id
             });
         }
 
+        /**
+         * Processes the list of the subjects the given tutor teaches and returns it as a string.
+         * @param tutor The tutor whose list of subjects should be processed into a string
+         * @returns {string} A comma-separated list of subject names as a string
+         */
         function getSubjects(tutor) {
             var subjects = _.map(tutor.faecher, 'fach.name');
             return subjects.join(', ');
