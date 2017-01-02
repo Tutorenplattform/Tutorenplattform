@@ -204,6 +204,22 @@
                         //return AdministratorService.getOptions();
                     }
                 }
+            })
+            .state('reportedTutors', {
+                url: '/reported',
+                parent: 'backend',
+                views: {
+                    'backend': {
+                        templateUrl: 'templates/backend/admin/reported-tutors.html',
+                        controller: 'ReportedTutorsController',
+                        controllerAs: 'vm'
+                    }
+                },
+                resolve: {
+                    'reportedTutors': function(ReportService) {
+                        //return ReportService.all();
+                    }
+                }
             });
     }
 

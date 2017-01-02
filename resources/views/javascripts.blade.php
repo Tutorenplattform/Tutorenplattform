@@ -47,6 +47,7 @@
     <script src="js/app/backend/controller/teacher-list.controller.js"></script>
     <script src="js/app/backend/controller/tutand-list.controller.js"></script>
     <script src="js/app/backend/controller/schulfacherverwaltung-list.controller.js"></script>
+    <script src="js/app/backend/controller/reported-tutors.controller.js"></script>
     <script src="js/app/backend/controller/admin-options.controller.js"></script>
     <script src="js/app/backend/service/subject.service.js"></script>
     <script src="js/app/backend/service/tutand.service.js"></script>
