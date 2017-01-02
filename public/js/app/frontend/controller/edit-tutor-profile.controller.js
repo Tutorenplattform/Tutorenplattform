@@ -3,9 +3,9 @@
     angular.module('tp.frontend.controller')
         .controller('EditTutorProfileController', EditTutorProfileController);
 
-    EditTutorProfileController.$inject = ['$state', 'TutorService', 'tutor', 'teachers', 'subjects', 'Restangular'];
+    EditTutorProfileController.$inject = ['$state', 'TutorService', 'tutor', 'teachers', 'subjects'];
 
-    function EditTutorProfileController($state, TutorService, tutor, teachers, subjects, Restangular) {
+    function EditTutorProfileController($state, TutorService, tutor, teachers, subjects) {
         var vm = this;
 
         vm.tutor = {
@@ -57,7 +57,6 @@
         //init();
 
         function init() {
-            vm.tutor = Restangular.copy(tutor);
             _.each(vm.tutor.faecher, reduceTeacher);
             vm.tutor.letzte_zeugnisnote = vm.tutor.letzte_zeugnisnote + '';
 
