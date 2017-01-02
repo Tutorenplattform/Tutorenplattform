@@ -1,0 +1,7 @@
+<h1>{{ vm.tutor | fullName }} melden</h1>
+<h2>Warum willst du diesen Tutor melden?</h2>
+<form name="reportForm" novalidate ng-submit="vm.report()">
+    <textarea ng-model="vm.fields.kommentar" required></textarea>
+    <button type="submit" ng-disabled="reportForm.$invalid">Abschicken</button>
+</form>
+<button ng-click="vm.returnToProfile()">Zurück zum Profil</button>

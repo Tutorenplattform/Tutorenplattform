@@ -103,6 +103,16 @@
                 permissions: {
                     type: UserType.Tutand
                 }
+            })
+            .state('tutor.report', {
+                url: '/report',
+                views: {
+                    'frontend@frontend': {
+                        templateUrl: 'templates/frontend/general/report-tutor.html',
+                        controller: 'TutorReportController',
+                        controllerAs: 'vm'
+                    }
+                }
             });
 
         $stateProvider
