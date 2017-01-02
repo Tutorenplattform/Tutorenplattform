@@ -5,6 +5,16 @@
 
     EditTutorProfileController.$inject = ['$state', 'TutorService', 'tutor', 'teachers', 'subjects'];
 
+    /**
+     * This controller provides the background functionality for the editing of tutor profiles on the frontend side of
+     * the application.
+     * @param {$state} $state The service used to transition between states
+     * @param {TutorService} TutorService The data service used to interact with the server-side REST API
+     * @param {Object.<string, Object>} tutor The tutor whose profile should be edited
+     * @param {Object.<string, Object>} teachers The list of teachers
+     * @param {Object.<string, Object>} subjects The list of subjects
+     * @constructor
+     */
     function EditTutorProfileController($state, TutorService, tutor, teachers, subjects) {
         var vm = this;
 
@@ -65,19 +75,34 @@
             }
         }
 
+        /**
+         * Saves the changes that were made in the vie model and sends an appropriate request to the REST API.
+         * Afterwards, the tutor will be redirected back to his profile.
+         * @see returnToProfile
+         */
         function saveChanges() {
             vm.tutor.letzte_zeugnisnote = +vm.tutor.letzte_zeugnisnote;
             TutorService.update(vm.tutor).then(returnToProfile);
         }
 
+        /**
+         * Adds a new subject slot to the list of the subjects the tutor is willing to teach.
+         */
         function addSubject() {
             vm.subjects.push({});
         }
 
+        /**
+         * Removes the subject slot with the given index from the list of subjects the tutor is willing to teach.
+         * @param {number} index The index of the subject to remove
+         */
         function removeSubject(index) {
             vm.subjects.splice(index, 1);
         }
 
+        /**
+         * Redirects the tutor back to their normal profile page.
+         */
         function returnToProfile() {
             $state.go('tutor');
         }
