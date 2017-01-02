@@ -31,7 +31,7 @@
                 <td>
                     <select ng-options="subject as subject.name for subject in vm.subjects track by subject.pk_fach_id"
                             ng-model="fach.fach" required></select>
-                    <button ng-click="vm.removeSubject($index)">-</button>
+                    <button type="button" ng-click="vm.removeSubject($index)" ng-hide="$first && $last">-</button>
                 </td>
                 <td>
                     <select ng-options="teacher as teacher.nachname for teacher in vm.teachers track by teacher.pk_lehrer_id"
@@ -52,7 +52,7 @@
             </tr>
         </tbody>
     </table>
-    <button ng-click="vm.addSubject()">+</button>
+    <button type="button" ng-click="vm.addSubject()">+</button>
     <button type="submit" ng-disabled="editForm.$invalid">Speichern</button>
 </form>
 <button ng-click="vm.returnToProfile()">Abbrechen</button>
