@@ -18,7 +18,7 @@
         }
 
         function saveOptions(options) {
-            return options.put();
+            return adminRest.customPUT(options);
         }
     }
 
