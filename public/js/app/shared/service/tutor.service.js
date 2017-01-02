@@ -40,8 +40,7 @@
         }
 
         function report(tutor, report) {
-            tutor = tutor.pk_tutor_tutand_id || tutor;
-            return tutorRest.one(tutor).post('report', report);
+            return tutor.post('report', report);
         }
 
         function sendMail(tutor, subject, body) {
