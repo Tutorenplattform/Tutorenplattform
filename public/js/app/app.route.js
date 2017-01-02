@@ -188,6 +188,22 @@
                         //return SubjectService.all();
                     }
                 }
+            })
+            .state('options', {
+                url: '/options',
+                parent: 'backend',
+                views: {
+                    'backend': {
+                        templateUrl: 'templates/backend/admin/options.html',
+                        controller: 'AdminOptionsController',
+                        controllerAs: 'vm'
+                    }
+                },
+                resolve: {
+                    'options': function(AdministratorService) {
+                        //return AdministratorService.getOptions();
+                    }
+                }
             });
     }
 

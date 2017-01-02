@@ -1,0 +1,9 @@
+<form name="optionsForm" novalidate ng-submit="vm.saveChanges()">
+    <span>Neues Passwort:</span>
+    <input type="password" ng-model="vm.fields.passwort" ng-required="vm.passwordSet()">
+    <span>Neues Passwort wiederholen:</span>
+    <input type="password" ng-model="vm.fields.passwort2" ng-required="vm.passwordSet()">
+    <input type="email" ng-model="vm.fields.email" required>
+    <button type="submit" ng-disabled="!(optionsForm.$valid && vm.validChanges())">Änderungen anwenden</button>
+</form>
+<button ng-click="vm.reset()">Applikation zurücksetzen</button>
