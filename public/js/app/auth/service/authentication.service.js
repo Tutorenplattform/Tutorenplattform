@@ -68,11 +68,11 @@
         function canManage(tutor) {
             var tutorId = tutor.pk_tutor_tutand_id || tutor;
             var account = getAccountInfo();
-            return account && (account.pk_tutor_tutand_id === tutorId);
+            return !!account && (account.pk_tutor_tutand_id === tutorId);
         }
 
         function canVisit(state) {
-            var perms = getPermissions();
+            var perms = getPermissions(state);
             var allowed = true;
             _.each(getStatePermissions(state), forEach);
             return allowed;
@@ -93,7 +93,7 @@
             }
         }
 
-        function getPermissions() {
+        function getPermissions(state) {
             var account = getAccountInfo();
             var permissions = {
                 authenticated: !!account
