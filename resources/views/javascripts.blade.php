@@ -28,7 +28,7 @@
     <!-- Authentication -->
     <script src="js/app/auth/auth.module.js"></script>
     <script src="js/app/auth/constant/user-type.constant.js"></script>
-    <script src="js/app/auth/run/transition.run.js"></script>
+    <!--<script src="js/app/auth/run/transition.run.js"></script>-->
     <script src="js/app/auth/service/authentication.service.js"></script>
 
     <!-- Frontend -->
