@@ -8,7 +8,9 @@
     function TutorRegistrationController($state, TutorService, teachers, subjects, Authentication) {
         var vm = this;
 
-        vm.fields = {};
+        vm.fields = {
+            faecher: [{}]
+        };
 
         vm.teachers = [
             {pk_lehrer_id: 1, vorname: 'Reinhard', nachname: 'Gottweis'},
@@ -27,10 +29,13 @@
         vm.removeSubject = removeSubject;
 
         function register() {
-            var id = Authentication.getAccountInfo().pk_tutor_tutand_id;
             var data = angular.copy(vm.fields);
-            data.tutand = id;
+            _.each(data.faecher, castGrade);
             TutorService.register(data).then(forwardToProfile);
+
+            function castGrade(fach) {
+                fach.letzte_zeugnisnote = +fach.letzte_zeugnisnote;
+            }
 
             function forwardToProfile() {
                 var params = {
@@ -41,11 +46,11 @@
         }
 
         function addSubject() {
-            vm.subjects.push({});
+            vm.fields.faecher.push({});
         }
 
         function removeSubject(index) {
-            vm.subjects.splice(index, 1);
+            vm.fields.faecher.splice(index, 1);
         }
     }
 
