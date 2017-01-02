@@ -2,6 +2,7 @@
 
     var SUBMODULES = [
         'tp.shared.constant',
+        'tp.shared.filter',
         'tp.shared.service',
         'tp.shared.controller'
     ];
