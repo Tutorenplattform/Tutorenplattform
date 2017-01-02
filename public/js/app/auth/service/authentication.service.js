@@ -13,6 +13,7 @@
         service.getHome = getHome;
         service.getAccountInfo = getAccountInfo;
         service.isAuthenticated = isAuthenticated;
+        service.canManage = canManage;
         service.getPermissions = getPermissions;
         service.canVisit = canVisit;
 
@@ -62,6 +63,12 @@
 
         function isAuthenticated() {
             return $auth.isAuthenticated();
+        }
+
+        function canManage(tutor) {
+            var tutorId = tutor.pk_tutor_tutand_id || tutor;
+            var account = getAccountInfo();
+            return account && (account.pk_tutor_tutand_id === tutorId);
         }
 
         function canVisit(state) {
