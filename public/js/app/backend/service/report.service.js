@@ -19,8 +19,7 @@
         }
 
         function disable(tutor) {
-            tutor = tutor.pk_tutor_tutand_id || tutor;
-            return tutorRest.one(tutor).post('disable', {});
+            return tutor.post('disable', {});
         }
 
         function ignore(tutor) {
