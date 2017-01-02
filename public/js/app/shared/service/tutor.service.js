@@ -51,7 +51,10 @@
         }
 
         function rate(tutor, rating) {
-            return tutor.one('rate').post(rating);
+            var data = {
+                bewertung: rating.value
+            };
+            return tutor.post('rate', data);
         }
     }
 
