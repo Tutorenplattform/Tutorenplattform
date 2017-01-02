@@ -113,6 +113,28 @@
                         controllerAs: 'vm'
                     }
                 }
+            })
+            .state('tutor.edit', {
+                url: '/edit',
+                views: {
+                    'frontend@frontend': {
+                        templateUrl: 'templates/frontend/tutor/edit-profile.html',
+                        controller: 'EditTutorProfileController',
+                        controllerAs: 'vm'
+                    }
+                },
+                resolve: {
+                    'teachers': function(TeacherService) {
+                        //return TeacherService.all();
+                    },
+                    'subjects': function(SubjectService) {
+                        //return SubjectService.all();
+                    }
+                },
+                permissions: {
+                    type: UserType.Tutor
+                    //manageRights: true
+                }
             });
 
         $stateProvider
