@@ -10,6 +10,12 @@
 
         vm.logout = logout;
 
+        init();
+
+        function init() {
+            nav.account = Authentication.getAccountInfo();
+        }
+
         function logout() {
             Authentication.logout();
         }
