@@ -12,9 +12,9 @@
      * @constructor
      */
     function BackendNavController(Authentication) {
-        var vm = this;
+        var nav = this;
 
-        vm.logout = logout;
+        nav.logout = logout;
 
         init();
 
