@@ -23,8 +23,7 @@
         }
 
         function ignore(tutor) {
-            tutor = tutor.pk_tutor_tutand_id || tutor;
-            return tutorRest.one(tutor).post('ignore', {});
+            return tutor.post('ignore', {});
         }
     }
 
