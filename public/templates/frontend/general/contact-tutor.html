@@ -1,0 +1,7 @@
+<h1>{{ vm.tutor | fullName }} kontaktieren</h1>
+<form name="contactForm" novalidate ng-submit="vm.sendMail()">
+    <input type="text" ng-model="vm.fields.subject" required>
+    <textarea ng-model="vm.fields.body" required></textarea>
+    <button type="submit" ng-disabled="contactForm.$invalid">Mail schicken</button>
+</form>
+<button ng-click="vm.returnToProfile()">Zurück zum Profil</button>

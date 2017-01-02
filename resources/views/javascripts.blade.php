@@ -38,6 +38,7 @@
     <script src="js/app/frontend/controller/tutor-registration.controller.js"></script>
     <script src="js/app/frontend/controller/tutor-profile.controller.js"></script>
     <script src="js/app/frontend/controller/tutor-report.controller.js"></script>
+    <script src="js/app/frontend/controller/tutor-contact.controller.js"></script>
     <script src="js/app/frontend/controller/edit-tutor-profile.controller.js"></script>
 
     <!-- Backend -->

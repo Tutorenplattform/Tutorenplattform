@@ -135,6 +135,16 @@
                     type: UserType.Tutor
                     //manageRights: true
                 }
+            })
+            .state('tutor.contact', {
+                url: '/contact',
+                views: {
+                    'frontend@frontend': {
+                        templateUrl: 'templates/frontend/general/contact-tutor.html',
+                        controller: 'TutorContactController',
+                        controllerAs: 'vm'
+                    }
+                }
             });
 
         $stateProvider
