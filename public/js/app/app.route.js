@@ -92,6 +92,14 @@
                         controllerAs: 'vm'
                     }
                 },
+                resolve: {
+                    'teachers': function(TeacherService) {
+                        //return TeacherService.all();
+                    },
+                    'subjects': function(SubjectService) {
+                        //return SubjectService.all();
+                    }
+                },
                 permissions: {
                     type: UserType.Tutand
                 }
