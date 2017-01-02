@@ -47,7 +47,7 @@
             var mailto = 'mailto:' + tutor.email_adresse;
             mailto += '?subject=' + encodeURIComponent(subject);
             mailto += '&body=' + encodeURIComponent(body);
-            $window.location.href = mailto;
+            $window.open(mailto);
         }
 
         function rate(tutor, rating) {
