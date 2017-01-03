@@ -10,6 +10,7 @@
     ];
 
     var APP_MODULES = [
+        'tp.run',
         'tp.shared',
         'tp.auth',
         'tp.frontend',

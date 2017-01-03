@@ -13,6 +13,7 @@
 
 <!-- Tutorenplattform AngularJS Files -->
 <script src="js/app/app.js"></script>
+<script src="js/app/app.run.js"></script>
 <script src="js/app/app.route.js"></script>
 
     <!-- Shared Resources -->

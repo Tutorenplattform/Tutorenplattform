@@ -34,6 +34,7 @@
     function Authentication($auth, $state, Globals, UserType) {
         var service = this;
 
+        service.initialize = initialize;
         service.login = login;
         service.logout = logout;
         service.getHome = getHome;
@@ -43,10 +44,18 @@
         service.getPermissions = getPermissions;
         service.canVisit = canVisit;
 
+        var account;
+
         var temp = 0; //TODO: Remove brake
 
         /**
+         * The initialization method that must be called whenever the application is first opened.
          */
+        function initialize() {
+            if (isAuthenticated()) {
+                account = $auth.getPayload();
+            }
+        }
 
         /**
          * Attempts to log in the user with the given credentials. Afterwards, the user is redirected to their home
@@ -111,7 +120,7 @@
             if (!isAuthenticated()) {
                 return;
             }
-            return $auth.getPayload();
+            return account;
         }
 
         /**
