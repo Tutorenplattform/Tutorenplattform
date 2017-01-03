@@ -1,12 +1,14 @@
 (function() {
 
     angular.module('tp.shared.filter')
-        .filter('fullName', fullName);
+        .filter('fullName', fullNameWrapper);
 
-    function fullName() {
-        return function(tutor) {
-            return tutor.vorname + ' ' + tutor.nachname;
-        };
+    function fullNameWrapper() {
+        return fullName;
+
+        function fullName(person) {
+            return person.vorname + ' ' + person.nachname;
+        }
     }
 
 })();
