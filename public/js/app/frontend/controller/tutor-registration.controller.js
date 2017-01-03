@@ -31,13 +31,15 @@
         function register() {
             var data = angular.copy(vm.fields);
             _.each(data.faecher, castGrade);
-            TutorService.register(data).then(forwardToProfile);
+            TutorService.register(data).then(onTutorRegistered);
 
             function castGrade(fach) {
                 fach.letzte_zeugnisnote = +fach.letzte_zeugnisnote;
             }
 
-            function forwardToProfile() {
+            function onTutorRegistered() {
+                Authentication.promote();
+                var id = Authentication.getAccountInfo().id;
                 var params = {
                     id: id
                 };

@@ -37,6 +37,7 @@
         service.initialize = initialize;
         service.login = login;
         service.logout = logout;
+        service.promote = promote;
         service.getHome = getHome;
         service.getAccountInfo = getAccountInfo;
         service.isAuthenticated = isAuthenticated;
@@ -79,6 +80,15 @@
             temp = 0;
             return forwardToHome(); //TODO: Remove brake
             return $auth.logout().then(forwardToHome);
+        }
+
+        /**
+         * Promotes the current user to a tutor without invalidating the current session.
+         */
+        function promote() {
+            if (isAuthenticated()) {
+                account.type = UserType.Tutor;
+            }
         }
 
         /**
