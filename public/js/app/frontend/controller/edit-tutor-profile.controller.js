@@ -10,9 +10,9 @@
      * the application.
      * @param {$state} $state The service used to transition between states
      * @param {TutorService} TutorService The data service used to interact with the server-side REST API
-     * @param {Object.<string, Object>} tutor The tutor whose profile should be edited
-     * @param {Object.<string, Object>} teachers The list of teachers
-     * @param {Object.<string, Object>} subjects The list of subjects
+     * @param {Tutor} tutor The tutor whose profile should be edited
+     * @param {Teacher[]} teachers The list of teachers
+     * @param {Subject[]} subjects The list of subjects
      * @constructor
      */
     function EditTutorProfileController($state, TutorService, tutor, teachers, subjects) {

@@ -8,7 +8,7 @@
     /**
      * This controller provides the background functionality for the tutor report page on the frontend side of the
      * application.
-     * @param {Object.<string, Object>} tutor The tutor the user wishes to report
+     * @param {Tutor} tutor The tutor the user wishes to report
      * @param {$state} $state The service used to transition between states
      * @param {TutorService} TutorService The data service used to interact with the server-side REST API
      * @constructor

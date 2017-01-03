@@ -8,7 +8,7 @@
     /**
      * This controller provides the background functionality for the contact form used to contact tutors on the frontend
      * side of the application.
-     * @param {Object.<string, Object>} tutor The tutor the user wants to contact
+     * @param {Tutor} tutor The tutor the user wants to contact
      * @param {$state} $state The service used to transition between states
      * @param {TutorService} TutorService The data service used to interact with the server-side REST API
      * @constructor

@@ -8,7 +8,7 @@
     /**
      * This controller provides all background functionality for the options page on the backend side of the
      * application.
-     * @param {Object.<string, string>} options The current set of options
+     * @param {Options} options The current set of options
      * @param {AdministratorService} AdministratorService The data service used to interact with the server-side REST
      * API
      * @param {$state} $state The service used to transition between states

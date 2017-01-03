@@ -8,7 +8,7 @@
     /**
      * This controller provides the background functionality for tutor profile pages on the frontend side of the
      * application.
-     * @param {Object.<string, Object>} tutor The tutor whose profile to show
+     * @param {Tutor} tutor The tutor whose profile to show
      * @param {$state} $state The service used to transition between states
      * @param {TutorService} TutorService The data service used to interact with the server-side REST API
      * @param {Grade} Grade An enumeration of all possible (Austrian) subject grades.
@@ -73,7 +73,7 @@
         /**
          * Sends an API request to (re)rate the currently shown tutor. If the rating has already been cast, it is
          * retracted instead.
-         * @param rating The rating the user has cast
+         * @param {Rating} rating The rating the user has cast
          */
         function rate(rating) {
             var alreadyRated = (vm.tutor.bewertung === rating.value);
@@ -96,7 +96,7 @@
 
         /**
          * Returns whether or not casting the given rating is currently allowed.
-         * @param rating The rating to check for
+         * @param {Rating} rating The rating to check for
          * @returns {boolean} true if the given rating can still be cast, false otherwise
          */
         function enableRating(rating) {
