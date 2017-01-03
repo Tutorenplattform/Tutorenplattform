@@ -36,7 +36,7 @@
         }
 
         function destroy(tutor) {
-            return tutor.delete();
+            return tutor.remove();
         }
 
         function report(tutor, report) {

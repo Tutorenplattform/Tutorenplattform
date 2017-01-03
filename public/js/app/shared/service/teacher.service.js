@@ -18,7 +18,7 @@
         }
 
         function refresh() {
-            return teacherRest.one('refresh').post();
+            return teacherRest.one('refresh').post({});
         }
     }
 
