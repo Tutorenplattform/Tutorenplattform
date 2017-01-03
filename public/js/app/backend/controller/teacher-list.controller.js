@@ -5,6 +5,13 @@
 
     TeacherListController.$inject = ['teachers', 'TeacherService'];
 
+    /**
+     * This controller provides all background functionality for the list of teachers on the backend side of the
+     * application.
+     * @param {Teacher[]} teachers The list of teachers
+     * @param {TeacherService} TeacherService The data service used to interact with the server-side REST API
+     * @constructor
+     */
     function TeacherListController(teachers, TeacherService) {
         var vm = this;
 
@@ -17,6 +24,10 @@
             {pk_lehrer_id: 4, vorname: 'Isabella', nachname: 'Fastenbauer'}
         ];
 
+        /**
+         * Updates the list of teachers by fetching new entries form the Active Directory.
+         * @see TeacherService#refresh
+         */
         function refreshTeachers() {
             TeacherService.refresh();
         }
