@@ -125,7 +125,7 @@
                 vorname: 'Max',
                 nachname: 'Mustermann'
             };
-            return fakeAccount;
+            //return fakeAccount;
             return temp ? fakeAccount : void 0; //TODO: Remove brake
             if (!isAuthenticated()) {
                 return;
