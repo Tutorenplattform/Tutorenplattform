@@ -1,5 +1,9 @@
 (function() {
 
+    /**
+     * The global configuration constant of this application.
+     * @type {Object.<string, Object>}
+     */
     var Globals = {
         homes: {
             unauthenticated: 'login',
