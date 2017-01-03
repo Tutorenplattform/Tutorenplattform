@@ -18,7 +18,7 @@
         var vm = this;
 
         vm.options = {
-            email: 'fas@htl.rennweg.at'
+            email_adresse: 'fas@htl.rennweg.at'
         };
 
         vm.fields = {};
@@ -31,7 +31,7 @@
         init();
 
         function init() {
-            vm.fields.email = vm.options.email;
+            vm.fields = vm.options;
         }
 
         /**
@@ -39,42 +39,13 @@
          */
         function saveChanges() {
             var data = angular.copy(vm.fields);
-            if (passwordSet()) {
-                delete data.passwort2;
-            }
             AdministratorService.saveOptions(data);
         }
 
         /**
-         * Returns whether or not one of the password fields has been filled out. This method is mainly used to
-         * determine whether or not the password fields should be considered required for the view form.
-         * @returns {boolean} true if either password field has been filled out, false otherwise
-         */
-        function passwordSet() {
-            var passwort1 = vm.fields.passwort;
-            var passwort2 = vm.fields.passwort2;
-            return passwort1 || passwort2;
-        }
-
-        /**
-         * Returns whether or not the changes made in the view model are valid. This mainly involves checking if both of
-         * the passwords are equivalent (if set).
-         * @see passwordSet
-         * @returns {boolean} true if the custom validation ends in success, false otherwise
-         */
-        function validChanges() {
-            var passwort1 = vm.fields.passwort;
-            var passwort2 = vm.fields.passwort2;
-            if (passwordSet()) {
-                return passwort1 === passwort2;
-            }
-            return true;
-        }
-
-        /**
-         * Sends an API request to reset the application. This process involves removing all tutor and tutand accounts
-         * from the server (but not from the Active Directory). Afterwards, the administrator is forwarded to the
-         * backend home page.
+         * Sends an API request to reset the application. Afterwards, the administrator is forwarded to the backend home
+         * page.
+         * @see AdministratorService#resetApplication
          */
         function reset() {
             AdministratorService.resetApplication().then(forwardToHome);
