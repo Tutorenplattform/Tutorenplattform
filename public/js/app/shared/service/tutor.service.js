@@ -3,9 +3,9 @@
     angular.module('tp.shared.service')
         .service('TutorService', TutorService);
 
-    TutorService.$inject = ['Restangular'];
+    TutorService.$inject = ['Restangular', '$window'];
 
-    function TutorService(Restangular) {
+    function TutorService(Restangular, $window) {
         var service = this;
 
         var tutorRest = Restangular.all('tutors');
@@ -16,10 +16,11 @@
         service.update = update;
         service.destroy = destroy;
         service.report = report;
+        service.sendMail = sendMail;
         service.rate = rate;
 
-        function all() {
-            return tutorRest.getList();
+        function all(constraints) {
+            return tutorRest.customGET('', constraints);
         }
 
         function one(id) {
@@ -39,11 +40,21 @@
         }
 
         function report(tutor, report) {
-            return tutor.one('report').post(report);
+            return tutor.post('report', report);
+        }
+
+        function sendMail(tutor, subject, body) {
+            var mailto = 'mailto:' + tutor.email_adresse;
+            mailto += '?subject=' + encodeURIComponent(subject);
+            mailto += '&body=' + encodeURIComponent(body);
+            $window.open(mailto);
         }
 
         function rate(tutor, rating) {
-            return tutor.one('rate').post(rating);
+            var data = {
+                bewertung: rating.value
+            };
+            return tutor.post('rate', data);
         }
     }
 

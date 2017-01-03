@@ -1,30 +1,27 @@
 <form name="registerForm" novalidate ng-submit="vm.register()">
-    <div class="subject" ng-repeat="subject in vm.subjects">
-        <select ng-model="subject.name" required>
-            <option disabled>Fach wählen...</option>
-            <option ng-value="3">SEW</option>
-            <option ng-value="4">E</option>
+    <div class="subject" ng-repeat="fach in vm.fields.faecher">
+        <select ng-options="subject as subject.name for subject in vm.subjects track by subject.pk_fach_id"
+                ng-model="fach.fach" required></select>
+        <select ng-options="teacher as teacher.nachname for teacher in vm.teachers track by teacher.pk_lehrer_id"
+                ng-model="fach.lehrer" required></select>
+        <select ng-model="fach.letzte_zeugnisnote" required>
+            <option value="1">Sehr Gut</option>
+            <option value="2">Gut</option>
+            <option value="3">Befriedigend</option>
+            <option value="4">Genügend</option>
+            <option value="5">Nicht Genügend</option>
         </select>
-        <select ng-model="subject.teacher" required>
-            <option disabled>Lehrer wählen...</option>
-            <option ng-value="5">STR</option>
-            <option ng-value="6">STF</option>
-        </select>
-        <input type="text" placeholder="Anmerkung" ng-model="subject.comment">
-        <button ng-click="vm.removeSubject($index)">-</button>
+        <input type="text" placeholder="Anmerkung" ng-model="fach.faehigkeiten_anmerkung">
+        <button type="button" ng-click="vm.removeSubject($index)" ng-hide="$first && $last">-</button>
     </div>
-    <button ng-click="vm.addSubject()">+</button>
-    <select ng-model="vm.fields.grade" required>
-        <option disabled>Schulstufe wählen...</option>
-        <option ng-value="5">5. Schulstufe IT</option>
-    </select>
-    <input type="email" ng-model="vm.fields.email" placeholder="E-Mail">
-    <input type="tel" ng-model="vm.fields.tel" placeholder="Telefonnummer">
-    <input type="text" ng-model="vm.fields.preferredPlace" placeholder="Bevorzugter Ort">
-    <div class="day" ng-repeat="day in vm.days">
-        <span>{{ day.name }}</span>
-        <input type="time" ng-model="day.start">
-        <input type="time" ng-model="day.end">
-    </div>
-    <button type="submit">Registrieren</button>
+    <button type="button" ng-click="vm.addSubject()">+</button>
+
+    <input type="text" ng-model="vm.fields.klasse" placeholder="Klasse" pattern="^[1-5][A-F][IMFXN]$" required>
+    <input type="text" ng-model="vm.fields.klassenvorstand" placeholder="Klassenvorstand" required>
+    <input type="email" ng-model="vm.fields.email_adresse" placeholder="E-Mail" required>
+
+    <input type="tel" ng-model="vm.fields.telefon_nr" placeholder="Telefonnummer">
+    <input type="text" ng-model="vm.fields.bevorzugte_orte" placeholder="Bevorzugter Ort">
+    <input type="text" ng-model="vm.fields.bevorzugte_zeiten" placeholder="Bevorzugte Zeiten">
+    <button type="submit" ng-disabled="registerForm.$invalid">Registrieren</button>
 </form>

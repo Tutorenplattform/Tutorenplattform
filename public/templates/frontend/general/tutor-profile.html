@@ -1,7 +1,40 @@
 <h1>{{ vm.tutor.first_name }} {{ vm.tutor.last_name }}</h1>
-<button ng-click="vm.report()">Melden</button><br>
-<button ng-click="vm.rate(-1)">Nicht gut</button>
-<button ng-click="vm.rate(0)">Okay</button>
-<button ng-click="vm.rate(1)">Gut</button><br>
-<button ng-click="vm.startChat()">Chat starten</button>
-<button ng-click="vm.editProfile()">Bearbeiten</button>
+<div>
+    <p>Klasse: {{ vm.tutor.klasse }}</p>
+    <p>Klassenvorstand: {{ vm.tutor.klassenvorstand }}</p>
+    <p>E-Mail: {{ vm.tutor.email_adresse }}</p><button ng-click="vm.sendMail()">E-Mail senden</button>
+    <p ng-show="vm.tutor.telefon_nr">Telefonnummer: {{ vm.tutor.telefon_nr }}</p>
+</div>
+<div>
+    <p>Bevorzugte Orte: {{ vm.tutor.bevorzugte_orte }}</p>
+    <p>Bevorzugte Zeiten: {{ vm.tutor.bevorzugte_zeiten }}</p>
+</div>
+<h2>Fächer:</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Fach</th>
+            <th>Lehrer</th>
+            <th>Anmerkung</th>
+            <th>Letzte Note</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="fach in vm.tutor.faecher">
+            <td>{{ fach.fach.name }}</td>
+            <td>{{ fach.lehrer.nachname }}</td>
+            <td>{{ fach.faehigkeiten_anmerkung }}</td>
+            <td>{{ vm.Grade[fach.letzte_zeugnisnote] }}</td>
+        </tr>
+    </tbody>
+</table>
+<button ng-click="vm.report()">Melden</button>
+<div>
+    <span>{{ vm.tutor.bewertung_gut }}</span>
+    <button ng-click="vm.rate(vm.Rating.GREAT)" ng-disabled="!vm.enableRating(vm.Rating.GREAT)">+</button>
+    <span>{{ vm.tutor.bewertung_neutral }}</span>
+    <button ng-click="vm.rate(vm.Rating.OKAY)" ng-disabled="!vm.enableRating(vm.Rating.OKAY)">O</button>
+    <span>{{ vm.tutor.bewertung_schlecht }}</span>
+    <button ng-click="vm.rate(vm.Rating.BAD)" ng-disabled="!vm.enableRating(vm.Rating.BAD)">-</button>
+</div>
+<button ng-click="vm.editProfile()" ng-if="vm.mine">Bearbeiten</button>

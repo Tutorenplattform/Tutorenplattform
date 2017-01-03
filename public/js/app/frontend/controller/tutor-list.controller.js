@@ -5,49 +5,66 @@
 
     TutorListController.$inject = ['tutors', '$state'];
 
+    /**
+     * This controller provides the background functionality for the list of tutors on the frontend side of the
+     * application.
+     * @param {Array.<Object<string, Object>>} tutors The list of tutors
+     * @param {$state} $state The service used to transition between states
+     * @constructor
+     */
     function TutorListController(tutors, $state) {
         var vm = this;
 
-        vm.tutors = [{id: 1, first_name: 'First', last_name: 'Last', subjects: [{id: 7, name: 'SEW'}], rating: 9}];
+        vm.tutors = [{
+            vorname: "Hans",
+            nachname: "Mustermann",
+            klasse: "4AM",
+            pk_tutor_tutand_id: 1,
+            faecher: [{
+                fach: {
+                    pk_fach_id: 1,
+                    name: 'AM'
+                },
+                lehrer: {
+                    pk_lehrer_id: 2,
+                    vorname: 'Reinhard',
+                    nachname: 'Gottweis'
+                },
+                faehigkeiten_anmerkung: 'Gut im Berechnen von quadratischen Funktionen',
+                letzte_zeugnisnote: 2
+            }],
+            klassenvorstand: 'STR',
+            bevorzugte_orte: '2. Stock, in der Ecke',
+            bevorzugte_zeiten: '13:25-14:15 Uhr',
+            telefon_nr: '1234 567 89 00',
+            email_adresse: 'hans@musterma.nn',
+            bewertung_gut: 3,
+            bewertung_neutral: 1,
+            bewertung_schlecht: 0
+        }];
 
         vm.viewTutor = viewTutor;
+        vm.getSubjects = getSubjects;
 
-
-
-        vm.submit = function () {
-            //Hol alle Tutoren aus der Datenbank
-            var  tutoren = TutorService.all();
-
-            var results = [];
-
-            // Es werden Variablen angelegt, mit denen man im JSON Object suchen kann
-            var searchField_name = "name",
-                searchField_class = "klasse",
-                searchField_subject = "fach";
-
-            //Holt die Values aus den Input Feldern nach denen gesucht werden soll
-            var searchname = $scope.lastname,
-                searchclass = $scope.class,
-                searchsubject = $scope.subject;
-
-            for (var i=0 ; i < tutoren.length ; i++) {
-                if (
-                    tutoren[i][searchField_name] == searchname ||
-                    tutoren[i][searchField_class] == searchclass ||
-                    tutoren[i][searchField_subject] == searchsubject
-                ) {
-                    results.push(tutoren[i]);
-                    console.log(results);
-                }
-            }
-        };
-
-
-
+        /**
+         * Redirects the user to the given tutor's profile.
+         * @param tutor The tutor whose profile the user would like to see
+         */
         function viewTutor(tutor) {
             $state.go('tutor', {
-                id: tutor.id
+                id: tutor.pk_tutor_tutand_id
             });
         }
+
+        /**
+         * Processes the list of the subjects the given tutor teaches and returns it as a string.
+         * @param tutor The tutor whose list of subjects should be processed into a string
+         * @returns {string} A comma-separated list of subject names as a string
+         */
+        function getSubjects(tutor) {
+            var subjects = _.map(tutor.faecher, 'fach.name');
+            return subjects.join(', ');
+        }
     }
+
 })();

@@ -1,5 +1,9 @@
 (function() {
 
+    /**
+     * An enumeration containing unique identifiers for all types of users.
+     * @type {Object.<string, number>}
+     */
     var UserType = {
         Tutand: 0,
         Tutor: 1,

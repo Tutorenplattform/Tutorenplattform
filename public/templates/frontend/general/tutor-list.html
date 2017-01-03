@@ -1,20 +1,13 @@
-<table>
-    <thead>
-        <tr>
-            <th>Schulstufe</th>
-            <th>Name</th>
-            <th>Bewertung</th>
-            <th>Fächer</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr ng-repeat="tutor in vm.tutors">
-            <td>{{ tutor.grade.name }}</td>
-            <td>{{ tutor.first_name }} {{ tutor.last_name }}</td>
-            <td>{{ tutor.rating }}</td>
-            <td><span ng-repeat="subject in tutor.subjects">{{ subject.name }} &nbsp;</span></td>
-            <td><button ng-click="vm.viewTutor(tutor)">Ansehen</button></td>
-        </tr>
-    </tbody>
-</table>
+<div>
+    <!-- Filter hier -->
+</div>
+<div ng-repeat="tutor in vm.tutors">
+    <h1>{{ tutor | fullName }}</h1>
+    <p>Schulfächer: {{ vm.getSubjects(tutor) }}</p>
+    <p>Klasse: {{ tutor.klasse }}</p>
+    <p>Klassenvorstand: {{ tutor.klassenvorstand }}</p>
+    <p>+: {{ tutor.bewertung_gut }}</p>
+    <p>O: {{ tutor.bewertung_neutral }}</p>
+    <p>-: {{ tutor.bewertung_schlecht }}</p>
+    <button ng-click="vm.viewTutor(tutor)">Mehr erfahren</button>
+</div>

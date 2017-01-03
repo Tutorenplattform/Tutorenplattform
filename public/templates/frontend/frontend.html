@@ -1,4 +1,6 @@
 <a ui-sref="tutorList">Tutorenliste</a>
-<a ui-sref="register">Registrieren</a>
-<a ng-click="nav.logout()">Abmelden</a>
+<a ui-sref="register" ng-hide="nav.isTutor()">Als Tutor Registrieren</a>
+<p>{{ nav.account | fullName }}</p>
+<button ng-show="nav.isTutor()" ng-click="nav.goToProfile()">Mein Tutorprofil</button>
+<button ng-click="nav.logout()">Abmelden</button>
 <div ui-view="frontend"></div>

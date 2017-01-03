@@ -3,44 +3,121 @@
     angular.module('tp.frontend.controller')
         .controller('TutorProfileController', TutorProfileController);
 
-    TutorProfileController.$inject = ['tutor', '$state', 'TutorService'];
+    TutorProfileController.$inject = ['tutor', '$state', 'TutorService', 'Grade', 'Rating', 'Authentication'];
 
-    function TutorProfileController(tutor, $state, TutorService) {
+    /**
+     * This controller provides the background functionality for tutor profile pages on the frontend side of the
+     * application.
+     * @param {Object.<string, Object>} tutor The tutor whose profile to show
+     * @param {$state} $state The service used to transition between states
+     * @param {TutorService} TutorService The data service used to interact with the server-side REST API
+     * @param {Grade} Grade An enumeration of all possible (Austrian) subject grades.
+     * @param {Rating} Rating An enumeration of all possible ratings for tutors.
+     * @param {Authentication} Authentication The service used to interact with the current user session
+     * @constructor
+     */
+    function TutorProfileController(tutor, $state, TutorService, Grade, Rating, Authentication) {
         var vm = this;
 
-        vm.tutor = {id: 1, first_name: 'First', last_name: 'Last'};
+        vm.tutor = {
+            vorname: "Hans",
+            nachname: "Mustermann",
+            klasse: "4AM",
+            pk_tutor_tutand_id: 1,
+            faecher: [{
+                fach: {
+                    pk_fach_id: 1,
+                    name: 'AM'
+                },
+                lehrer: {
+                    pk_lehrer_id: 2,
+                    vorname: 'Reinhard',
+                    nachname: 'Gottweis'
+                },
+                faehigkeiten_anmerkung: 'Gut im Berechnen von quadratischen Funktionen',
+                letzte_zeugnisnote: 2
+            }],
+            klassenvorstand: 'STR',
+            bevorzugte_orte: '2. Stock, in der Ecke',
+            bevorzugte_zeiten: '13:25-14:15 Uhr',
+            telefon_nr: '1234 567 89 00',
+            email_adresse: 'hans@musterma.nn',
+            bewertung_gut: 3,
+            bewertung_neutral: 1,
+            bewertung_schlecht: 0,
+            bewertung: null
+        };
+
+        vm.Grade = Grade;
+        vm.Rating = Rating;
 
         vm.report = report;
         vm.rate = rate;
-        vm.startChat = startChat;
+        vm.enableRating = enableRating;
         vm.editProfile = editProfile;
+        vm.sendMail = sendMail;
 
-        function report(tutor) {
-            var report = {
-                byUser: 1
-            };
-            TutorService.report(tutor, report);
+        init();
+
+        function init() {
+            vm.mine = Authentication.canManage(vm.tutor);
         }
 
-        function rate(value) {
-            var rating = {
-                rate: value
-            };
-            TutorService.rate(tutor, rating);
+        /**
+         * Redirects the user to a page where they can then file a report.
+         */
+        function report() {
+            $state.go('tutor.report');
         }
 
-        function startChat() {
-            var params = {
-                id: tutor.id
-            };
-            $state.go('frontend.chat', params);
+        /**
+         * Sends an API request to (re)rate the currently shown tutor. If the rating has already been cast, it is
+         * retracted instead.
+         * @param rating The rating the user has cast
+         */
+        function rate(rating) {
+            var alreadyRated = (vm.tutor.bewertung === rating.value);
+            if (alreadyRated) {
+                TutorService.rate(vm.tutor, Rating.NONE).then(onTutorRatingRemoved);
+            } else {
+                TutorService.rate(vm.tutor, rating).then(onTutorRatingCast);
+            }
+
+            function onTutorRatingCast() {
+                vm.tutor.bewertung = rating.value;
+                vm.tutor[rating.countKey]++;
+            }
+
+            function onTutorRatingRemoved() {
+                vm.tutor.bewertung = Rating.NONE.value;
+                vm.tutor[rating.countKey]--;
+            }
         }
 
+        /**
+         * Returns whether or not casting the given rating is currently allowed.
+         * @param rating The rating to check for
+         * @returns {boolean} true if the given rating can still be cast, false otherwise
+         */
+        function enableRating(rating) {
+            if (!vm.tutor.bewertung) {
+                return true;
+            }
+            return vm.tutor.bewertung === rating.value;
+        }
+
+        /**
+         * Redirects the tutor to a page where they can then edit their own profile.
+         */
         function editProfile() {
-            var params = {
-                id: tutor.id
-            };
-            $state.go('editProfile', params);
+            $state.go('tutor.edit');
+        }
+
+        /**
+         * Redirects the user to a page with a contact form where they can then send a mail to the current tutor.
+         */
+        function sendMail() {
+            $state.go('tutor.contact');
         }
     }
 

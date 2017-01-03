@@ -1,1 +1,10 @@
+<a ui-sref="home">Startseite</a>
+<a ui-sref="reportedTutors">Gemeldete Tutoren</a>
+<a ui-sref="manageTutors">Tutoren</a>
+<a ui-sref="manageTutands">Tutanden</a>
+<a ui-sref="schulfaecherverwaltung">Schulfächer</a>
+<a ui-sref="teacherList">Lehrer</a>
+<a ui-sref="options">Optionen</a>
+<p>{{ nav.account | fullName }}</p>
+<button ng-click="nav.logout()">Abmelden</button>
 <div ui-view="backend"></div>

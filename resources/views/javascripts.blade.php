@@ -18,6 +18,9 @@
     <!-- Shared Resources -->
     <script src="js/app/shared/shared.module.js"></script>
     <script src="js/app/shared/constant/globals.constant.js"></script>
+    <script src="js/app/shared/constant/grade.constant.js"></script>
+    <script src="js/app/shared/constant/rating.constant.js"></script>
+    <script src="js/app/shared/filter/full-name.filter.js"></script>
     <script src="js/app/shared/controller/login.controller.js"></script>
     <script src="js/app/shared/service/tutor.service.js"></script>
     <script src="js/app/shared/service/teacher.service.js"></script>
@@ -25,7 +28,7 @@
     <!-- Authentication -->
     <script src="js/app/auth/auth.module.js"></script>
     <script src="js/app/auth/constant/user-type.constant.js"></script>
-    <script src="js/app/auth/run/transition.run.js"></script>
+    <!--<script src="js/app/auth/run/transition.run.js"></script>-->
     <script src="js/app/auth/service/authentication.service.js"></script>
 
     <!-- Frontend -->
@@ -34,6 +37,9 @@
     <script src="js/app/frontend/controller/tutor-list.controller.js"></script>
     <script src="js/app/frontend/controller/tutor-registration.controller.js"></script>
     <script src="js/app/frontend/controller/tutor-profile.controller.js"></script>
+    <script src="js/app/frontend/controller/tutor-report.controller.js"></script>
+    <script src="js/app/frontend/controller/tutor-contact.controller.js"></script>
+    <script src="js/app/frontend/controller/edit-tutor-profile.controller.js"></script>
 
     <!-- Backend -->
     <script src="js/app/backend/backend.module.js"></script>
@@ -41,3 +47,9 @@
     <script src="js/app/backend/controller/teacher-list.controller.js"></script>
     <script src="js/app/backend/controller/tutand-list.controller.js"></script>
     <script src="js/app/backend/controller/schulfacherverwaltung-list.controller.js"></script>
+    <script src="js/app/backend/controller/reported-tutors.controller.js"></script>
+    <script src="js/app/backend/controller/admin-options.controller.js"></script>
+    <script src="js/app/backend/service/subject.service.js"></script>
+    <script src="js/app/backend/service/tutand.service.js"></script>
+    <script src="js/app/backend/service/administrator.service.js"></script>
+    <script src="js/app/backend/service/report.service.js"></script>

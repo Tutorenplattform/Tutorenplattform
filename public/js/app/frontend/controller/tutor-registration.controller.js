@@ -3,48 +3,54 @@
     angular.module('tp.frontend.controller')
         .controller('TutorRegistrationController', TutorRegistrationController);
 
-    TutorRegistrationController.$inject = ['$state', 'TutorService'];
+    TutorRegistrationController.$inject = ['$state', 'TutorService', 'teachers', 'subjects', 'Authentication'];
 
-    function TutorRegistrationController($state, TutorService) {
+    function TutorRegistrationController($state, TutorService, teachers, subjects, Authentication) {
         var vm = this;
 
-        vm.fields = {};
+        vm.fields = {
+            faecher: [{}]
+        };
 
-        vm.subjects = [];
+        vm.teachers = [
+            {pk_lehrer_id: 1, vorname: 'Reinhard', nachname: 'Gottweis'},
+            {pk_lehrer_id: 2, vorname: 'Stephan', nachname: 'Javurek'},
+            {pk_lehrer_id: 3, vorname: 'Kerstin', nachname: 'Stracke-Weiss'},
+            {pk_lehrer_id: 4, vorname: 'Isabella', nachname: 'Fastenbauer'}
+        ];
 
-        vm.days = [];
+        vm.subjects = [
+            {pk_fach_id: 1, name: 'AM'},
+            {pk_fach_id: 2, name: 'E'}
+        ];
 
         vm.register = register;
         vm.addSubject = addSubject;
         vm.removeSubject = removeSubject;
 
-        init();
-
-        function init() {
-            var days = ['MO', 'DI', 'MI', 'DO', 'FR', 'SA', 'SO'];
-            for (var i in days) {
-                var name = days[i];
-                var day = {
-                    name: name
-                };
-                vm.days.push(day);
-            }
-            vm.addSubject();
-        }
-
         function register() {
             var data = angular.copy(vm.fields);
-            data.subjects = subjects;
-            data.days = days;
-            TutorService.register(vm.fields);
+            _.each(data.faecher, castGrade);
+            TutorService.register(data).then(forwardToProfile);
+
+            function castGrade(fach) {
+                fach.letzte_zeugnisnote = +fach.letzte_zeugnisnote;
+            }
+
+            function forwardToProfile() {
+                var params = {
+                    id: id
+                };
+                $state.go('tutor', params);
+            }
         }
 
         function addSubject() {
-            vm.subjects.push({});
+            vm.fields.faecher.push({});
         }
 
         function removeSubject(index) {
-            vm.subjects.splice(index, 1);
+            vm.fields.faecher.splice(index, 1);
         }
     }
 

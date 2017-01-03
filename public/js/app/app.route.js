@@ -92,8 +92,58 @@
                         controllerAs: 'vm'
                     }
                 },
+                resolve: {
+                    'teachers': function(TeacherService) {
+                        //return TeacherService.all();
+                    },
+                    'subjects': function(SubjectService) {
+                        //return SubjectService.all();
+                    }
+                },
                 permissions: {
                     type: UserType.Tutand
+                }
+            })
+            .state('tutor.report', {
+                url: '/report',
+                views: {
+                    'frontend@frontend': {
+                        templateUrl: 'templates/frontend/general/report-tutor.html',
+                        controller: 'TutorReportController',
+                        controllerAs: 'vm'
+                    }
+                }
+            })
+            .state('tutor.edit', {
+                url: '/edit',
+                views: {
+                    'frontend@frontend': {
+                        templateUrl: 'templates/frontend/tutor/edit-profile.html',
+                        controller: 'EditTutorProfileController',
+                        controllerAs: 'vm'
+                    }
+                },
+                resolve: {
+                    'teachers': function(TeacherService) {
+                        //return TeacherService.all();
+                    },
+                    'subjects': function(SubjectService) {
+                        //return SubjectService.all();
+                    }
+                },
+                permissions: {
+                    type: UserType.Tutor
+                    //manageRights: true
+                }
+            })
+            .state('tutor.contact', {
+                url: '/contact',
+                views: {
+                    'frontend@frontend': {
+                        templateUrl: 'templates/frontend/general/contact-tutor.html',
+                        controller: 'TutorContactController',
+                        controllerAs: 'vm'
+                    }
                 }
             });
 
@@ -108,7 +158,7 @@
                 }
             })
             .state('teacherList', {
-                url: '/admin/teachers',
+                url: '/teachers',
                 parent: 'backend',
                 views: {
                     'backend': {
@@ -124,7 +174,7 @@
                 }
             })
             .state('schulfaecherverwaltung', {
-                url: '/admin/schulfaecherverwaltung',
+                url: '/schulfaecherverwaltung',
                 parent: 'backend',
                 views: {
                     'backend': {
@@ -136,6 +186,38 @@
                 resolve: {
                     'subjects': function(SubjectService) {
                         //return SubjectService.all();
+                    }
+                }
+            })
+            .state('options', {
+                url: '/options',
+                parent: 'backend',
+                views: {
+                    'backend': {
+                        templateUrl: 'templates/backend/admin/options.html',
+                        controller: 'AdminOptionsController',
+                        controllerAs: 'vm'
+                    }
+                },
+                resolve: {
+                    'options': function(AdministratorService) {
+                        //return AdministratorService.getOptions();
+                    }
+                }
+            })
+            .state('reportedTutors', {
+                url: '/reported',
+                parent: 'backend',
+                views: {
+                    'backend': {
+                        templateUrl: 'templates/backend/admin/reported-tutors.html',
+                        controller: 'ReportedTutorsController',
+                        controllerAs: 'vm'
+                    }
+                },
+                resolve: {
+                    'reportedTutors': function(ReportService) {
+                        //return ReportService.all();
                     }
                 }
             });
