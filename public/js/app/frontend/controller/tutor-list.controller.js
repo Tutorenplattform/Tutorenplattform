@@ -52,7 +52,7 @@
          */
         function viewTutor(tutor) {
             $state.go('tutor', {
-                id: tutor.pk_tutor_tutand_id
+                id: tutor.id
             });
         }
 
