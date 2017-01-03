@@ -1,5 +1,9 @@
 (function() {
 
+    /**
+     * An enumeration containing display strings for all possible grades.
+     * @type {Object.<number, string>}
+     */
     var Grade = {
         1: 'Sehr Gut',
         2: 'Gut',
