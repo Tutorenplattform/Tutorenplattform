@@ -13,6 +13,15 @@
      */
 
     /**
+     * The expected payload of the JWT token used for authentication.
+     * @typedef {Object} TokenPayload
+     * @property {number} pk_tutor_tutand_id The user's unique identifier
+     * @property {UserType} type The type of this user
+     * @property {string} vorname This user's first name
+     * @property {string} nachname This user's last name
+     */
+
+    /**
      * A set of permissions used for being compared to state permissions.
      * @typedef {Object} Permissions
      * @property {boolean} authenticated true if the user is logged in, false otherwise
