@@ -18,3 +18,5 @@ Schritte (Google Chrome):
 Beispiel:
 Key: satellizer_token
 Value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoxLCJwa190dXRvcl90dXRhbmRfaWQiOjEsInZvcm5hbWUiOiJIYW5zIiwibmFjaG5hbWUiOiJNdXN0ZXJtYW5uIn0._R2QdiZykvZ2UMPMKgSToLxFOCio6yXGRS9YtjL9OEI
+
+Hinweis: Zum Betrachten des Login-Seite einfach die Value des "satellizer_token"-Eintrags entfernen
