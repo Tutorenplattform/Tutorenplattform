@@ -132,8 +132,8 @@
                     }
                 },
                 permissions: {
-                    type: UserType.Tutor
-                    //manageRights: true
+                    type: UserType.Tutor,
+                    manageable: true
                 }
             })
             .state('tutor.contact', {
