@@ -52,8 +52,6 @@
 
         var account;
 
-        var temp = 0; //TODO: Remove brake
-
         /**
          * The initialization method that must be called whenever the application is first opened.
          */
@@ -71,8 +69,6 @@
          * @returns {Promise} A promise that finishes upon login
          */
         function login(credentials) {
-            temp = 1;
-            return forwardToHome(); //TODO: Remove brake
             return $auth.login(credentials).then(forwardToHome);
         }
 
@@ -82,8 +78,6 @@
          * @returns {Promise} A promise that finishes upon logout
          */
         function logout() {
-            temp = 0;
-            return forwardToHome(); //TODO: Remove brake
             return $auth.logout().then(forwardToHome);
         }
 
@@ -123,14 +117,6 @@
          * @returns {TokenPayload|undefined} The user token payload or undefined if the user is not authenticated
          */
         function getAccountInfo() {
-            var fakeAccount = {
-                type: UserType.Tutor,
-                pk_tutor_tutand_id: 1,
-                vorname: 'Max',
-                nachname: 'Mustermann'
-            };
-            //return fakeAccount;
-            return temp ? fakeAccount : void 0; //TODO: Remove brake
             if (!isAuthenticated()) {
                 return;
             }
