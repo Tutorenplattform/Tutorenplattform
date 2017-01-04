@@ -8,7 +8,7 @@
     /**
      * This controller provides the background functionality for the list of tutors on the frontend side of the
      * application.
-     * @param {Array.<Object<string, Object>>} tutors The list of tutors
+     * @param {Tutor[]} tutors The list of tutors
      * @param {$state} $state The service used to transition between states
      * @constructor
      */
