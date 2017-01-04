@@ -24,8 +24,6 @@
         vm.fields = {};
 
         vm.saveChanges = saveChanges;
-        vm.passwordSet = passwordSet;
-        vm.validChanges = validChanges;
         vm.reset = reset;
 
         init();
