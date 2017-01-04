@@ -60,7 +60,7 @@
         init();
 
         function init() {
-            vm.mine = Authentication.canManage(vm.tutor);
+            vm.mine = Authentication.canManage(vm.tutor.pk_tutor_tutand_id);
         }
 
         /**

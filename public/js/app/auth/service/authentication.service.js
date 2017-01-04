@@ -6,6 +6,11 @@
     Authentication.$inject = ['$auth', '$state', 'Globals', 'UserType'];
 
     /**
+     * A Number or a String that can be cast into a Number.
+     * @typedef {number|string} Numeric
+     */
+
+    /**
      * A set of credentials used for JWT authentication login.
      * @typedef {Object} Credentials
      * @property {string} user_name The Active Directory username to use for login
@@ -151,14 +156,15 @@
         }
 
         /**
-         * Returns whether or not the current user has the rights to manage the given tutor's profile information.
-         * @param tutor The tutor whose profile to have permissions checked for
-         * @returns {boolean} true if the user is allowed to manage the tutor's account, false othwerise
+         * Returns whether or not the current user is allowed to manage content associated with the given ID.
+         * @param {Numeric} neededId The needed ID for managing associated content
+         * @returns {boolean} true if management rights are granted, false otherwise
          */
-        function canManage(tutor) {
-            var tutorId = tutor.pk_tutor_tutand_id || tutor;
+        function canManage(neededId) {
+            neededId = +neededId;
             var account = getAccountInfo();
-            return !!account && (account.pk_tutor_tutand_id === tutorId);
+            var id = account.pk_tutor_tutand_id;
+            return !!account && (neededId === id);
         }
 
         /**
