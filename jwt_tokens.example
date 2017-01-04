@@ -1,0 +1,20 @@
+Name des Feldes: satellizer_token
+
+Tutand:
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjowLCJwa190dXRvcl90dXRhbmRfaWQiOjMsInZvcm5hbWUiOiJTdXRla2giLCJuYWNobmFtZSI6IlNlZWxlbmZyZXVuZCJ9.H7Fei4n9F9nLR1z4RxjeiCgKI8asoK0vkF3AclCvExI
+
+Tutor:
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoxLCJwa190dXRvcl90dXRhbmRfaWQiOjEsInZvcm5hbWUiOiJIYW5zIiwibmFjaG5hbWUiOiJNdXN0ZXJtYW5uIn0._R2QdiZykvZ2UMPMKgSToLxFOCio6yXGRS9YtjL9OEI
+
+Admin:
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoyLCJwa190dXRvcl90dXRhbmRfaWQiOjEsInZvcm5hbWUiOiJJc2FiZWxsYSIsIm5hY2huYW1lIjoiRmFzdGVuYmF1ZXIifQ.vyO36ROEX7581RJZib6L18Hci8xI-j7EOKd_7jw11_k
+
+Schritte (Google Chrome):
+1. Wechsel zu F12 -> Reiter Application
+2. Links zu Storage -> Local Storage -> (IP-Adresse hier) wechseln
+3. Einen neuen Eintrag mit Key "satellizer_token" und Value je nach Typ wie oben einfügen (eyJhbG...)
+4. Seite neu laden. Die Authentifikation sollte nun funktionieren.
+
+Beispiel:
+Key: satellizer_token
+Value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoxLCJwa190dXRvcl90dXRhbmRfaWQiOjEsInZvcm5hbWUiOiJIYW5zIiwibmFjaG5hbWUiOiJNdXN0ZXJtYW5uIn0._R2QdiZykvZ2UMPMKgSToLxFOCio6yXGRS9YtjL9OEI
