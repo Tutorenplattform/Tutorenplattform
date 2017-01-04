@@ -27,15 +27,6 @@
      */
 
     /**
-     * A set of permissions used for being compared to state permissions.
-     * @typedef {Object} Permissions
-     * @property {boolean} authenticated true if the user is logged in, false otherwise
-     * @property {?number} type The type of the current user
-     * @property {?string} side The side this user's type belongs to
-     * @property {?boolean} manageRights true if the user is allowed to manage this state's contents.
-     */
-
-    /**
      * This service is used to interact with the current user session. It is responsible for account login, account
      * logout, permission management and account information retrieval.
      * @param {$auth} $auth The satellizer service used for all requests concerning JWT token authentication and

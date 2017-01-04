@@ -6,6 +6,15 @@
     run.$inject = ['$transitions', 'Authentication'];
 
     /**
+     * A set of permissions used for being compared to state permissions.
+     * @typedef {Object} Permissions
+     * @property {boolean} authenticated true if the user is logged in, false otherwise
+     * @property {?number} type The type of the current user
+     * @property {?string} side The side this user's type belongs to
+     * @property {?boolean} manageable true if the user is allowed to manage this state's contents.
+     */
+
+    /**
      * This function is used to register the transition interceptor.
      * @param {$transitions} $transitions The service used to retrieve information about the current state transition
      * from
