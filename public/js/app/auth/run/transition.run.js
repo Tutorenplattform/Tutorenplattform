@@ -3,7 +3,7 @@
     angular.module('tp.auth.run')
         .run(run);
 
-    run.$inject = ['$transitions', 'Authentication'];
+    run.$inject = ['$transitions', 'Authentication', '$stateParams'];
 
     /**
      * A set of permissions used for being compared to state permissions.
@@ -21,7 +21,7 @@
      * @param {Authentication} Authentication The service used to interact with the current user session
      * @see transitionHandler
      */
-    function run($transitions, Authentication) {
+    function run($transitions, Authentication, $stateParams) {
         $transitions.onBefore({}, transitionHandler);
 
         /**
@@ -32,11 +32,61 @@
          */
         function transitionHandler(trans) {
             var toState = trans.$to();
-            if (!Authentication.canVisit(toState)) {
+            var userPerms = getUserPermissions(toState);
+            var statePerms = getStatePermissions(toState);
+            var valid = validateTransition(userPerms, statePerms);
+            if (!valid) {
                 var home = Authentication.getHome();
                 var router = trans.router.stateService;
                 return router.target(home, {}, {location: 'replace'});
             }
+        }
+
+        function validateTransition(userPerms, statePerms) {
+            var allowed = true;
+            _.each(statePerms, forEach);
+            return allowed;
+
+            function forEach(value, key) {
+                if (userPerms[key] !== value) {
+                    console.log('Mismatch at key:' + key);
+                    allowed = false;
+                    return false;
+                }
+            }
+        }
+
+        function getUserPermissions(state) {
+            var account = Authentication.getAccountInfo();
+            var permissions = {
+                authenticated: !!account
+            };
+            if (account) {
+                permissions.type = account.type;
+                permissions.side = Authentication.getSide();
+                permissions.manageable = hasManageRights();
+            }
+            return permissions;
+
+            function hasManageRights() {
+                var admin = Authentication.isAdmin();
+                if (admin) {
+                    return true;
+                } else if (state.name !== 'tutor.edit') {
+                    return false;
+                } else {
+                    return Authentication.canManage($stateParams.id);
+                }
+            }
+        }
+
+        function getStatePermissions(state) {
+            var permissions = state.permissions || {};
+            if (!state.parent) {
+                return permissions;
+            }
+            var parentPermissions = getStatePermissions(state.parent);
+            return angular.extend({}, parentPermissions, permissions);
         }
     }
 
