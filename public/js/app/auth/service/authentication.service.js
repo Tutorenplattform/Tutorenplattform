@@ -56,8 +56,8 @@
         service.getAccountInfo = getAccountInfo;
         service.isAuthenticated = isAuthenticated;
         service.canManage = canManage;
-        service.getPermissions = getPermissions;
-        service.canVisit = canVisit;
+        service.isAdmin = isAdmin;
+        service.getSide = getSide;
 
         var account;
 
@@ -114,8 +114,7 @@
             var account = getAccountInfo();
             var forwardState = homes.unauthenticated;
             if (account) {
-                var permissions = getPermissions();
-                forwardState = homes[permissions.side];
+                forwardState = homes[getSide()];
             }
             return forwardState;
         }
@@ -130,7 +129,7 @@
 
         /**
          * Retrieves the account information from the localStorage JWT token payload data.
-         * @returns {Object.<string, Object>} A minimized tutor object
+         * @returns {TokenPayload|undefined} The user token payload or undefined if the user is not authenticated
          */
         function getAccountInfo() {
             var fakeAccount = {
@@ -168,47 +167,19 @@
         }
 
         /**
-         * Returns whether or not the current user is allowed to transition to the goven state.
-         * @param {state} state The state to transition to
-         * @returns {boolean} true if necessary permissions are provided, false otherwise
+         * Returns whether or not this user has administrator rights.
+         * @returns {boolean} true if the user is an administrator, false otherwise
          */
-        function canVisit(state) {
-            var perms = getPermissions(state);
-            var allowed = true;
-            _.each(getStatePermissions(state), forEach);
-            return allowed;
-
-            function forEach(value, key) {
-                if (perms[key] != value) {
-                    allowed = false;
-                    return false;
-                }
-            }
-
-            function getStatePermissions(state) {
-                var permissions = state.permissions || {};
-                if (!state.parent) {
-                    return permissions;
-                }
-                return angular.extend({}, getStatePermissions(state.parent), permissions);
-            }
+        function isAdmin() {
+            return account.type === UserType.Admin;
         }
 
         /**
-         * Processes the permission set of the current user.
-         * @param {state} state The state to transition to
-         * @returns {Permissions} The set of permissions associated to the current user
+         * Returns the side (either "frontend" or "backend") based on the user's type.
+         * @returns {string} The side associated with the user's type
          */
-        function getPermissions(state) {
-            var account = getAccountInfo();
-            var permissions = {
-                authenticated: !!account
-            };
-            if (account) {
-                permissions.type = account.type;
-                permissions.side = (account.type < UserType.Admin) ? 'frontend' : 'backend';
-            }
-            return permissions;
+        function getSide() {
+            return isAdmin() ? 'backend' : 'frontend';
         }
     }
 
