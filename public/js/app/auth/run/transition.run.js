@@ -6,6 +6,12 @@
     run.$inject = ['$transitions', 'Authentication', '$stateParams'];
 
     /**
+     * Parameters passed to a state upon transition. The mapping has the parameter names as keys and parameter values as
+     * values.
+     * @typedef {Object.<string,string>} StateParams
+     */
+
+    /**
      * A set of permissions used for being compared to state permissions.
      * @typedef {Object} Permissions
      * @property {boolean} authenticated true if the user is logged in, false otherwise
@@ -19,6 +25,8 @@
      * @param {$transitions} $transitions The service used to retrieve information about the current state transition
      * from
      * @param {Authentication} Authentication The service used to interact with the current user session
+     * @param {StateParams} $stateParams The parameters that are passed to the state that is currently being
+     * transitioned to
      * @see transitionHandler
      */
     function run($transitions, Authentication, $stateParams) {
@@ -42,6 +50,13 @@
             }
         }
 
+        /**
+         * Determines whether the provided user permissions suffice to transition to a state with the given required
+         * permissions.
+         * @param {Permissions} userPerms The current user's permissions
+         * @param {Permissions} statePerms The necessary permissions required to transition to the next state
+         * @returns {boolean} true if the transition is valid, false otherwise
+         */
         function validateTransition(userPerms, statePerms) {
             var allowed = true;
             _.each(statePerms, forEach);
@@ -56,6 +71,11 @@
             }
         }
 
+        /**
+         * Compiles the current user's permission for transitioning to the given state.
+         * @param state The state that is being transitioned to
+         * @returns {Permissions} The current user's permissions
+         */
         function getUserPermissions(state) {
             var account = Authentication.getAccountInfo();
             var permissions = {
@@ -80,6 +100,11 @@
             }
         }
 
+        /**
+         * Compiles the permissions required for transitioning to the given state.
+         * @param state The state that is being transitioned to
+         * @returns {Permissions} The necessary permissions for transitioning to the given state
+         */
         function getStatePermissions(state) {
             var permissions = state.permissions || {};
             if (!state.parent) {
