@@ -1,18 +1,11 @@
-<!--
-<form method="post">
-    <span>Neues Fach anlegen: </span><input type="text" ng-model="subject">
-    <button>Fach anlegen</button>
-</form>
--->
+<h1 class="row col-lg-offset-0 col-md-offset-0 col-sm-offset-0 col-xs-offset-0">Schulf&auml;cher</h1>
 
-<h1>Schulf&auml;cher</h1>
-
-<p>Schulf&auml;cher k&ouml;nnen nur im Zuge eines Resets ge&auml;dert werden. F&uuml;hren Sie einen Reset durch, um
+<p class="row col-lg-offset-0 col-md-offset-0 col-sm-offset-0 col-xs-offset-0">Schulf&auml;cher k&ouml;nnen nur im Zuge eines Resets ge&auml;dert werden. F&uuml;hren Sie einen Reset durch, um
     vorhandene F&auml;cher zu bearbeiten, zu entfernen oder neue hinzuzuf&uuml;gen. Alle F&auml;cher, die vor dem
     Reset vorhanden sind, werden nach dem Reset beibehalten.
 </p>
 
-<table>
+<table class="table-hover row col-lg-offset-0 col-md-offset-0 col-sm-offset-0 col-xs-offset-0">
     <thead>
     <tr>
         <th>Fach</th>
@@ -23,12 +16,19 @@
     <tr ng-repeat="subject in vm.subjects">
         <td>{{ subject.subject_name }}</td>
 
-     <!--
-        <td><button ng-click="vm.viewSubject(subject)">Ansehen</button></td>
-        <td><button class="glyphicon glyphicon-trash"></button></td>
-    -->
+        <!--
+           <td><button ng-click="vm.viewSubject(subject)">Ansehen</button></td>
+           <td><button class="glyphicon glyphicon-trash"></button></td>
+       -->
         <!--Existiert nur im Mockup, aber nicht in dem JSON Object von der Verwaltung-->
         <td>{{subject.subject_krz}} </td>
     </tr>
     </tbody>
 </table>
+
+<!--
+<form method="post">
+    <span>Neues Fach anlegen: </span><input type="text" ng-model="subject">
+    <button>Fach anlegen</button>
+</form>
+-->
