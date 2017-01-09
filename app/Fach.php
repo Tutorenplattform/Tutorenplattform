@@ -18,23 +18,7 @@ class Fach extends Model
      */
     protected $name;
 
-    /**
-     * letzte Zeugnisnote
-     * @var integer
-     */
-    protected $letzte_zeugnisnote;
-
-    /**
-     * faehigkeiten anmerkung
-     * @var string
-     */
-    protected $anmerkung_faehigkeiten;
-
-    public function tutor_tutand(){
-        return $this->belongsTo('App\Tutor_tutand');
-    }
-
-    public function lehrer(){
-        return $this->belongsTo('App\Lehrer');
+    public function lehrer_faecher_zw_tabelle(){
+        return $this->belongsToMany('App\Lehrer_Faecher_zw_tabelle');
     }
 }

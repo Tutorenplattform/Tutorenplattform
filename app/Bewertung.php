@@ -21,4 +21,13 @@ class Bewertung extends Model
     public function tutor_tutand(){
         return $this->belongsToMany('App\Tutor_tutand');
     }
+
+    /**
+     * Set the likes attribute
+     * @param string $value
+     * @return void
+     */
+    public function setBewertungAttribute($value){
+        $this->attributes['bewertung'] = $value;
+    }
 }

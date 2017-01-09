@@ -31,8 +31,8 @@ class Lehrer extends Model
     protected $faehigkeiten_anmerkung;
 
 
-    public function fach(){
-        return $this->belongsToMany('App\Fach');
+    public function lehrer_faecher_zw_tabelle(){
+        return $this->belongsToMany('App\Lehrer_Faecher_zw_tabelle');
     }
 
 }

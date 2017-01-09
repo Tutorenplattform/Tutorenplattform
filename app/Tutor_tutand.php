@@ -72,12 +72,16 @@ class Tutor_tutand extends Model
      */
     protected $klassenvorstand;
 
-    public function fach(){
-        return $this->hasMany('App\Fach');
+    public function lehrer_faecher_zw_tabelle(){
+        return $this->belongsToMany('App\Lehrer_Faecher_zw_tabelle');
     }
 
     public function bewertung(){
         return $this->belongsToMany('App\Bewertung');
+    }
+
+    public function meldung(){
+        return $this->hasMany('App\Meldung');
     }
 
 
