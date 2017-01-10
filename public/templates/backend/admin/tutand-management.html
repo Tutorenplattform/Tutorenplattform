@@ -1,0 +1,17 @@
+<h1>Tutanden</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Aktionen</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="tutand in vm.tutands">
+        <td>{{ tutand | fullName }}</td>
+        <td>
+            <button ng-click="vm.destroy(tutand)">Löschen</button>
+        </td>
+    </tr>
+    </tbody>
+</table>

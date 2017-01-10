@@ -220,6 +220,22 @@
                         //return ReportService.all();
                     }
                 }
+            })
+            .state('tutands', {
+                url: '/tutands',
+                parent: 'backend',
+                views: {
+                    'backend': {
+                        templateUrl: 'templates/backend/admin/tutand-management.html',
+                        controller: 'TutandManagementController',
+                        controllerAs: 'vm'
+                    }
+                },
+                resolve: {
+                    'tutands': function(TutandService) {
+                        //return TutandService.all();
+                    }
+                }
             });
     }
 
