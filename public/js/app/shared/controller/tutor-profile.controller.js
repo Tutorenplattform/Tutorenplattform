@@ -1,6 +1,6 @@
 (function() {
 
-    angular.module('tp.frontend.controller')
+    angular.module('tp.shared.controller')
         .controller('TutorProfileController', TutorProfileController);
 
     TutorProfileController.$inject = ['tutor', '$state', 'TutorService', 'Grade', 'Rating', 'Authentication'];
@@ -60,7 +60,8 @@
         init();
 
         function init() {
-            vm.mine = Authentication.canManage(vm.tutor.pk_tutor_tutand_id);
+            vm.admin = Authentication.isAdmin();
+            vm.mine = Authentication.canManage(vm.tutor.pk_tutor_tutand_id) || vm.admin;
         }
 
         /**
@@ -110,7 +111,11 @@
          * Redirects the tutor to a page where they can then edit their own profile.
          */
         function editProfile() {
-            $state.go('tutor.edit');
+            var state = 'tutor.edit';
+            if (vm.admin) {
+                state = 'backend.' + state;
+            }
+            $state.go(state);
         }
 
         /**

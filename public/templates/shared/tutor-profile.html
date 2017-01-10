@@ -28,8 +28,8 @@
         </tr>
     </tbody>
 </table>
-<button ng-click="vm.report()">Melden</button>
-<div>
+<button ng-click="vm.report()" ng-if="!vm.admin">Melden</button>
+<div ng-if="!vm.admin">
     <span>{{ vm.tutor.bewertung_gut }}</span>
     <button ng-click="vm.rate(vm.Rating.GREAT)" ng-disabled="!vm.enableRating(vm.Rating.GREAT)">+</button>
     <span>{{ vm.tutor.bewertung_neutral }}</span>

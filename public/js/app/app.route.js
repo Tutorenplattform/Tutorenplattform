@@ -252,6 +252,21 @@
                         //return TutandService.all();
                     }
                 }
+            })
+            .state('backend.tutor', {
+                url: '/tutor/{id:\\d+}',
+                views: {
+                    'backend': {
+                        templateUrl: 'templates/shared/tutor-profile.html',
+                        controller: 'TutorProfileController',
+                        controllerAs: 'vm'
+                    }
+                },
+                resolve: {
+                    'tutor': function(TutorService, $stateParams) {
+                        //return TutorService.one($stateParams.id);
+                    }
+                }
             });
     }
 
