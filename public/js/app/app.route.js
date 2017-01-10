@@ -267,6 +267,24 @@
                         //return TutorService.one($stateParams.id);
                     }
                 }
+            })
+            .state('backend.tutor.edit', {
+                url: '/edit',
+                views: {
+                    'backend@backend': {
+                        templateUrl: 'templates/shared/edit-profile.html',
+                        controller: 'EditTutorProfileController',
+                        controllerAs: 'vm'
+                    }
+                },
+                resolve: {
+                    'teachers': function(TeacherService) {
+                        //return TeacherService.all();
+                    },
+                    'subjects': function(SubjectService) {
+                        //return SubjectService.all();
+                    }
+                }
             });
     }
 
