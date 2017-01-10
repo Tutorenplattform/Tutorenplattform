@@ -221,6 +221,22 @@
                     }
                 }
             })
+            .state('tutors', {
+                url: '/tutors',
+                parent: 'backend',
+                views: {
+                    'backend': {
+                        templateUrl: 'templates/backend/admin/tutor-management.html',
+                        controller: 'TutorManagementController',
+                        controllerAs: 'vm'
+                    }
+                },
+                resolve: {
+                    'tutors': function(TutorService) {
+                        //return TutorService.all();
+                    }
+                }
+            })
             .state('tutands', {
                 url: '/tutands',
                 parent: 'backend',

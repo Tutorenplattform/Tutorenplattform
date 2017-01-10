@@ -1,0 +1,20 @@
+<h1>Tutoren</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Klasse</th>
+            <th>Aktionen</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="tutor in vm.tutors">
+            <td>{{ tutor | fullName }}</td>
+            <td>{{ tutor.klasse }}</td>
+            <td>
+                <button ng-click="vm.viewTutor(tutor)">Ansehen</button>
+                <button ng-click="vm.destroy(tutor)">Löschen</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

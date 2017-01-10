@@ -46,6 +46,7 @@
     <script src="js/app/backend/backend.module.js"></script>
     <script src="js/app/backend/controller/nav.controller.js"></script>
     <script src="js/app/backend/controller/teacher-list.controller.js"></script>
+    <script src="js/app/backend/controller/tutor-management.controller.js"></script>
     <script src="js/app/backend/controller/tutand-management.controller.js"></script>
     <script src="js/app/backend/controller/schulfacherverwaltung-list.controller.js"></script>
     <script src="js/app/backend/controller/reported-tutors.controller.js"></script>
