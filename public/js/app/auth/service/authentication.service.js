@@ -55,7 +55,11 @@
         /**
          * The initialization method that must be called whenever the application is first opened.
          */
-        function initialize() {
+        function initialize(token) {
+            //TODO: Remove brake
+            if (typeof token !== 'undefined') {
+                $auth.setToken(token);
+            }
             if (isAuthenticated()) {
                 account = $auth.getPayload();
             }
