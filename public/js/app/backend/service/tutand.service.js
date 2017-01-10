@@ -11,6 +11,7 @@
      * @property {number} pk_tutor_tutand_id The unique identifier of this tutand
      * @property {string} vorname This tutand's first name
      * @property {string} nachname This tutand's last name
+     * @property {string} moodle_benutzername This tutand's Active Directory account name
      */
 
     /**
