@@ -23,6 +23,8 @@
     <script src="js/app/shared/constant/rating.constant.js"></script>
     <script src="js/app/shared/filter/full-name.filter.js"></script>
     <script src="js/app/shared/controller/login.controller.js"></script>
+    <script src="js/app/shared/controller/tutor-profile.controller.js"></script>
+    <script src="js/app/shared/controller/edit-tutor-profile.controller.js"></script>
     <script src="js/app/shared/service/tutor.service.js"></script>
     <script src="js/app/shared/service/teacher.service.js"></script>
 
@@ -37,10 +39,8 @@
     <script src="js/app/frontend/controller/nav.controller.js"></script>
     <script src="js/app/frontend/controller/tutor-list.controller.js"></script>
     <script src="js/app/frontend/controller/tutor-registration.controller.js"></script>
-    <script src="js/app/frontend/controller/tutor-profile.controller.js"></script>
     <script src="js/app/frontend/controller/tutor-report.controller.js"></script>
     <script src="js/app/frontend/controller/tutor-contact.controller.js"></script>
-    <script src="js/app/frontend/controller/edit-tutor-profile.controller.js"></script>
 
     <!-- Backend -->
     <script src="js/app/backend/backend.module.js"></script>

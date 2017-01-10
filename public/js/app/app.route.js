@@ -71,7 +71,7 @@
                 parent: 'frontend',
                 views: {
                     'frontend': {
-                        templateUrl: 'templates/frontend/general/tutor-profile.html',
+                        templateUrl: 'templates/shared/tutor-profile.html',
                         controller: 'TutorProfileController',
                         controllerAs: 'vm'
                     }
@@ -118,7 +118,7 @@
                 url: '/edit',
                 views: {
                     'frontend@frontend': {
-                        templateUrl: 'templates/frontend/tutor/edit-profile.html',
+                        templateUrl: 'templates/shared/edit-profile.html',
                         controller: 'EditTutorProfileController',
                         controllerAs: 'vm'
                     }

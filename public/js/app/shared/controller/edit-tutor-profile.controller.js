@@ -1,9 +1,9 @@
 (function() {
 
-    angular.module('tp.frontend.controller')
+    angular.module('tp.shared.controller')
         .controller('EditTutorProfileController', EditTutorProfileController);
 
-    EditTutorProfileController.$inject = ['$state', 'TutorService', 'tutor', 'teachers', 'subjects'];
+    EditTutorProfileController.$inject = ['$state', 'TutorService', 'tutor', 'teachers', 'subjects', 'Authentication'];
 
     /**
      * This controller provides the background functionality for the editing of tutor profiles on the frontend side of
@@ -13,9 +13,10 @@
      * @param {Tutor} tutor The tutor whose profile should be edited
      * @param {Teacher[]} teachers The list of teachers
      * @param {Subject[]} subjects The list of subjects
+     * @param {Authentication} Authentication The service used to interact with the current active user session
      * @constructor
      */
-    function EditTutorProfileController($state, TutorService, tutor, teachers, subjects) {
+    function EditTutorProfileController($state, TutorService, tutor, teachers, subjects, Authentication) {
         var vm = this;
 
         vm.tutor = {
@@ -64,15 +65,17 @@
         vm.removeSubject = removeSubject;
         vm.returnToProfile = returnToProfile;
 
-        //init();
+        init();
 
         function init() {
-            _.each(vm.tutor.faecher, reduceTeacher);
-            vm.tutor.letzte_zeugnisnote = vm.tutor.letzte_zeugnisnote + '';
+            _.each(vm.tutor.faecher, subjectIterator);
 
-            function reduceTeacher(fach) {
-                fach.lehrer = fach.lehrer.pk_lehrer_id;
+            function subjectIterator(fach) {
+                //fach.lehrer = fach.lehrer.pk_lehrer_id + '';
+                fach.letzte_zeugnisnote = fach.letzte_zeugnisnote + '';
             }
+
+            vm.admin = Authentication.isAdmin();
         }
 
         /**
@@ -89,7 +92,7 @@
          * Adds a new subject slot to the list of the subjects the tutor is willing to teach.
          */
         function addSubject() {
-            vm.subjects.push({});
+            vm.tutor.faecher.push({});
         }
 
         /**
@@ -97,14 +100,18 @@
          * @param {number} index The index of the subject to remove
          */
         function removeSubject(index) {
-            vm.subjects.splice(index, 1);
+            vm.tutor.faecher.splice(index, 1);
         }
 
         /**
          * Redirects the tutor back to their normal profile page.
          */
         function returnToProfile() {
-            $state.go('tutor');
+            var state = 'tutor';
+            if (vm.admin) {
+                state = 'backend.' + state;
+            }
+            $state.go(state);
         }
     }
 
