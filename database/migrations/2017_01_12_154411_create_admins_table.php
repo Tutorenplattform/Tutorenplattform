@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CretaeLehrersTable extends Migration
+class CreateAdminsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,9 @@ class CretaeLehrersTable extends Migration
      */
     public function up()
     {
-
-        Schema::create('lehrers', function (Blueprint $table){
-
-            $table->increments('pk_lehrer_id');
-
-            $table->string('vorname', 255);
-
-            $table->string('nachname', 255);
-
+        Schema::create('admins', function (Blueprint $table) {
+            $table->string('email_adresse');
+            $table->primary('email_adresse');
         });
     }
 
@@ -32,6 +26,6 @@ class CretaeLehrersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Lehrers');
+        Schema::dropIfExists('admins');
     }
 }
