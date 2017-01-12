@@ -14,7 +14,7 @@ class CretaeLehrersTable extends Migration
     public function up()
     {
 
-        Schema::create('Lehrers', function (Blueprint $table){
+        Schema::create('lehrers', function (Blueprint $table){
 
             $table->increments('pk_fach_id');
 

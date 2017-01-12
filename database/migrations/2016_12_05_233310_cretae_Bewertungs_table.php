@@ -13,7 +13,7 @@ class CretaeBewertungsTable extends Migration
      */
     public function up()
     {
-        Schema::create('Bewertungs', function (Blueprint $table){
+        Schema::create('bewertungs', function (Blueprint $table){
 
             $table->increments('pk_bewertung_id');
 

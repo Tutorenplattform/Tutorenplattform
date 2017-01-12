@@ -13,7 +13,7 @@ class CreateMeldungsTable extends Migration
      */
     public function up()
     {
-        Schema::create('Meldungs', function (Blueprint $table){
+        Schema::create('meldungs', function (Blueprint $table){
 
             $table->increments('pk_id');
 

@@ -13,7 +13,7 @@ class CreateLehrerFaecherZwTabellesTable extends Migration
      */
     public function up()
     {
-        Schema::create('Lehrer_Faecher_zw_tabelles', function (Blueprint $table){
+        Schema::create('lehrer_Faecher_zw_tabelles', function (Blueprint $table){
 
             $table->increments('pk_id');
 

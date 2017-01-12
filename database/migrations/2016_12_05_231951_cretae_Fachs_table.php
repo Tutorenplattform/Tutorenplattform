@@ -13,7 +13,7 @@ class CretaeFachsTable extends Migration
      */
     public function up()
     {
-        Schema::create('Fachs', function (Blueprint $table){
+        Schema::create('fachs', function (Blueprint $table){
 
             $table->increments('pk_fach_id');
 

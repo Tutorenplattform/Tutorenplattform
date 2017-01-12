@@ -13,7 +13,7 @@ class CretaeTutorTutandsTable extends Migration
      */
     public function up()
     {
-        Schema::create('Tutor_tutands', function (Blueprint $table){
+        Schema::create('tutor_tutands', function (Blueprint $table){
 
             $table->increments('pk_tutor_tutand_id');
 
