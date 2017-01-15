@@ -11,6 +11,7 @@
      * @param {Tutor} tutor The tutor the user wishes to report
      * @param {$state} $state The service used to transition between states
      * @param {TutorService} TutorService The data service used to interact with the server-side REST API
+     * @memberOf tp.frontend.controller
      * @constructor
      */
     function TutorReportController(tutor, $state, TutorService) {

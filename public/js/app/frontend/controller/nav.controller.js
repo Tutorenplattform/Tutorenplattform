@@ -11,6 +11,7 @@
      * @param {Authentication} Authentication The service used to interact with the current user session
      * @param {UserType} UserType An enumeration containing all different types of users
      * @param {$state} $state The service used to transition between states
+     * @memberOf tp.frontend.controller
      * @constructor
      */
     function FrontendNavController(Authentication, UserType, $state) {

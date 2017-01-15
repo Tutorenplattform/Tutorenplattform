@@ -10,6 +10,7 @@
      * application.
      * @param {Tutor[]} tutors The list of tutors
      * @param {$state} $state The service used to transition between states
+     * @memberOf tp.frontend.controller
      * @constructor
      */
     function TutorListController(tutors, $state) {

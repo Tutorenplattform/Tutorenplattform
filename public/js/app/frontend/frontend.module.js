@@ -11,4 +11,16 @@
         angular.module(submodule, []);
     });
 
+    /**
+     * @namespace tp.frontend
+     */
+
+    /**
+     * @namespace tp.frontend.controller
+     */
+
+    /**
+     * @namespace tp.frontend.service
+     */
+
 })();

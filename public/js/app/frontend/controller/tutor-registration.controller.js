@@ -13,6 +13,7 @@
      * @param {Teacher[]} teachers The list of teachers
      * @param {Subject[]} subjects The list of subjects
      * @param {Authentication} Authentication The service used to interact with the current user session
+     * @memberOf tp.frontend.controller
      * @constructor
      */
     function TutorRegistrationController($state, TutorService, teachers, subjects, Authentication) {
