@@ -22,7 +22,8 @@
     function TeacherService(Restangular) {
         var service = this;
 
-        var teacherRest = Restangular.all('teachers');
+        //TODO: Fix API endpoint
+        var teacherRest = Restangular.all('tutors').all('teachers');
 
         service.all = all;
         service.refresh = refresh;
