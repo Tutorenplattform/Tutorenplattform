@@ -53,7 +53,7 @@
 
             function onTutorRegistered() {
                 Authentication.promote();
-                var id = Authentication.getAccountInfo().id;
+                var id = Authentication.getAccountInfo().pk_tutor_tutand_id;
                 var params = {
                     id: id
                 };
