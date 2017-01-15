@@ -22,7 +22,7 @@
      * @property {number} bewertung_neutral The number of okay ratings this tutor has gotten
      * @property {number} bewertung_schlecht The number of bad ratings this tutor has gotten
      * @property {?string} bewertung The authenticated user's current rating for this tutor
-     * @property {boolean} gesperrt Whether or not this tutor has been disabled
+     * @property {boolean} isDeaktiviert Whether or not this tutor has been disabled
      */
 
     /**

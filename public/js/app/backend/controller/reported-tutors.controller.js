@@ -49,7 +49,7 @@
             ReportService.disable(tutor).then(disableTutorLocally);
 
             function disableTutorLocally() {
-                tutor.gesperrt = true;
+                tutor.isDeaktiviert = true;
             }
         }
 
