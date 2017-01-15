@@ -1,48 +1,36 @@
-<h1 class=" row text-center">Tutorenplattform</h1>
-
-<div class="row">
-
-    <div class="col-md-6 col-xs-12 col-sm-12 col-lg-6">
-        <h2 class="col-md-12 col-sm-12 col-lg-12 text-center">Untertitel</h2>
-
-        <div class="row col-lg-12 col-md-offset-3  col-lg-offset-3 col-xs-offset-1 col-xs-10" >
-            <span class="col-lg-6 col-md-9">
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 title-box">
+            <h1>Tutorenplattform</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-lg-6 login-left-box">
+            <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 login-left-box-top">
+                <h2>Untertitel</h2>
+            </div>
+            <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 login-left-box-bottom">
                 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
                 labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et
                 ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum
                 dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore
                 magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
                 clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-            </span>
+            </div>
         </div>
 
-    </div>
+        <div class="col-md-6 col-lg-6 login-right-box">
+            <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 login-right-box-top">
+                <h2>Jetzt mit deinen Moodle Daten anmelden</h2>
+            </div>
+            <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 login-right-box-bottom">
+                <form novalidate ng-submit="vm.login()">
+                    <input class="login-field" type="text" placeholder="Moodle-ID" ng-model="vm.fields.user_name"><br/>
+                    <input class="login-field" type="password" placeholder="Moodle-Passwort" ng-model="vm.fields.passwort"><br/>
+                    <button class="btn btn-default login-button" type="submit">Anmelden</button>
+                </form>
+            </div>
 
-    <div class="col-md-6 col-xs-12 col-sm-12 col-lg-6">
-        <h2 class="col-md-12 col-sm-12 col-lg-12 text-center">Jetzt mit deinen Moodle Daten anmelden</h2>
-
-        <div class="row col-lg-12 col-md-12 col-sm-12 col-xs-10" >
-            <form class="row col-xs-offset-2 col-lg-offset-4 col-md-offset-0 col-sm-offset-2" novalidate ng-submit="vm.login()">
-
-
-
-                <div class="col-xs-12 col-lg-12 col-md-12 col-sm-12 col-sm-offset-3 col-lg-offset-0 col-md-offset-3 top-buffer">
-                    <input type="text" placeholder="Moodle-ID" ng-model="vm.fields.user_name">
-                </div>
-
-
-
-                <div class="col-xs-12 col-lg-12 col-md-12 col-sm-12 col-xs-offset-0 col-sm-offset-3 col-md-offset-3 col-lg-offset-0 top-buffer">
-                    <input type="password" placeholder="Moodle-Passwort" ng-model="vm.fields.passwort">
-                </div>
-
-
-
-
-                <button class="row col-md-5 col-lg-2 col-sm-5 col-xs-offset-1 col-xs-5 col-sm-offset-2 col-lg-offset-1 col-md-offset-3 top-buffer" type="submit">Anmelden</button>
-
-            </form>
         </div>
     </div>
 </div>
-
