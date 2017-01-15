@@ -1,6 +1,25 @@
-<a ui-sref="tutorList">Tutorenliste</a>
-<a ui-sref="register" ng-hide="nav.isTutor()">Als Tutor Registrieren</a>
-<p>{{ nav.account | fullName }}</p>
-<button ng-show="nav.isTutor()" ng-click="nav.goToProfile()">Mein Tutorprofil</button>
-<button ng-click="nav.logout()">Abmelden</button>
-<div ui-view="frontend"></div>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <span class="navbar-brand">Tutorenplattform</span>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a ui-sref="tutorList">Tutorenliste</a></li>
+                <li><a href="#" ng-show="nav.isTutor()" ng-click="nav.goToProfile()">Mein Tutorprofil</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a ui-sref="register" ng-hide="nav.isTutor()">Als Tutor registrieren</a></li>
+                <li><a href="#" ng-click="nav.logout()">Abmelden</a></li>
+                <li class="pull-right"><a><b>{{ nav.account | fullName }}</b></a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container" ui-view="frontend"></div>
