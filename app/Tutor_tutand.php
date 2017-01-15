@@ -72,6 +72,12 @@ class Tutor_tutand extends Model
      */
     protected $klassenvorstand;
 
+    /*
+     * isDeaktiviert
+     * @var bool
+     */
+    protected $isDeaktiviert;
+
     public function lehrer_faecher_zw_tabelle(){
         return $this->belongsToMany('App\Lehrer_Faecher_zw_tabelle');
     }

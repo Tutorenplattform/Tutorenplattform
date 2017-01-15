@@ -59,6 +59,22 @@ Route::group(['prefix' => 'api/v1'], function() {
 
     });
 
+    Route::get('tutors/{id}', function ($id) {
+        return App\Tutor_tutand::find($id);
+    });
+
+    Route::put('tutors/{id}', function (Request $request, $id) {
+        App\Tutor_tutand::find($id)->update($request->all());
+    });
+
+    Route::get('tutors/reported', function () {
+        return App\Meldung::all();
+    });
+
+    Route::get('tutors/{id}/disable', function ($id) {
+        App\Tutor_tutand::find($id)->update(array('isDeaktiviert' => true));
+    });
+
     /**
      * 2.3.9 Benutzer löschen
      */

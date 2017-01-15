@@ -37,6 +37,8 @@ class CretaeTutorTutandsTable extends Migration
 
             $table->string('klassenvorstand', 255);
 
+            $table->boolean('isDeaktiviert')->default(false);
+
         });
     }
 
