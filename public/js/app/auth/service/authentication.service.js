@@ -60,9 +60,7 @@
             if (typeof token !== 'undefined') {
                 $auth.setToken(token);
             }
-            if (isAuthenticated()) {
-                account = $auth.getPayload();
-            }
+            refreshAccount();
         }
 
         /**
@@ -73,7 +71,18 @@
          * @returns {Promise} A promise that finishes upon login
          */
         function login(credentials) {
-            return $auth.login(credentials).then(forwardToHome);
+            return $auth.login(credentials).then(refreshAccount).then(forwardToHome);
+        }
+
+        /**
+         * Updates the current session object using the payload of the JWT token if authenticated.
+         */
+        function refreshAccount() {
+            if (isAuthenticated()) {
+                account = $auth.getPayload();
+            } else {
+                account = void 0;
+            }
         }
 
         /**
@@ -82,7 +91,7 @@
          * @returns {Promise} A promise that finishes upon logout
          */
         function logout() {
-            return $auth.logout().then(forwardToHome);
+            return $auth.logout().then(refreshAccount).then(forwardToHome);
         }
 
         /**
