@@ -21,4 +21,8 @@
 
     angular.module('tp', DEPENDENCIES);
 
+    /**
+     * @namespace tp
+     */
+
 })();

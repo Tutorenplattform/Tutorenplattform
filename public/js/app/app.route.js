@@ -6,6 +6,21 @@
     config.$inject = ['$locationProvider', '$stateProvider', '$urlRouterProvider', '$urlMatcherFactoryProvider',
         'RestangularProvider', '$authProvider', 'UserType'];
 
+    /**
+     * The application's main configuration handler, responsible for handling all matters concerning URLs, routing and
+     * API endpoints.
+     * @param {$locationProvider} $locationProvider The provider used to configure the route URL syntax
+     * @param {$stateProvider} $stateProvider The provider used to configure all this application's routes
+     * @param {$urlRouterProvider} $urlRouterProvider The provider used to configure the default route
+     * @param {$urlMatcherFactoryProvider} $urlMatcherFactoryProvider The provider used to configure URL matching
+     * criteria
+     * @param {RestangularProvider} RestangularProvider The provider used to configure the Restangular API base URL
+     * @param {$authProvider} $authProvider The provider used to configure the satellizer login url
+     * @param {UserType} UserType An enumeration containing all different user types that is used for specifying
+     * permissions.
+     * @memberOf tp
+     * @function
+     */
     function config($locationProvider, $stateProvider, $urlRouterProvider, $urlMatcherFactoryProvider,
                     RestangularProvider, $authProvider, UserType) {
         RestangularProvider.setBaseUrl('/api/v1');
