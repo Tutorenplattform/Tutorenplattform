@@ -26,6 +26,20 @@
      */
 
     /**
+     * A tutor object with less detail.
+     * @typedef {Object} TutorListInfo
+     * @property {number} pk_tutor_tutand_id The unique identifier of this tutor
+     * @property {string} vorname This tutor's first name
+     * @property {string} nachname This tutor's last name
+     * @property {string} klasse The school class the tutor is currently attending
+     * @property {string[]} faecher The list of subjects the tutor is teaching
+     * @property {number} bewertung_gut The number of great ratings this tutor has gotten
+     * @property {number} bewertung_neutral The number of okay ratings this tutor has gotten
+     * @property {number} bewertung_schlecht The number of bad ratings this tutor has gotten
+     * @property {?string} bewertung The authenticated user's current rating for this tutor
+     */
+
+    /**
      * A subject a tutor is teaching.
      * @typedef {Object} TutorSubject
      * @property {Subject} fach The subject the tutor is teaching
