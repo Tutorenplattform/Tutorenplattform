@@ -96,6 +96,13 @@
             var subjects = _.map(tutor.faecher, 'fach.name');
             return subjects.join(', ');
         }
+
+        vm.fachFilter = "0";
+        vm.getFilteredItems = function(t) {
+            var fid = vm.fachFilter;
+            if (!fid || !+fid) return true;
+            return t.faecher[0].fach.pk_fach_id == +fid;
+        }
     }
 
 })();
