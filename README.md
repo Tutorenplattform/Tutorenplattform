@@ -1,5 +1,9 @@
 # Tutorenplattform
 
+## Dokumentation
+
+Die JSDoc-Dokumentation kann [hier](http://htmlpreview.github.io/?https://github.com/Tutorenplattform/Tutorenplattform/blob/master/jsdoc/index.html) online eingesehen werden.
+
 ## Einrichtung
 
 ### Voraussetzungen
