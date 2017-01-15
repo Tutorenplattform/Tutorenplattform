@@ -17,20 +17,35 @@
 
         vm.tutors = [{
             vorname: "Hans",
-            nachname: "Mustermann",
-            klasse: "4AM",
+            nachname: "Müller",
+            klasse: "5BI",
             pk_tutor_tutand_id: 1,
             faecher: [{
                 fach: {
                     pk_fach_id: 1,
                     name: 'AM'
+                }
+            }],
+            klassenvorstand: 'STR',
+            bewertung_gut: 6,
+            bewertung_neutral: 2,
+            bewertung_schlecht: 1
+        }, {
+            vorname: "Karl",
+            nachname: "Huber",
+            klasse: "4AM",
+            pk_tutor_tutand_id: 2,
+            faecher: [{
+                fach: {
+                    pk_fach_id: 2,
+                    name: 'E'
                 },
                 lehrer: {
-                    pk_lehrer_id: 2,
-                    vorname: 'Reinhard',
-                    nachname: 'Gottweis'
+                    pk_lehrer_id: 3,
+                    vorname: 'Kerstin',
+                    nachname: 'Stracke-Weiss'
                 },
-                faehigkeiten_anmerkung: 'Gut im Berechnen von quadratischen Funktionen',
+                faehigkeiten_anmerkung: 'Mündlich nicht so gut wie schriftlich',
                 letzte_zeugnisnote: 2
             }],
             klassenvorstand: 'STR',
@@ -41,6 +56,21 @@
             bewertung_gut: 3,
             bewertung_neutral: 1,
             bewertung_schlecht: 0
+        }, {
+            vorname: "Florian",
+            nachname: "Reiter",
+            klasse: "4CN",
+            pk_tutor_tutand_id: 3,
+            faecher: [{
+                fach: {
+                    pk_fach_id: 1,
+                    name: 'AM'
+                }
+            }],
+            klassenvorstand: 'SDO',
+            bewertung_gut: 1,
+            bewertung_neutral: 5,
+            bewertung_schlecht: 1
         }];
 
         vm.viewTutor = viewTutor;

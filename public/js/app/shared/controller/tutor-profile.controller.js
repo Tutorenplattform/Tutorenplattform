@@ -21,8 +21,8 @@
 
         vm.tutor = {
             vorname: "Hans",
-            nachname: "Mustermann",
-            klasse: "4AM",
+            nachname: "Müller",
+            klasse: "5BI",
             pk_tutor_tutand_id: 1,
             faecher: [{
                 fach: {
@@ -42,9 +42,9 @@
             bevorzugte_zeiten: '13:25-14:15 Uhr',
             telefon_nr: '1234 567 89 00',
             email_adresse: 'hans@musterma.nn',
-            bewertung_gut: 3,
-            bewertung_neutral: 1,
-            bewertung_schlecht: 0,
+            bewertung_gut: 6,
+            bewertung_neutral: 2,
+            bewertung_schlecht: 1,
             bewertung: null
         };
 
