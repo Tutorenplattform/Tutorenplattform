@@ -34,6 +34,7 @@
      * @param {$state} $state The service used to transition between states
      * @param {Globals} Globals The application's global configuration object
      * @param {UserType} UserType An enumeration containing all types of users
+     * @memberOf tp.auth.service
      * @constructor
      */
     function Authentication($auth, $state, Globals, UserType) {

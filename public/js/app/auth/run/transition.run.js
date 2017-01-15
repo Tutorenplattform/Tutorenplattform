@@ -28,6 +28,8 @@
      * @param {StateParams} $stateParams The parameters that are passed to the state that is currently being
      * transitioned to
      * @see transitionHandler
+     * @memberOf tp.auth.run
+     * @function
      */
     function run($transitions, Authentication, $stateParams) {
         $transitions.onBefore({}, transitionHandler);
@@ -35,8 +37,10 @@
         /**
          * This transition interceptor is used to check if the user has the necessary permissions to transition to the
          * next state. If not, they will be redirected to their home page.
-         * @param {transition} trans The currently ongoing transition that has been intercepted
+         * @param {Transition} trans The currently ongoing transition that has been intercepted
          * @returns {TargetState|undefined} A state retarget result or undefined, if the transition is valid.
+         * @memberOf tp.auth.run
+         * @function
          */
         function transitionHandler(trans) {
             var toState = trans.$to();
@@ -56,6 +60,8 @@
          * @param {Permissions} userPerms The current user's permissions
          * @param {Permissions} statePerms The necessary permissions required to transition to the next state
          * @returns {boolean} true if the transition is valid, false otherwise
+         * @memberOf tp.auth.run
+         * @function
          */
         function validateTransition(userPerms, statePerms) {
             var allowed = true;
@@ -73,8 +79,10 @@
 
         /**
          * Compiles the current user's permission for transitioning to the given state.
-         * @param state The state that is being transitioned to
+         * @param {State} state The state that is being transitioned to
          * @returns {Permissions} The current user's permissions
+         * @memberOf tp.auth.run
+         * @function
          */
         function getUserPermissions(state) {
             var account = Authentication.getAccountInfo();
@@ -102,8 +110,10 @@
 
         /**
          * Compiles the permissions required for transitioning to the given state.
-         * @param state The state that is being transitioned to
+         * @param {State} state The state that is being transitioned to
          * @returns {Permissions} The necessary permissions for transitioning to the given state
+         * @memberOf tp.auth.run
+         * @function
          */
         function getStatePermissions(state) {
             var permissions = state.permissions || {};

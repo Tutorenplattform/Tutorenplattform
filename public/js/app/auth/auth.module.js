@@ -12,4 +12,20 @@
         angular.module(submodule, []);
     });
 
+    /**
+     * @namespace tp.auth
+     */
+
+    /**
+     * @namespace tp.auth.service
+     */
+
+    /**
+     * @namespace tp.auth.constant
+     */
+
+    /**
+     * @namespace tp.auth.run
+     */
+
 })();
