@@ -14,6 +14,7 @@
      * @param {Teacher[]} teachers The list of teachers
      * @param {Subject[]} subjects The list of subjects
      * @param {Authentication} Authentication The service used to interact with the current active user session
+     * @memberOf tp.shared.controller
      * @constructor
      */
     function EditTutorProfileController($state, TutorService, tutor, teachers, subjects, Authentication) {

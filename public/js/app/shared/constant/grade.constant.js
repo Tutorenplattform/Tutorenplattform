@@ -2,7 +2,8 @@
 
     /**
      * An enumeration containing display strings for all possible grades.
-     * @type {Object.<number, string>}
+     * @enum {string}
+     * @memberOf tp.shared.constant
      */
     var Grade = {
         1: 'Sehr Gut',

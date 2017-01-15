@@ -52,6 +52,7 @@
      * This service provides methods to interact with the server-side REST API regarding all actions concerning tutors.
      * @param {Restangular} Restangular A service providing short-hand methods for Angular's $http service
      * @param {$window} $window Angular's wrapper around the global window object
+     * @memberOf tp.shared.service
      * @constructor
      */
     function TutorService(Restangular, $window) {

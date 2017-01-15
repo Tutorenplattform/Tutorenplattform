@@ -13,4 +13,20 @@
         angular.module(submodule, []);
     });
 
+    /**
+     * @namespace tp.shared
+     */
+
+    /**
+     * @namespace tp.shared.filter
+     */
+
+    /**
+     * @namespace tp.shared.service
+     */
+
+    /**
+     * @namespace tp.shared.controller
+     */
+
 })();

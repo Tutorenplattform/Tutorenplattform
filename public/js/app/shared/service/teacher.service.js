@@ -17,6 +17,7 @@
      * This service provides methods to interact with the server-side REST API regarding all actions concerning
      * teachers.
      * @param {Restangular} Restangular A service providing short-hand methods for Angular's $http service
+     * @memberOf tp.shared.service
      * @constructor
      */
     function TeacherService(Restangular) {

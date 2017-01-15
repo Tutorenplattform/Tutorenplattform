@@ -3,6 +3,7 @@
     /**
      * The global configuration constant of this application.
      * @type {Object.<string, Object>}
+     * @memberOf tp.shared.constant
      */
     var Globals = {
         homes: {

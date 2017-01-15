@@ -2,7 +2,8 @@
 
     /**
      * An enumeration containing unique identifiers for all types of ratings.
-     * @type {Object.<string, Rating>}
+     * @enum {Rating}
+     * @memberOf tp.shared.constant
      */
     var Ratings = {
         GREAT: new Rating('GUT', 'bewertung_gut'),
@@ -15,6 +16,7 @@
      * A rating that users can cast to tutors.
      * @param {?string} value The rating's unique identification value
      * @param {string=} countKey The key under which the rating's number of casts can be found
+     * @memberOf tp.shared.constant
      * @class
      */
     function Rating(value, countKey) {

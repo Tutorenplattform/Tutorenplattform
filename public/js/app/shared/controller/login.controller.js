@@ -8,6 +8,7 @@
     /**
      * This controller provides all background functionality for the login page of the application.
      * @param {Authentication} Authentication The service used to interact with the current user session
+     * @memberOf tp.shared.controller
      * @constructor
      */
     function LoginController(Authentication) {

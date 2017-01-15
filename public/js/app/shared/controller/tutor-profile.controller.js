@@ -14,6 +14,7 @@
      * @param {Grade} Grade An enumeration of all possible (Austrian) subject grades.
      * @param {Rating} Rating An enumeration of all possible ratings for tutors.
      * @param {Authentication} Authentication The service used to interact with the current user session
+     * @memberOf tp.shared.controller
      * @constructor
      */
     function TutorProfileController(tutor, $state, TutorService, Grade, Rating, Authentication) {
