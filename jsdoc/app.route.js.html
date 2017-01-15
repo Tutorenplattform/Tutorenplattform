@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: app.route.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: app.route.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>(function() {
+
+    angular.module('tp')
+        .config(config);
+
+    config.$inject = ['$locationProvider', '$stateProvider', '$urlRouterProvider', '$urlMatcherFactoryProvider',
+        'RestangularProvider', '$authProvider', 'UserType'];
+
+    /**
+     * The application's main configuration handler, responsible for handling all matters concerning URLs, routing and
+     * API endpoints.
+     * @param {$locationProvider} $locationProvider The provider used to configure the route URL syntax
+     * @param {$stateProvider} $stateProvider The provider used to configure all this application's routes
+     * @param {$urlRouterProvider} $urlRouterProvider The provider used to configure the default route
+     * @param {$urlMatcherFactoryProvider} $urlMatcherFactoryProvider The provider used to configure URL matching
+     * criteria
+     * @param {RestangularProvider} RestangularProvider The provider used to configure the Restangular API base URL
+     * @param {$authProvider} $authProvider The provider used to configure the satellizer login url
+     * @param {UserType} UserType An enumeration containing all different user types that is used for specifying
+     * permissions.
+     * @memberOf tp
+     * @function
+     */
+    function config($locationProvider, $stateProvider, $urlRouterProvider, $urlMatcherFactoryProvider,
+                    RestangularProvider, $authProvider, UserType) {
+        RestangularProvider.setBaseUrl('/api/v1');
+        $authProvider.loginUrl = '/api/v1/authenticate';
+
+        $locationProvider.html5Mode(false).hashPrefix('');
+
+        $urlMatcherFactoryProvider.defaultSquashPolicy(true);
+        $urlMatcherFactoryProvider.strictMode(false);
+
+        $urlRouterProvider.otherwise('/login');
+
+        //TODO: Remove API brakes (resolve)
+        $stateProvider
+            .state('login', {
+                url: '/login',
+                templateUrl: 'templates/shared/login.html',
+                controller: 'LoginController',
+                controllerAs: 'vm',
+                permissions: {
+                    authenticated: false
+                }
+            })
+            .state('frontend', {
+                abstract: true,
+                templateUrl: 'templates/frontend/frontend.html',
+                controller: 'FrontendNavController',
+                controllerAs: 'nav',
+                permissions: {
+                    authenticated: true,
+                    side: 'frontend'
+                }
+            })
+            .state('backend', {
+                url: '/admin',
+                templateUrl: 'templates/backend/backend.html',
+                controller: 'BackendNavController',
+                controllerAs: 'nav',
+                permissions: {
+                    authenticated: true,
+                    side: 'backend'
+                }
+            });
+
+        $stateProvider
+            .state('tutorList', {
+                url: '/list',
+                parent: 'frontend',
+                views: {
+                    'frontend': {
+                        templateUrl: 'templates/frontend/general/tutor-list.html',
+                        controller: 'TutorListController',
+                        controllerAs: 'vm'
+                    }
+                },
+                resolve: {
+                    'tutors': function(TutorService) {
+                        //return TutorService.all();
+                    }
+                }
+            })
+            .state('tutor', {
+                url: '/tutor/{id:\\d+}',
+                parent: 'frontend',
+                views: {
+                    'frontend': {
+                        templateUrl: 'templates/shared/tutor-profile.html',
+                        controller: 'TutorProfileController',
+                        controllerAs: 'vm'
+                    }
+                },
+                resolve: {
+                    'tutor': function(TutorService, $stateParams) {
+                        //return TutorService.one($stateParams.id);
+                    }
+                }
+            })
+            .state('register', {
+                url: '/tutor/register',
+                parent: 'frontend',
+                views: {
+                    'frontend': {
+                        templateUrl: 'templates/frontend/tutand/register.html',
+                        controller: 'TutorRegistrationController',
+                        controllerAs: 'vm'
+                    }
+                },
+                resolve: {
+                    'teachers': function(TeacherService) {
+                        //return TeacherService.all();
+                    },
+                    'subjects': function(SubjectService) {
+                        //return SubjectService.all();
+                    }
+                },
+                permissions: {
+                    type: UserType.Tutand
+                }
+            })
+            .state('tutor.report', {
+                url: '/report',
+                views: {
+                    'frontend@frontend': {
+                        templateUrl: 'templates/frontend/general/report-tutor.html',
+                        controller: 'TutorReportController',
+                        controllerAs: 'vm'
+                    }
+                }
+            })
+            .state('tutor.edit', {
+                url: '/edit',
+                views: {
+                    'frontend@frontend': {
+                        templateUrl: 'templates/shared/edit-profile.html',
+                        controller: 'EditTutorProfileController',
+                        controllerAs: 'vm'
+                    }
+                },
+                resolve: {
+                    'teachers': function(TeacherService) {
+                        //return TeacherService.all();
+                    },
+                    'subjects': function(SubjectService) {
+                        //return SubjectService.all();
+                    }
+                },
+                permissions: {
+                    type: UserType.Tutor,
+                    manageable: true
+                }
+            })
+            .state('tutor.contact', {
+                url: '/contact',
+                views: {
+                    'frontend@frontend': {
+                        templateUrl: 'templates/frontend/general/contact-tutor.html',
+                        controller: 'TutorContactController',
+                        controllerAs: 'vm'
+                    }
+                }
+            });
+
+        $stateProvider
+            .state('home', {
+                url: '/home',
+                parent: 'backend',
+                views: {
+                    'backend': {
+                        templateUrl: 'templates/backend/general/home.html'
+                    }
+                }
+            })
+            .state('teacherList', {
+                url: '/teachers',
+                parent: 'backend',
+                views: {
+                    'backend': {
+                        templateUrl: 'templates/backend/admin/teacher.html',
+                        controller: 'TeacherListController',
+                        controllerAs: 'vm'
+                    }
+                },
+                resolve: {
+                    'teachers': function(TeacherService) {
+                        //return TeacherService.all();
+                    }
+                }
+            })
+            .state('schulfaecherverwaltung', {
+                url: '/schulfaecherverwaltung',
+                parent: 'backend',
+                views: {
+                    'backend': {
+                        templateUrl: 'templates/backend/admin/admin_schulfaecherverwaltung.html',
+                        controller: 'SubjectListController',
+                        controllerAs: 'vm'
+                    }
+                },
+                resolve: {
+                    'subjects': function(SubjectService) {
+                        //return SubjectService.all();
+                    }
+                }
+            })
+            .state('options', {
+                url: '/options',
+                parent: 'backend',
+                views: {
+                    'backend': {
+                        templateUrl: 'templates/backend/admin/options.html',
+                        controller: 'AdminOptionsController',
+                        controllerAs: 'vm'
+                    }
+                },
+                resolve: {
+                    'options': function(AdministratorService) {
+                        //return AdministratorService.getOptions();
+                    }
+                }
+            })
+            .state('reportedTutors', {
+                url: '/reported',
+                parent: 'backend',
+                views: {
+                    'backend': {
+                        templateUrl: 'templates/backend/admin/reported-tutors.html',
+                        controller: 'ReportedTutorsController',
+                        controllerAs: 'vm'
+                    }
+                },
+                resolve: {
+                    'reportedTutors': function(ReportService) {
+                        //return ReportService.all();
+                    }
+                }
+            })
+            .state('tutors', {
+                url: '/tutors',
+                parent: 'backend',
+                views: {
+                    'backend': {
+                        templateUrl: 'templates/backend/admin/tutor-management.html',
+                        controller: 'TutorManagementController',
+                        controllerAs: 'vm'
+                    }
+                },
+                resolve: {
+                    'tutors': function(TutorService) {
+                        //return TutorService.all();
+                    }
+                }
+            })
+            .state('tutands', {
+                url: '/tutands',
+                parent: 'backend',
+                views: {
+                    'backend': {
+                        templateUrl: 'templates/backend/admin/tutand-management.html',
+                        controller: 'TutandManagementController',
+                        controllerAs: 'vm'
+                    }
+                },
+                resolve: {
+                    'tutands': function(TutandService) {
+                        //return TutandService.all();
+                    }
+                }
+            })
+            .state('backend.tutor', {
+                url: '/tutor/{id:\\d+}',
+                views: {
+                    'backend': {
+                        templateUrl: 'templates/shared/tutor-profile.html',
+                        controller: 'TutorProfileController',
+                        controllerAs: 'vm'
+                    }
+                },
+                resolve: {
+                    'tutor': function(TutorService, $stateParams) {
+                        //return TutorService.one($stateParams.id);
+                    }
+                }
+            })
+            .state('backend.tutor.edit', {
+                url: '/edit',
+                views: {
+                    'backend@backend': {
+                        templateUrl: 'templates/shared/edit-profile.html',
+                        controller: 'EditTutorProfileController',
+                        controllerAs: 'vm'
+                    }
+                },
+                resolve: {
+                    'teachers': function(TeacherService) {
+                        //return TeacherService.all();
+                    },
+                    'subjects': function(SubjectService) {
+                        //return SubjectService.all();
+                    }
+                }
+            });
+    }
+
+})();</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Controllers</h3><ul><li><a href="tp.backend.controller.AdminOptionsController.html">AdminOptionsController</a></li><li><a href="tp.backend.controller.BackendNavController.html">BackendNavController</a></li><li><a href="tp.backend.controller.ReportedTutorsController.html">ReportedTutorsController</a></li><li><a href="tp.backend.controller.TeacherListController.html">TeacherListController</a></li><li><a href="tp.frontend.controller.FrontendNavController.html">FrontendNavController</a></li><li><a href="tp.frontend.controller.TutorContactController.html">TutorContactController</a></li><li><a href="tp.frontend.controller.TutorListController.html">TutorListController</a></li><li><a href="tp.frontend.controller.TutorRegistrationController.html">TutorRegistrationController</a></li><li><a href="tp.frontend.controller.TutorReportController.html">TutorReportController</a></li><li><a href="tp.shared.controller.EditTutorProfileController.html">EditTutorProfileController</a></li><li><a href="tp.shared.controller.LoginController.html">LoginController</a></li><li><a href="tp.shared.controller.TutorProfileController.html">TutorProfileController</a></li></ul><h3>Services</h3><ul><li><a href="tp.backend.service.AdministratorService.html">AdministratorService</a></li><li><a href="tp.backend.service.ReportService.html">ReportService</a></li><li><a href="tp.backend.service.SubjectService.html">SubjectService</a></li><li><a href="tp.backend.service.TutandService.html">TutandService</a></li><li><a href="tp.shared.service.TeacherService.html">TeacherService</a></li><li><a href="tp.shared.service.TutorService.html">TutorService</a></li></ul><h3>Classes</h3><ul><li><a href="tp.auth.service.Authentication.html">Authentication</a></li><li><a href="tp.shared.constant.Rating.html">Rating</a></li></ul><h3>Namespaces</h3><ul><li><a href="tp.html">tp</a></li><li><a href="tp.auth.constant.html">tp.auth.constant</a></li><li><a href="tp.auth.run.html">tp.auth.run</a></li><li><a href="tp.auth.service.html">tp.auth.service</a></li><li><a href="tp.backend.controller.html">tp.backend.controller</a></li><li><a href="tp.backend.service.html">tp.backend.service</a></li><li><a href="tp.frontend.controller.html">tp.frontend.controller</a></li><li><a href="tp.frontend.service.html">tp.frontend.service</a></li><li><a href="tp.run.html">tp.run</a></li><li><a href="tp.shared.controller.html">tp.shared.controller</a></li><li><a href="tp.shared.filter.html">tp.shared.filter</a></li><li><a href="tp.shared.service.html">tp.shared.service</a></li></ul><h3><a href="global.html">Global</a></h3>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Sun Jan 15 2017 02:13:09 GMT+0100 (Mitteleuropäische Zeit)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

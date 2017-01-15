@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: auth/service/authentication.service.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: auth/service/authentication.service.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>(function() {
+
+    angular.module('tp.auth.service')
+        .service('Authentication', Authentication);
+
+    Authentication.$inject = ['$auth', '$state', 'Globals', 'UserType'];
+
+    /**
+     * A Number or a String that can be cast into a Number.
+     * @typedef {number|string} Numeric
+     */
+
+    /**
+     * A set of credentials used for JWT authentication login.
+     * @typedef {Object} Credentials
+     * @property {string} user_name The Active Directory username to use for login
+     * @property {string} passwort The Active Directory password to use for login
+     */
+
+    /**
+     * The expected payload of the JWT token used for authentication.
+     * @typedef {Object} TokenPayload
+     * @property {number} pk_tutor_tutand_id The user's unique identifier
+     * @property {UserType} type The type of this user
+     * @property {string} vorname This user's first name
+     * @property {string} nachname This user's last name
+     */
+
+    /**
+     * This service is used to interact with the current user session. It is responsible for account login, account
+     * logout, permission management and account information retrieval.
+     * @param {$auth} $auth The satellizer service used for all requests concerning JWT token authentication and
+     * localStorage token management
+     * @param {$state} $state The service used to transition between states
+     * @param {Globals} Globals The application's global configuration object
+     * @param {UserType} UserType An enumeration containing all types of users
+     * @memberOf tp.auth.service
+     * @constructor
+     */
+    function Authentication($auth, $state, Globals, UserType) {
+        var service = this;
+
+        service.initialize = initialize;
+        service.login = login;
+        service.logout = logout;
+        service.promote = promote;
+        service.getHome = getHome;
+        service.getAccountInfo = getAccountInfo;
+        service.isAuthenticated = isAuthenticated;
+        service.canManage = canManage;
+        service.isAdmin = isAdmin;
+        service.getSide = getSide;
+
+        var account;
+
+        function FakePromise() {
+            var fake = this;
+            fake.then = function(fn) {
+                fn();
+                return fake;
+            }
+        }
+
+        /**
+         * The initialization method that must be called whenever the application is first opened.
+         */
+        function initialize(token) {
+            //TODO: Remove brake
+            if (typeof token !== 'undefined') {
+                $auth.setToken(token);
+            }
+            if (isAuthenticated()) {
+                refreshAccount();
+            }
+        }
+
+        /**
+         * Attempts to log in the user with the given credentials. Afterwards, the user is redirected to their home
+         * page.
+         * @see forwardToHome
+         * @param {Credentials} credentials The credentials to use for login
+         * @returns {Promise} A promise that finishes upon login
+         */
+        function login(credentials) {
+            //TODO: Remove brake
+            var fakeToken;
+            var fakePromise = new FakePromise();
+            switch (credentials.user_name) {
+                case '1234':
+                    //fakeToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjowLCJwa190dXRvcl90dXRhbmRfaWQiOjMsInZvcm5hbWUiOiJTdXRla2giLCJuYWNobmFtZSI6IlNlZWxlbmZyZXVuZCJ9.H7Fei4n9F9nLR1z4RxjeiCgKI8asoK0vkF3AclCvExI';
+                    fakeToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjowLCJwa190dXRvcl90dXRhbmRfaWQiOjYsInZvcm5hbWUiOiJKb2hhbm5lcyIsIm5hY2huYW1lIjoiTcO8bGxlciJ9.zp57LXUHZY7Kv3msWuH-jlUxZWYC-4gpLlG2fX5nZ2U';
+                    break;
+                default:
+                    return fakePromise.then(refreshAccount).then(forwardToHome);
+            }
+            $auth.setToken(fakeToken);
+            return fakePromise.then(refreshAccount).then(forwardToHome);
+            return $auth.login(credentials).then(refreshAccount).then(forwardToHome);
+        }
+
+        /**
+         * Updates the current session object using the payload of the JWT token if authenticated.
+         */
+        function refreshAccount() {
+            if (isAuthenticated()) {
+                account = $auth.getPayload();
+            } else {
+                account = void 0;
+            }
+        }
+
+        /**
+         * Attempts to log out the current user. Afterwards, the user is redirected to the login page.
+         * @see forwardToHome
+         * @returns {Promise} A promise that finishes upon logout
+         */
+        function logout() {
+            //TODO: Remove brake
+            $auth.setToken('-');
+            return new FakePromise().then(refreshAccount).then(forwardToHome);
+            return $auth.logout().then(refreshAccount).then(forwardToHome);
+        }
+
+        /**
+         * Promotes the current user to a tutor without invalidating the current session.
+         */
+        function promote() {
+            if (isAuthenticated()) {
+                account.type = UserType.Tutor;
+            }
+        }
+
+        /**
+         * Retrieves the name of the home page state for the current user.
+         * @returns {string} The state name of the home page
+         */
+        function getHome() {
+            var homes = Globals.homes;
+            var account = getAccountInfo();
+            var forwardState = homes.unauthenticated;
+            if (account) {
+                forwardState = homes[getSide()];
+            }
+            return forwardState;
+        }
+
+        /**
+         * Redirects the current user to their home page. If they are unauthenticated, the login page is considered
+         * their home and they will be redirected there.
+         */
+        function forwardToHome() {
+            $state.go(getHome());
+        }
+
+        /**
+         * Retrieves the account information from the localStorage JWT token payload data.
+         * @returns {TokenPayload|undefined} The user token payload or undefined if the user is not authenticated
+         */
+        function getAccountInfo() {
+            if (!isAuthenticated()) {
+                return;
+            }
+            return account;
+        }
+
+        /**
+         * Returns whether or not the user is currently authenticated.
+         * @returns {boolean} true if the user is logged in, false otherwise
+         */
+        function isAuthenticated() {
+            return $auth.isAuthenticated();
+        }
+
+        /**
+         * Returns whether or not the current user is allowed to manage content associated with the given ID.
+         * @param {Numeric} neededId The needed ID for managing associated content
+         * @returns {boolean} true if management rights are granted, false otherwise
+         */
+        function canManage(neededId) {
+            neededId = +neededId;
+            var account = getAccountInfo();
+            var id = account.pk_tutor_tutand_id;
+            console.log('ID',id);
+            console.log('NID',neededId);
+            return !!account &amp;&amp; (neededId === id);
+        }
+
+        /**
+         * Returns whether or not this user has administrator rights.
+         * @returns {boolean} true if the user is an administrator, false otherwise
+         */
+        function isAdmin() {
+            return account.type === UserType.Admin;
+        }
+
+        /**
+         * Returns the side (either "frontend" or "backend") based on the user's type.
+         * @returns {string} The side associated with the user's type
+         */
+        function getSide() {
+            return isAdmin() ? 'backend' : 'frontend';
+        }
+    }
+
+})();</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Controllers</h3><ul><li><a href="tp.backend.controller.AdminOptionsController.html">AdminOptionsController</a></li><li><a href="tp.backend.controller.BackendNavController.html">BackendNavController</a></li><li><a href="tp.backend.controller.ReportedTutorsController.html">ReportedTutorsController</a></li><li><a href="tp.backend.controller.TeacherListController.html">TeacherListController</a></li><li><a href="tp.frontend.controller.FrontendNavController.html">FrontendNavController</a></li><li><a href="tp.frontend.controller.TutorContactController.html">TutorContactController</a></li><li><a href="tp.frontend.controller.TutorListController.html">TutorListController</a></li><li><a href="tp.frontend.controller.TutorRegistrationController.html">TutorRegistrationController</a></li><li><a href="tp.frontend.controller.TutorReportController.html">TutorReportController</a></li><li><a href="tp.shared.controller.EditTutorProfileController.html">EditTutorProfileController</a></li><li><a href="tp.shared.controller.LoginController.html">LoginController</a></li><li><a href="tp.shared.controller.TutorProfileController.html">TutorProfileController</a></li></ul><h3>Services</h3><ul><li><a href="tp.backend.service.AdministratorService.html">AdministratorService</a></li><li><a href="tp.backend.service.ReportService.html">ReportService</a></li><li><a href="tp.backend.service.SubjectService.html">SubjectService</a></li><li><a href="tp.backend.service.TutandService.html">TutandService</a></li><li><a href="tp.shared.service.TeacherService.html">TeacherService</a></li><li><a href="tp.shared.service.TutorService.html">TutorService</a></li></ul><h3>Classes</h3><ul><li><a href="tp.auth.service.Authentication.html">Authentication</a></li><li><a href="tp.shared.constant.Rating.html">Rating</a></li></ul><h3>Namespaces</h3><ul><li><a href="tp.html">tp</a></li><li><a href="tp.auth.constant.html">tp.auth.constant</a></li><li><a href="tp.auth.run.html">tp.auth.run</a></li><li><a href="tp.auth.service.html">tp.auth.service</a></li><li><a href="tp.backend.controller.html">tp.backend.controller</a></li><li><a href="tp.backend.service.html">tp.backend.service</a></li><li><a href="tp.frontend.controller.html">tp.frontend.controller</a></li><li><a href="tp.frontend.service.html">tp.frontend.service</a></li><li><a href="tp.run.html">tp.run</a></li><li><a href="tp.shared.controller.html">tp.shared.controller</a></li><li><a href="tp.shared.filter.html">tp.shared.filter</a></li><li><a href="tp.shared.service.html">tp.shared.service</a></li></ul><h3><a href="global.html">Global</a></h3>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Sun Jan 15 2017 02:13:09 GMT+0100 (Mitteleuropäische Zeit)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

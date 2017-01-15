@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: auth/run/transition.run.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: auth/run/transition.run.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>(function() {
+
+    angular.module('tp.auth.run')
+        .run(run);
+
+    run.$inject = ['$transitions', 'Authentication', '$stateParams'];
+
+    /**
+     * Parameters passed to a state upon transition. The mapping has the parameter names as keys and parameter values as
+     * values.
+     * @typedef {Object.&lt;string,string>} StateParams
+     */
+
+    /**
+     * A set of permissions used for being compared to state permissions.
+     * @typedef {Object} Permissions
+     * @property {boolean} authenticated true if the user is logged in, false otherwise
+     * @property {?number} type The type of the current user
+     * @property {?string} side The side this user's type belongs to
+     * @property {?boolean} manageable true if the user is allowed to manage this state's contents.
+     */
+
+    /**
+     * This function is used to register the transition interceptor.
+     * @param {$transitions} $transitions The service used to retrieve information about the current state transition
+     * from
+     * @param {Authentication} Authentication The service used to interact with the current user session
+     * @param {StateParams} $stateParams The parameters that are passed to the state that is currently being
+     * transitioned to
+     * @see transitionHandler
+     * @memberOf tp.auth.run
+     * @function
+     */
+    function run($transitions, Authentication, $stateParams) {
+        $transitions.onBefore({}, transitionHandler);
+
+        /**
+         * This transition interceptor is used to check if the user has the necessary permissions to transition to the
+         * next state. If not, they will be redirected to their home page.
+         * @param {Transition} trans The currently ongoing transition that has been intercepted
+         * @returns {TargetState|undefined} A state retarget result or undefined, if the transition is valid.
+         * @memberOf tp.auth.run
+         * @function
+         */
+        function transitionHandler(trans) {
+            var toState = trans.$to();
+            var userPerms = getUserPermissions(toState);
+            var statePerms = getStatePermissions(toState);
+            console.log('To: ', toState.name);
+            console.log('User: ', userPerms);
+            console.log('State: ', statePerms);
+            var valid = validateTransition(userPerms, statePerms);
+            console.log('Valid: ', valid);
+            if (!valid) {
+                console.log('No Match!');
+                var home = Authentication.getHome();
+                var router = trans.router.stateService;
+                return router.target(home, {}, {location: 'replace'});
+            }
+        }
+
+        /**
+         * Determines whether the provided user permissions suffice to transition to a state with the given required
+         * permissions.
+         * @param {Permissions} userPerms The current user's permissions
+         * @param {Permissions} statePerms The necessary permissions required to transition to the next state
+         * @returns {boolean} true if the transition is valid, false otherwise
+         * @memberOf tp.auth.run
+         * @function
+         */
+        function validateTransition(userPerms, statePerms) {
+            var allowed = true;
+            _.each(statePerms, forEach);
+            return allowed;
+
+            function forEach(value, key) {
+                if (userPerms[key] !== value) {
+                    console.log('Mismatch at key:' + key);
+                    allowed = false;
+                    return false;
+                }
+            }
+        }
+
+        /**
+         * Compiles the current user's permission for transitioning to the given state.
+         * @param {State} state The state that is being transitioned to
+         * @returns {Permissions} The current user's permissions
+         * @memberOf tp.auth.run
+         * @function
+         */
+        function getUserPermissions(state) {
+            var account = Authentication.getAccountInfo();
+            var permissions = {
+                authenticated: !!account
+            };
+            if (account) {
+                permissions.type = account.type;
+                permissions.side = Authentication.getSide();
+                permissions.manageable = hasManageRights();
+            }
+            return permissions;
+
+            function hasManageRights() {
+                var admin = Authentication.isAdmin();
+                if (admin) {
+                    return true;
+                } else if (state.name !== 'tutor.edit') {
+                    return false;
+                } else {
+                    return Authentication.canManage($stateParams.id);
+                }
+            }
+        }
+
+        /**
+         * Compiles the permissions required for transitioning to the given state.
+         * @param {State} state The state that is being transitioned to
+         * @returns {Permissions} The necessary permissions for transitioning to the given state
+         * @memberOf tp.auth.run
+         * @function
+         */
+        function getStatePermissions(state) {
+            var permissions = state.permissions || {};
+            if (!state.parent) {
+                return permissions;
+            }
+            var parentPermissions = getStatePermissions(state.parent);
+            return angular.extend({}, parentPermissions, permissions);
+        }
+    }
+
+})();</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Controllers</h3><ul><li><a href="tp.backend.controller.AdminOptionsController.html">AdminOptionsController</a></li><li><a href="tp.backend.controller.BackendNavController.html">BackendNavController</a></li><li><a href="tp.backend.controller.ReportedTutorsController.html">ReportedTutorsController</a></li><li><a href="tp.backend.controller.TeacherListController.html">TeacherListController</a></li><li><a href="tp.frontend.controller.FrontendNavController.html">FrontendNavController</a></li><li><a href="tp.frontend.controller.TutorContactController.html">TutorContactController</a></li><li><a href="tp.frontend.controller.TutorListController.html">TutorListController</a></li><li><a href="tp.frontend.controller.TutorRegistrationController.html">TutorRegistrationController</a></li><li><a href="tp.frontend.controller.TutorReportController.html">TutorReportController</a></li><li><a href="tp.shared.controller.EditTutorProfileController.html">EditTutorProfileController</a></li><li><a href="tp.shared.controller.LoginController.html">LoginController</a></li><li><a href="tp.shared.controller.TutorProfileController.html">TutorProfileController</a></li></ul><h3>Services</h3><ul><li><a href="tp.backend.service.AdministratorService.html">AdministratorService</a></li><li><a href="tp.backend.service.ReportService.html">ReportService</a></li><li><a href="tp.backend.service.SubjectService.html">SubjectService</a></li><li><a href="tp.backend.service.TutandService.html">TutandService</a></li><li><a href="tp.shared.service.TeacherService.html">TeacherService</a></li><li><a href="tp.shared.service.TutorService.html">TutorService</a></li></ul><h3>Classes</h3><ul><li><a href="tp.auth.service.Authentication.html">Authentication</a></li><li><a href="tp.shared.constant.Rating.html">Rating</a></li></ul><h3>Namespaces</h3><ul><li><a href="tp.html">tp</a></li><li><a href="tp.auth.constant.html">tp.auth.constant</a></li><li><a href="tp.auth.run.html">tp.auth.run</a></li><li><a href="tp.auth.service.html">tp.auth.service</a></li><li><a href="tp.backend.controller.html">tp.backend.controller</a></li><li><a href="tp.backend.service.html">tp.backend.service</a></li><li><a href="tp.frontend.controller.html">tp.frontend.controller</a></li><li><a href="tp.frontend.service.html">tp.frontend.service</a></li><li><a href="tp.run.html">tp.run</a></li><li><a href="tp.shared.controller.html">tp.shared.controller</a></li><li><a href="tp.shared.filter.html">tp.shared.filter</a></li><li><a href="tp.shared.service.html">tp.shared.service</a></li></ul><h3><a href="global.html">Global</a></h3>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Sun Jan 15 2017 02:13:09 GMT+0100 (Mitteleuropäische Zeit)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

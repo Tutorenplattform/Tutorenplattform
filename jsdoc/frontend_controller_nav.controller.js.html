@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: frontend/controller/nav.controller.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: frontend/controller/nav.controller.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>(function() {
+
+    angular.module('tp.frontend.controller')
+        .controller('FrontendNavController', FrontendNavController);
+
+    FrontendNavController.$inject = ['Authentication', 'UserType', '$state'];
+
+    /**
+     * This controller provides the background functionality for the navigation section of the frontend side of the
+     * application.
+     * @param {Authentication} Authentication The service used to interact with the current user session
+     * @param {UserType} UserType An enumeration containing all different types of users
+     * @param {$state} $state The service used to transition between states
+     * @memberOf tp.frontend.controller
+     * @constructor
+     */
+    function FrontendNavController(Authentication, UserType, $state) {
+        var nav = this;
+
+        nav.logout = logout;
+        nav.isTutor = isTutor;
+        nav.goToProfile = goToProfile;
+
+        init();
+
+        function init() {
+            nav.account = Authentication.getAccountInfo();
+        }
+
+        /**
+         * Sends an API request to log the current user out. Afterwards, they will be redirected to the login page.
+         */
+        function logout() {
+            Authentication.logout();
+        }
+
+        /**
+         * Returns whether or not the active user is a registered tutor.
+         * @returns {boolean} true if the current user is a tutor, false otherwise
+         */
+        function isTutor() {
+            return nav.account.type === UserType.Tutor;
+        }
+
+        /**
+         * Redirects the tutor to their own profile page.
+         */
+        function goToProfile() {
+            var params = {
+                id: nav.account.pk_tutor_tutand_id
+            };
+            $state.go('tutor', params);
+        }
+    }
+
+})();</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Controllers</h3><ul><li><a href="tp.backend.controller.AdminOptionsController.html">AdminOptionsController</a></li><li><a href="tp.backend.controller.BackendNavController.html">BackendNavController</a></li><li><a href="tp.backend.controller.ReportedTutorsController.html">ReportedTutorsController</a></li><li><a href="tp.backend.controller.TeacherListController.html">TeacherListController</a></li><li><a href="tp.frontend.controller.FrontendNavController.html">FrontendNavController</a></li><li><a href="tp.frontend.controller.TutorContactController.html">TutorContactController</a></li><li><a href="tp.frontend.controller.TutorListController.html">TutorListController</a></li><li><a href="tp.frontend.controller.TutorRegistrationController.html">TutorRegistrationController</a></li><li><a href="tp.frontend.controller.TutorReportController.html">TutorReportController</a></li><li><a href="tp.shared.controller.EditTutorProfileController.html">EditTutorProfileController</a></li><li><a href="tp.shared.controller.LoginController.html">LoginController</a></li><li><a href="tp.shared.controller.TutorProfileController.html">TutorProfileController</a></li></ul><h3>Services</h3><ul><li><a href="tp.backend.service.AdministratorService.html">AdministratorService</a></li><li><a href="tp.backend.service.ReportService.html">ReportService</a></li><li><a href="tp.backend.service.SubjectService.html">SubjectService</a></li><li><a href="tp.backend.service.TutandService.html">TutandService</a></li><li><a href="tp.shared.service.TeacherService.html">TeacherService</a></li><li><a href="tp.shared.service.TutorService.html">TutorService</a></li></ul><h3>Classes</h3><ul><li><a href="tp.auth.service.Authentication.html">Authentication</a></li><li><a href="tp.shared.constant.Rating.html">Rating</a></li></ul><h3>Namespaces</h3><ul><li><a href="tp.html">tp</a></li><li><a href="tp.auth.constant.html">tp.auth.constant</a></li><li><a href="tp.auth.run.html">tp.auth.run</a></li><li><a href="tp.auth.service.html">tp.auth.service</a></li><li><a href="tp.backend.controller.html">tp.backend.controller</a></li><li><a href="tp.backend.service.html">tp.backend.service</a></li><li><a href="tp.frontend.controller.html">tp.frontend.controller</a></li><li><a href="tp.frontend.service.html">tp.frontend.service</a></li><li><a href="tp.run.html">tp.run</a></li><li><a href="tp.shared.controller.html">tp.shared.controller</a></li><li><a href="tp.shared.filter.html">tp.shared.filter</a></li><li><a href="tp.shared.service.html">tp.shared.service</a></li></ul><h3><a href="global.html">Global</a></h3>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Sun Jan 15 2017 02:13:09 GMT+0100 (Mitteleuropäische Zeit)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

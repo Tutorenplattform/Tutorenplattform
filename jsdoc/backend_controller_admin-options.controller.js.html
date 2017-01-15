@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: backend/controller/admin-options.controller.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: backend/controller/admin-options.controller.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>(function() {
+
+    angular.module('tp.backend.controller')
+        .controller('AdminOptionsController', AdminOptionsController);
+
+    AdminOptionsController.$inject = ['options', 'AdministratorService', '$state'];
+
+    /**
+     * This controller provides all background functionality for the options page on the backend side of the
+     * application.
+     * @param {Options} options The current set of options
+     * @param {AdministratorService} AdministratorService The data service used to interact with the server-side REST
+     * API
+     * @param {$state} $state The service used to transition between states
+     * @memberOf tp.backend.controller
+     * @constructor
+     */
+    function AdminOptionsController(options, AdministratorService, $state) {
+        var vm = this;
+
+        vm.options = {
+            email_adresse: 'fas@htl.rennweg.at'
+        };
+
+        vm.fields = {};
+
+        vm.saveChanges = saveChanges;
+        vm.reset = reset;
+
+        init();
+
+        function init() {
+            vm.fields = vm.options;
+        }
+
+        /**
+         * Saves the changes that were made in the view model and sends an appropriate request to the REST API.
+         */
+        function saveChanges() {
+            var data = angular.copy(vm.fields);
+            AdministratorService.saveOptions(data);
+        }
+
+        /**
+         * Sends an API request to reset the application. Afterwards, the administrator is forwarded to the backend home
+         * page.
+         * @see AdministratorService#resetApplication
+         */
+        function reset() {
+            AdministratorService.resetApplication().then(forwardToHome);
+
+            function forwardToHome() {
+                $state.go('home');
+            }
+        }
+    }
+
+})();</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Controllers</h3><ul><li><a href="tp.backend.controller.AdminOptionsController.html">AdminOptionsController</a></li><li><a href="tp.backend.controller.BackendNavController.html">BackendNavController</a></li><li><a href="tp.backend.controller.ReportedTutorsController.html">ReportedTutorsController</a></li><li><a href="tp.backend.controller.TeacherListController.html">TeacherListController</a></li><li><a href="tp.frontend.controller.FrontendNavController.html">FrontendNavController</a></li><li><a href="tp.frontend.controller.TutorContactController.html">TutorContactController</a></li><li><a href="tp.frontend.controller.TutorListController.html">TutorListController</a></li><li><a href="tp.frontend.controller.TutorRegistrationController.html">TutorRegistrationController</a></li><li><a href="tp.frontend.controller.TutorReportController.html">TutorReportController</a></li><li><a href="tp.shared.controller.EditTutorProfileController.html">EditTutorProfileController</a></li><li><a href="tp.shared.controller.LoginController.html">LoginController</a></li><li><a href="tp.shared.controller.TutorProfileController.html">TutorProfileController</a></li></ul><h3>Services</h3><ul><li><a href="tp.backend.service.AdministratorService.html">AdministratorService</a></li><li><a href="tp.backend.service.ReportService.html">ReportService</a></li><li><a href="tp.backend.service.SubjectService.html">SubjectService</a></li><li><a href="tp.backend.service.TutandService.html">TutandService</a></li><li><a href="tp.shared.service.TeacherService.html">TeacherService</a></li><li><a href="tp.shared.service.TutorService.html">TutorService</a></li></ul><h3>Classes</h3><ul><li><a href="tp.auth.service.Authentication.html">Authentication</a></li><li><a href="tp.shared.constant.Rating.html">Rating</a></li></ul><h3>Namespaces</h3><ul><li><a href="tp.html">tp</a></li><li><a href="tp.auth.constant.html">tp.auth.constant</a></li><li><a href="tp.auth.run.html">tp.auth.run</a></li><li><a href="tp.auth.service.html">tp.auth.service</a></li><li><a href="tp.backend.controller.html">tp.backend.controller</a></li><li><a href="tp.backend.service.html">tp.backend.service</a></li><li><a href="tp.frontend.controller.html">tp.frontend.controller</a></li><li><a href="tp.frontend.service.html">tp.frontend.service</a></li><li><a href="tp.run.html">tp.run</a></li><li><a href="tp.shared.controller.html">tp.shared.controller</a></li><li><a href="tp.shared.filter.html">tp.shared.filter</a></li><li><a href="tp.shared.service.html">tp.shared.service</a></li></ul><h3><a href="global.html">Global</a></h3>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Sun Jan 15 2017 02:13:09 GMT+0100 (Mitteleuropäische Zeit)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
