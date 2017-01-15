@@ -1,13 +1,58 @@
-<div>
-    <!-- Filter hier -->
+<div class="row">
+    <div class="col-md-2 col-sm-12 col-xs-12">
+        <div class="input-group">
+            <span class="glyphicon glyphicon-filter input-group-addon" id="search-name-icon"></span>
+            <input type="text" class="form-control" placeholder="Nach Name filtern" aria-describedby="search-name-icon">
+        </div>
+    </div>
+    <div class="col-md-2 col-sm-12 col-xs-12">
+        <div class="form-group">
+            <select class="form-control" ng-model="vm.fachFilter">
+                <option value="0">Alle Schulfächer</option>
+                <option value="1">AM</option>
+                <option value="2">E</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-md-2 col-sm-12 col-xs-12">
+        <div class="form-group">
+
+            <select class="form-control" id="sel1">
+                <option>Alle Schulstufen</option>
+                <option>1.Klassen</option>
+                <option>2.Klassen</option>
+                <option>3.Klassen</option>
+                <option>4.Klassen</option>
+                <option>5.Klassen</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-md-2 col-sm-12 col-xs-12">
+        <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-sort-by-attributes-alt"></i>Bewertung</button>
+    </div>
+
+
+
 </div>
-<div ng-repeat="tutor in vm.tutors">
-    <h1>{{ tutor | fullName }}</h1>
-    <p>Schulfächer: {{ vm.getSubjects(tutor) }}</p>
-    <p>Klasse: {{ tutor.klasse }}</p>
-    <p>Klassenvorstand: {{ tutor.klassenvorstand }}</p>
-    <p>+: {{ tutor.bewertung_gut }}</p>
-    <p>O: {{ tutor.bewertung_neutral }}</p>
-    <p>-: {{ tutor.bewertung_schlecht }}</p>
-    <button ng-click="vm.viewTutor(tutor)">Mehr erfahren</button>
+<div class="row">
+
+    <div ng-repeat="tutor in vm.tutors | filter : vm.getFilteredItems" class="card col-sm-6 col-lg-3 col-md-6">
+        <div class="card-block" style="width:25rem;">
+            <h3 class="card-title">{{ tutor | fullName }}</h3>
+            <h4>Schulfächer</h4>
+            <p class="card-text">{{ vm.getSubjects(tutor) }}</p>
+            <h4>Klasse</h4>
+            <p class="card-text">{{ tutor.klasse }}</p>
+            <h4>Klassenvorstand</h4>
+            <p class="card-text">{{ tutor.klassenvorstand }}</p>
+            <div class="rating-view">
+                <i class="glyphicon glyphicon-plus"></i>{{ tutor.bewertung_gut }}
+                <i class="glyphicon glyphicon-unchecked"></i>{{ tutor.bewertung_neutral }}
+                <i class="glyphicon glyphicon-minus"></i>{{ tutor.bewertung_schlecht }}
+            </div>
+
+            <a ng-click="vm.viewTutor(tutor)" class="btn btn-primary">Mehr erfahren</a>
+        </div>
+    </div>
+
 </div>
