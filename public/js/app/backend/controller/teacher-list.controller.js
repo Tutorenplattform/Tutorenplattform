@@ -10,6 +10,7 @@
      * application.
      * @param {Teacher[]} teachers The list of teachers
      * @param {TeacherService} TeacherService The data service used to interact with the server-side REST API
+     * @memberOf tp.backend.controller
      * @constructor
      */
     function TeacherListController(teachers, TeacherService) {

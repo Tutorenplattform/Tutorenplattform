@@ -10,6 +10,7 @@
      * application.
      * @param {ReportedTutor[]} reportedTutors The list of reported tutors
      * @param {ReportService} ReportService The data service used to interact with the server-side REST API
+     * @memberOf tp.backend.controller
      * @constructor
      */
     function ReportedTutorsController(reportedTutors, ReportService) {

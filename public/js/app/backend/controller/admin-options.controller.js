@@ -12,6 +12,7 @@
      * @param {AdministratorService} AdministratorService The data service used to interact with the server-side REST
      * API
      * @param {$state} $state The service used to transition between states
+     * @memberOf tp.backend.controller
      * @constructor
      */
     function AdminOptionsController(options, AdministratorService, $state) {

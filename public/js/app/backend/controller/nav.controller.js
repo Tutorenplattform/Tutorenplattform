@@ -9,6 +9,7 @@
      * This controller provides all background functionality for the navigation section on the backend side of the
      * application.
      * @param {Authentication} Authentication The service used to interact with the current active user session
+     * @memberOf tp.backend.controller
      * @constructor
      */
     function BackendNavController(Authentication) {

@@ -15,6 +15,7 @@
      * This service provides methods to interact with the server-side REST API regarding all actions concerning
      * administrator option actions.
      * @param {Restangular} Restangular A service providing short-hand methods for Angular's $http service
+     * @memberOf tp.backend.service
      * @constructor
      */
     function AdministratorService(Restangular) {
