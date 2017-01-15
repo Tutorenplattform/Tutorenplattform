@@ -6,8 +6,8 @@
     <p ng-show="vm.tutor.telefon_nr">Telefonnummer: {{ vm.tutor.telefon_nr }}</p>
 </div>
 <div>
-    <p>Bevorzugte Orte: {{ vm.tutor.bevorzugte_orte }}</p>
-    <p>Bevorzugte Zeiten: {{ vm.tutor.bevorzugte_zeiten }}</p>
+    <p ng-if="vm.tutor.bevorzugte_orte">Bevorzugte Orte: {{ vm.tutor.bevorzugte_orte }}</p>
+    <p ng-if="vm.tutor.bevorzugte_zeiten">Bevorzugte Zeiten: {{ vm.tutor.bevorzugte_zeiten }}</p>
 </div>
 <h2>Fächer:</h2>
 <table>
