@@ -33,6 +33,7 @@
 
         $urlRouterProvider.otherwise('/login');
 
+        //TODO: Remove API brakes (resolve)
         $stateProvider
             .state('login', {
                 url: '/login',
