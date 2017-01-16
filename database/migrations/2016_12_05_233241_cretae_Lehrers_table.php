@@ -32,6 +32,6 @@ class CretaeLehrersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Lehrers');
+        Schema::dropIfExists('lehrers');
     }
 }

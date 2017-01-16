@@ -29,6 +29,6 @@ class CretaeFachsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Fachs');
+        Schema::dropIfExists('faches');
     }
 }
