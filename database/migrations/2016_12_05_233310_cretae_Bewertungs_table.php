@@ -19,6 +19,18 @@ class CretaeBewertungsTable extends Migration
 
             $table->string('bewertung', 500);
 
+            $table->integer('fk_pk_tutor_id_bewerter')->unsigned();
+
+            $table->foreign('fk_pk_tutor_id_bewerter')
+                ->references('pk_tutor_tutand_id')->on('tutor_tutands')
+                ->onDelete('cascade');
+
+            $table->integer('fk_pk_tutor_id_bewerteter')->unsigned();
+
+            $table->foreign('fk_pk_tutor_id_bewerteter')
+                ->references('pk_tutor_tutand_id')->on('tutor_tutands')
+                ->onDelete('cascade');
+
         });
     }
 
@@ -29,6 +41,6 @@ class CretaeBewertungsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Bewertungs');
+        Schema::dropIfExists('bewertungs');
     }
 }

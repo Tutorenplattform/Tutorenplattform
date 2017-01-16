@@ -19,6 +19,18 @@ class CreateMeldungsTable extends Migration
 
             $table->string('kommentar', 500);
 
+            $table->integer('fk_pk_melder')->unsigned();
+
+            $table->foreign('fk_pk_melder')
+                ->references('pk_tutor_tutand_id')->on('tutor_tutands')
+                ->onDelete('cascade');
+
+            $table->integer('fk_pk_gemeldeter')->unsigned();
+
+            $table->foreign('fk_pk_gemeldeter')
+                ->references('pk_tutor_tutand_id')->on('tutor_tutands')
+                ->onDelete('cascade');
+
 
         });
     }
@@ -30,6 +42,6 @@ class CreateMeldungsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Meldungs');
+        Schema::dropIfExists('meldungs');
     }
 }

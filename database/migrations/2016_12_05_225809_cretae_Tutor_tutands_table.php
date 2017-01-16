@@ -49,6 +49,6 @@ class CretaeTutorTutandsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Tutor_tutands');
+        Schema::dropIfExists('tutor_tutands');
     }
 }
