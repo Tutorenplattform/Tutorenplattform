@@ -20,6 +20,19 @@ Route::get('/', function () {
 
 Route::group(['prefix' => 'api/v1'], function() {
 
+    Route::post('subjects', 'appController@insertFach');
+
+    Route::delete('subjects/{id}', 'appController@destroyFach');
+
+    Route::delete('tutands/{id}', 'appController@destroyTutand');
+
+    Route::post('tutors/{id}/report', 'appController@reportBenutzer');
+
+    Route::post('tutors/{id}/rate', 'appController@bewertungAbgeben');
+
+    Route::post('tutors/{id}/ignore', 'appController@ignore');
+
+
     Route::get('tutors/{id}/rate', function ($id) {
 
         $bewertung = App\Bewertung::find($id);
