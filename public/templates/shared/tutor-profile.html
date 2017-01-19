@@ -1,40 +1,78 @@
-<h1>{{ vm.tutor.first_name }} {{ vm.tutor.last_name }}</h1>
-<div>
-    <p>Klasse: {{ vm.tutor.klasse }}</p>
-    <p>Klassenvorstand: {{ vm.tutor.klassenvorstand }}</p>
-    <p>E-Mail: {{ vm.tutor.email_adresse }}</p><button ng-click="vm.sendMail()">Nachricht senden</button>
-    <p ng-show="vm.tutor.telefon_nr">Telefonnummer: {{ vm.tutor.telefon_nr }}</p>
+<div class="row">
+    <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6">
+        <h1>{{ vm.tutor | fullName }}</h1>
+    </div>
+    <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6">
+        <div class="rating-view">
+            <button class="btn" ng-click="vm.rate(vm.Rating.GREAT)" ng-disabled="!vm.enableRating(vm.Rating.GREAT)">
+                <i class="glyphicon glyphicon-plus"></i>
+                {{ vm.tutor.bewertung_gut }}
+            </button>
+            <button class="btn" ng-click="vm.rate(vm.Rating.OKAY)" ng-disabled="!vm.enableRating(vm.Rating.OKAY)">
+                <i class="glyphicon glyphicon-unchecked"></i>
+                {{ vm.tutor.bewertung_neutral }}
+            </button>
+            <button class="btn" ng-click="vm.rate(vm.Rating.BAD)" ng-disabled="!vm.enableRating(vm.Rating.BAD)">
+                <i class="glyphicon glyphicon-minus"></i>
+                {{ vm.tutor.bewertung_schlecht }}
+            </button>
+        </div>
+    </div>
 </div>
-<div>
-    <p ng-if="vm.tutor.bevorzugte_orte">Bevorzugte Orte: {{ vm.tutor.bevorzugte_orte }}</p>
-    <p ng-if="vm.tutor.bevorzugte_zeiten">Bevorzugte Zeiten: {{ vm.tutor.bevorzugte_zeiten }}</p>
+<div class="row" style="margin-top: 10px;">
+    <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6">
+        <b>Klasse:</b> <span>{{ vm.tutor.klasse }}</span>
+    </div>
+    <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6">
+        <b>E-Mail:</b> <span>{{ vm.tutor.email_adresse }}</span>
+    </div>
 </div>
-<h2>Fächer:</h2>
-<table>
-    <thead>
-        <tr>
-            <th>Fach</th>
-            <th>Lehrer</th>
-            <th>Anmerkung</th>
-            <th>Letzte Note</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr ng-repeat="fach in vm.tutor.faecher">
-            <td>{{ fach.fach.name }}</td>
-            <td>{{ fach.lehrer.nachname }}</td>
-            <td>{{ fach.faehigkeiten_anmerkung }}</td>
-            <td>{{ vm.Grade[fach.letzte_zeugnisnote] }}</td>
-        </tr>
-    </tbody>
-</table>
-<button ng-click="vm.report()" ng-if="!vm.admin">Melden</button>
-<div ng-if="!vm.admin">
-    <span>{{ vm.tutor.bewertung_gut }}</span>
-    <button ng-click="vm.rate(vm.Rating.GREAT)" ng-disabled="!vm.enableRating(vm.Rating.GREAT)">+</button>
-    <span>{{ vm.tutor.bewertung_neutral }}</span>
-    <button ng-click="vm.rate(vm.Rating.OKAY)" ng-disabled="!vm.enableRating(vm.Rating.OKAY)">O</button>
-    <span>{{ vm.tutor.bewertung_schlecht }}</span>
-    <button ng-click="vm.rate(vm.Rating.BAD)" ng-disabled="!vm.enableRating(vm.Rating.BAD)">-</button>
+<div class="row" style="margin-top: 10px;">
+    <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6">
+        <b>Klassenvorstand:</b> <span>{{ vm.tutor.klassenvorstand }}</span>
+    </div>
+    <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6" ng-show="vm.tutor.telefon_nr">
+        <b>Telefonnummer:</b> <span>{{ vm.tutor.telefon_nr }}</span>
+    </div>
 </div>
-<button ng-click="vm.editProfile()" ng-if="vm.mine">Bearbeiten</button>
+<div class="row" style="margin-top: 10px;">
+    <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6" ng-if="vm.tutor.bevorzugte_orte">
+        <b>Bevorzugter Ort:</b> <span>{{ vm.tutor.bevorzugte_orte }}</span>
+    </div>
+    <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6" ng-if="vm.tutor.bevorzugte_zeiten">
+        <b>Bevorzugte Zeiten:</b> <span>{{ vm.tutor.bevorzugte_zeiten }}</span>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+        <h3>Fächer</h3>
+    </div>
+    <div class="col-lg-12 col-md-12">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Fach</th>
+                    <th>Lehrer</th>
+                    <th>Anmkerung</th>
+                    <th>Letzte Note</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="fach in vm.tutor.faecher">
+                    <td>{{ fach.fach.name }}</td>
+                    <td>{{ fach.lehrer.nachname }}</td>
+                    <td>{{ fach.faehigkeiten_anmerkung }}</td>
+                    <td>{{ vm.Grade[fach.letzte_zeugnisnote] }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+        <a class="btn btn-primary pull-right" ng-click="vm.editProfile()" ng-if="vm.mine">Profil bearbeiten</a>
+        <a class="btn btn-primary pull-right" ng-click="vm.sendMail()" ng-if="!vm.mine" style="margin-left: 12px;">Nachricht senden</a>
+        <a class="btn btn-default pull-right" ng-click="vm.report()" ng-if="!vm.mine">Tutor melden</a>
+    </div>
+</div>
