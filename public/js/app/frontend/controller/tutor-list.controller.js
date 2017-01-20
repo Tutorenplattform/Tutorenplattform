@@ -76,6 +76,43 @@
 
         vm.viewTutor = viewTutor;
         vm.getSubjects = getSubjects;
+        vm.submit = submit;
+
+        console.log(vm.tutors);
+        console.log(vm.tutors[0].bewertung_gut);
+
+        vm.show = true;
+
+        function submit () {
+
+             vm.results = [];
+
+             var searchField = "nachname",
+                 searchField2 = "klasse",
+                 searchField3 = "fach";
+
+             var search          = vm.searchName,
+                 search_class    = vm.klasse;
+             //search_subject  = vm.fachFilter
+
+             var hasSearch          = !(search == null || search == ''),
+                 hasSearch_class    = !(search_class == null || search_class == '');
+                 //hasSearch_subject  = !(search_subject == null || search_subject == '');
+
+             vm.filter = hasSearch || hasSearch_class; //|| search_subject;
+
+             for (var i=0 ; i < vm.tutors.length ; i++) {
+                 if (
+                     (!hasSearch || vm.tutors[i][searchField] == search) &&
+                     (!hasSearch_class ||vm.tutors[i][searchField2] == search_class)
+                     //&& (!hasSearch_subject || vm.tutors[i][searchField3] == search_subject)
+                 ) {
+                     vm.results.push(vm.tutors[i]);
+                     vm.show = false;
+                     console.log(vm.results);
+                 }
+             }
+        };
 
         /**
          * Redirects the user to the given tutor's profile.
