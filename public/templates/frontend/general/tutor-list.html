@@ -8,7 +8,7 @@
 
     <div class="col-md-2 col-sm-12 col-xs-12">
         <div class="form-group">
-            <select class="form-control" ng-options="value.klasse as value.klasse for value in vm.tutors | orderBy:'klasse'" ng-model="vm.searchClass">
+            <select class="form-control" ng-options="value as value for value in vm.uniqueClass |orderBy:'klasse'" ng-model="vm.searchClass">
                 <option value="">Select default</option>
             </select>
         </div>
@@ -17,7 +17,7 @@
     <div class="col-md-2 col-sm-12 col-xs-12">
         <div class="form-group">
 
-            <select class="form-control" ng-options="value.fach as value.fach for value in vm.tutors.faecher.fach.name | orderBy:'name'" ng-model="vm.searchSubject">
+            <select class="form-control" ng-options="value.faecher.fach.name as value.faecher.fach.name for value in vm.tutors[0].faecher | orderBy:'name'" ng-model="vm.searchSubject">
             </select>
 
         </div>
