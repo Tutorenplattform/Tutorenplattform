@@ -59,13 +59,13 @@
             bewertung_schlecht: 0
         }, {
             vorname: "Florian",
-            nachname: "Reiter",
+            nachname: "Müller",
             klasse: "5BI",
             pk_tutor_tutand_id: 3,
             faecher: [{
                 fach: {
                     pk_fach_id: 1,
-                    name: 'AM'
+                    name: 'E'
                 }
             }],
             klassenvorstand: 'SDO',
@@ -83,7 +83,13 @@
         vm.uniqueClass   = _.uniq(_.map(vm.tutors, 'klasse'));
         vm.uniqueSubject = _.uniq(_.map((_.flatten(_.map(vm.tutors, 'faecher'))), 'fach.name'));
 
-        console.log((_.flatten(_.map(vm.tutors, 'faecher'))));
+        (_.flatten(_.map(vm.tutors, 'faecher')));
+
+        for(var i = 0; i < vm.tutors.length; i++) {
+            for(var j = 0; j < vm.tutors[i].faecher.length; j++ ) {
+                console.log(vm.tutors[i].faecher[j].fach.name);
+            }
+        }
 
 
         vm.show = true;
@@ -94,7 +100,7 @@
 
              var searchField = "nachname",
                  searchField2 = "klasse",
-                 searchField3 = "faecher[fach.name]";
+                 searchField3 = "name";
 
 
              var search          = vm.searchName,
@@ -107,17 +113,16 @@
 
              vm.filter = hasSearch || hasSearch_class || search_subject;
 
-            console.log(hasSearch_subject,search_subject);
-
-
              for (var i = 0; i < vm.tutors.length ; i++) {
-                 if (
-                     (!hasSearch || vm.tutors[i][searchField] == search) &&
-                     (!hasSearch_class ||vm.tutors[i][searchField2] == search_class) &&
-                     (!hasSearch_subject || vm.tutors[i][searchField3] == search_subject)
-                 ) {
-                     vm.results.push(vm.tutors[i]);
-                     vm.show = false;
+                 for(var j = 0; j <vm.tutors[i].faecher.length; j++) {
+                     if (
+                         (!hasSearch || vm.tutors[i][searchField] == search) &&
+                         (!hasSearch_class ||vm.tutors[i][searchField2] == search_class) &&
+                         (!hasSearch_subject || vm.tutors[i].faecher[j].fach[searchField3] == search_subject)
+                     ) {
+                         vm.results.push(vm.tutors[i]);
+                         vm.show = false;
+                     }
                  }
              }
         };
