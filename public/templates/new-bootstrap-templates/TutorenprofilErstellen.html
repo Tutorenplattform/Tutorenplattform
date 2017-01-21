@@ -13,119 +13,115 @@
 
 	</head>
 	<body>
-		<div class="wrapper container">
-			<div class="row">
-				<div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
-					
-					
+		<form name="editForm" novalidate ng-submit="vm.saveChanges()">
+			<div class="wrapper container">
+				<div class="row">
 					<div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
 						
-						<button type="button" class="btn btn-default pull-right">Abmelden</button>
-						<span class="pull-right"> Mein Tutorenprofil </span>
+						
+						<div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+							
+							<button type="button" class="btn btn-default pull-right">Abmelden</button>
+							<span class="pull-right"> Mein Tutorenprofil </span>
+						</div>
 					</div>
-				</div>
 
-			</div>
-			<div class="row">
-				<div class="col-md-12 col-sm-12 col-lg-12 col-xs-12" style="margin-top:10px;">	
-					<div class ="col-md-6 col-sm-6 col-lg-6 col-xs-6">
-						<h1>Paul Tutor</h1>
-					</div>
-					<div class ="col-md-6 col-sm-6 col-lg-6 col-xs-6">
-						<div class="rating-view">
-							<i class="glyphicon glyphicon-plus"></i>{{ tutor.bewertung_gut }}
-							<i class="glyphicon glyphicon-unchecked"></i>{{ tutor.bewertung_neutral }}
-							<i class="glyphicon glyphicon-minus"></i>{{ tutor.bewertung_schlecht }}
+				</div>
+				<div class="row">
+					<div class="col-md-12 col-sm-12 col-lg-12 col-xs-12" style="margin-top:10px;">	
+						<div class ="col-md-6 col-sm-6 col-lg-6 col-xs-6">
+							<h1>{{ vm.tutor.first_name }} {{ vm.tutor.last_name }}</h1>
+						</div>
+						<div class ="col-md-6 col-sm-6 col-lg-6 col-xs-6">
+							<div class="rating-view">
+								<i class="glyphicon glyphicon-plus"></i>{{ tutor.bewertung_gut }}
+								<i class="glyphicon glyphicon-unchecked"></i>{{ tutor.bewertung_neutral }}
+								<i class="glyphicon glyphicon-minus"></i>{{ tutor.bewertung_schlecht }}
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="col-lg-12 col-md-12">
 					<div class="col-lg-12 col-md-12">
-						<div class ="col-md-6 col-sm-6 col-lg-6 col-xs-6">
-							<span> Klasse: </span>
-							<input type="text">
+						<div class="col-lg-12 col-md-12">
+							<div class ="col-md-6 col-sm-6 col-lg-6 col-xs-6">
+								<span> Klasse: </span>
+								<input type="text" ng-model="vm.tutor.klasse" placeholder="Klasse" pattern="^[1-5][A-F][IMFXN]$" required>
+							</div>
+							<div class ="col-md-6 col-sm-6 col-lg-6 col-xs-6">
+								<span> Email: </span>
+								<input type="email" ng-model="vm.tutor.email_adresse" placeholder="E-Mail" required>
+							</div>
 						</div>
-						<div class ="col-md-6 col-sm-6 col-lg-6 col-xs-6">
-							<span> Email: </span>
-							<input type="text">
+						<div class="col-lg-12 col-md-12" style="margin-top:10px;">
+							<div class ="col-md-6 col-sm-6 col-lg-6 col-xs-6">
+								<span> Klassenvorstand: </span>
+								<input type="text" ng-model="vm.tutor.klassenvorstand" placeholder="Klassenvorstand" required>
+							</div>
+							<div class ="col-md-6 col-sm-6 col-lg-6 col-xs-6">
+								<span> Telefonnummer: </span>
+								<input type="tel" ng-model="vm.tutor.telefon_nr" placeholder="Telefonnummer">
+							</div>
 						</div>
-					</div>
-					<div class="col-lg-12 col-md-12" style="margin-top:10px;">
-						<div class ="col-md-6 col-sm-6 col-lg-6 col-xs-6">
-							<span> Klassenvorstand: </span>
-							<input type="text">
-						</div>
-						<div class ="col-md-6 col-sm-6 col-lg-6 col-xs-6">
-							<span> Telefonnummer: </span>
-							<input type="text">
-						</div>
-					</div>
-					<div class="col-lg-12 col-md-12" style="margin-top:10px;">
-						<div class ="col-md-6 col-sm-6 col-lg-6 col-xs-6">
-							<form class="form-inline" >
-								  <span>Bevorzugter Ort: </span>
-							  
-							  <div class="form-group">
-										<select id="memoryType"  class="form-control">
-										   <option value="GB" selected="selected">Schule</option>
-										   <option value="MB">Bei mir</option>
-										    <option value="MB">Bei Tutand</option>
-											 <option value="MB">anderer Ort</option>
-										</select>
-							   </div>
-							</form>
+						<div class="col-lg-12 col-md-12" style="margin-top:10px;">
+							<div class ="col-md-6 col-sm-6 col-lg-6 col-xs-6">
+								<span>Bevorzugter Ort: </span>
+								<input type="text" ng-model="vm.tutor.bevorzugte_orte" placeholder="Bevorzugter Ort">
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="row">
-				<div class="col-lg-12 col-md-12" style="margin-top:10px;">
-					<h3> Bevorzugte Zeiten </h3>
+				<div class="row">
+					<div class="col-lg-12 col-md-12" style="margin-top:10px;">
+						<h3> Bevorzugte Zeiten </h3>
+					</div>
+					<div class="col-lg-12 col-md-12" style="margin-top:10px;">
+							<input type="text" ng-model="vm.tutor.bevorzugte_zeiten" placeholder="Bevorzugte Zeiten">
+							 <button type="button" class="btn glyphicon glyphicon-plus" style="margin-left:100px;"></button>
+					</div>
 				</div>
-				<div class="col-lg-12 col-md-12" style="margin-top:10px;">
+				
+				<div class="row">
+					<div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">	
+						<h3>Fächer</h3>
+					</div>
+					<div class="col-lg-12 col-md-12">
 						<table class="table table-bordered">
 							<thead>
 								<tr>
-									<th>Tag</th>
-									<th>Zeitfenster</th>
+									<th>Fach</th>
+									<th>Lehrer</th>
+									<th>Anmkerung</th>
+									<th>letzte Note</th>
 								</tr>
 							</thead>
 							<tbody>
-								
+								<tr ng-repeat="fach in vm.tutor.faecher">
+									<th><select ng-options="subject as subject.name for subject in vm.subjects track by subject.pk_fach_id"
+	                            		ng-model="fach.fach" required></select></th>
+									<th><select ng-options="teacher as teacher.nachname for teacher in vm.teachers track by teacher.pk_lehrer_id"
+	                            		ng-model="fach.lehrer" required></select></th>
+									<th><input type="text" placeholder="Anmerkung" ng-model="fach.faehigkeiten_anmerkung"></th>
+									<th>
+										<select ng-model="fach.letzte_zeugnisnote" required>
+					                        <option value="1">Sehr Gut</option>
+					                        <option value="2">Gut</option>
+					                        <option value="3">Befriedigend</option>
+					                        <option value="4">Genügend</option>
+					                        <option value="5">Nicht Genügend</option>
+					                    </select>
+					                </th>
+								</tr>
 							</tbody>
 						</table>
-						 <button type="button" class="btn glyphicon glyphicon-plus" style="margin-left:100px;"></button>
-				</div>
-			</div>
-			
-			<div class="row">
-				<div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">	
-					<h3>Fächer</h3>
-				</div>
-				<div class="col-lg-12 col-md-12">
-					<table class="table table-bordered">
-						<thead>
-							<tr>
-								<th>Fach</th>
-								<th>Lehrer</th>
-								<th>Anmkerung</th>
-								<th>letzte Note</th>
-							</tr>
-						</thead>
-						<tbody>
-							
-						</tbody>
-					</table>
-					<button type="button" class="btn glyphicon glyphicon-plus" style="margin-left:100px;"></button>
-				</div>
+						<button type="button" ng-click="vm.addSubject()" class="btn glyphicon glyphicon-plus" style="margin-left:100px;"></button>
+					</div>
 
-			</div>
-			<div class="row">
-				<div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">	
-					<button type="button" class="btn btn-default pull-right">Erstellen</button>
+				</div>
+				<div class="row">
+					<div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">	
+						<button type="submit" class="btn btn-default pull-right" ng-disabled="editForm.$invalid">Erstellen</button>
+					</div>
 				</div>
 			</div>
-		</div>
-		
+		</form>
 	</body>
 </html>
