@@ -78,8 +78,12 @@
         vm.getSubjects = getSubjects;
         vm.submit = submit;
 
-        vm.show = true;
 
+       vm.uniqueClass = _.uniq(_.map(vm.tutors, 'klasse'));
+
+
+
+        vm.show = true;
 
         function submit () {
 
