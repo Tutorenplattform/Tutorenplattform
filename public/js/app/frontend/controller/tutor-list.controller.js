@@ -60,7 +60,7 @@
         }, {
             vorname: "Florian",
             nachname: "Reiter",
-            klasse: "4CN",
+            klasse: "5BI",
             pk_tutor_tutand_id: 3,
             faecher: [{
                 fach: {
@@ -78,10 +78,8 @@
         vm.getSubjects = getSubjects;
         vm.submit = submit;
 
-        console.log(vm.tutors);
-        console.log(vm.tutors[0].bewertung_gut);
-
         vm.show = true;
+
 
         function submit () {
 
@@ -92,27 +90,27 @@
                  searchField3 = "fach";
 
              var search          = vm.searchName,
-                 search_class    = vm.klasse;
-             //search_subject  = vm.fachFilter
+                 search_class    = vm.searchClass,
+                 search_subject  = vm.searchSubject;
 
              var hasSearch          = !(search == null || search == ''),
-                 hasSearch_class    = !(search_class == null || search_class == '');
-                 //hasSearch_subject  = !(search_subject == null || search_subject == '');
+                 hasSearch_class    = !(search_class == null || search_class == ''),
+                 hasSearch_subject  = !(search_subject == null || search_subject == '');
 
-             vm.filter = hasSearch || hasSearch_class; //|| search_subject;
+             vm.filter = hasSearch || hasSearch_class || search_subject;
 
-             for (var i=0 ; i < vm.tutors.length ; i++) {
+             for (var i = 0; i < vm.tutors.length ; i++) {
                  if (
                      (!hasSearch || vm.tutors[i][searchField] == search) &&
-                     (!hasSearch_class ||vm.tutors[i][searchField2] == search_class)
-                     //&& (!hasSearch_subject || vm.tutors[i][searchField3] == search_subject)
+                     (!hasSearch_class ||vm.tutors[i][searchField2] == search_class) &&
+                     (!hasSearch_subject || vm.tutors[i][searchField3] == search_subject)
                  ) {
                      vm.results.push(vm.tutors[i]);
                      vm.show = false;
-                     console.log(vm.results);
                  }
              }
         };
+
 
         /**
          * Redirects the user to the given tutor's profile.
