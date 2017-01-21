@@ -29,12 +29,14 @@
 							</tr>
 						</thead>
 						<tbody>
-							<td>Max Musterman</td>
-							<td>Kennt sich in Deutsch nicht aus!</td>
-							<td>
-								<button type="button" class="btn btn-default">Tutor sperren</button>
-								<button  type="button" class="btn btn-default">Meldung entfernen</button>
-							</td>
+							<tr ng-repeat="tutor in vm.reportedTutors">
+								<td>{{ tutor | fullName }}</td>
+								<td><p ng-repeat="comment in tutor.kommentare">{{ comment }}</p></td>
+								<td>
+									<button type="button" ng-click="vm.disableTutor(tutor)" ng-disabled="tutor.gesperrt" class="btn btn-default">Tutor sperren</button>
+									<button ng-click="vm.ignoreTutor(tutor)" type="button" class="btn btn-default">Meldung entfernen</button>
+								</td>
+							</tr>
 						</tbody>
 					</table>
 				</div>
