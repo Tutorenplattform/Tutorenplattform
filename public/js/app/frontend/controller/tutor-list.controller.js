@@ -78,9 +78,12 @@
         vm.getSubjects = getSubjects;
         vm.submit = submit;
 
+        console.log(vm.tutors);
 
-       vm.uniqueClass = _.uniq(_.map(vm.tutors, 'klasse'));
+        vm.uniqueClass   = _.uniq(_.map(vm.tutors, 'klasse'));
+        vm.uniqueSubject = _.uniq(_.map((_.flatten(_.map(vm.tutors, 'faecher'))), 'fach.name'));
 
+        console.log((_.flatten(_.map(vm.tutors, 'faecher'))));
 
 
         vm.show = true;
@@ -91,7 +94,8 @@
 
              var searchField = "nachname",
                  searchField2 = "klasse",
-                 searchField3 = "fach";
+                 searchField3 = "faecher[fach.name]";
+
 
              var search          = vm.searchName,
                  search_class    = vm.searchClass,
@@ -102,6 +106,9 @@
                  hasSearch_subject  = !(search_subject == null || search_subject == '');
 
              vm.filter = hasSearch || hasSearch_class || search_subject;
+
+            console.log(hasSearch_subject,search_subject);
+
 
              for (var i = 0; i < vm.tutors.length ; i++) {
                  if (
