@@ -28,7 +28,7 @@
                 }
             }],
             klassenvorstand: 'STR',
-            bewertung_gut: 6,
+            bewertung_gut: 2,
             bewertung_neutral: 2,
             bewertung_schlecht: 1
         }, {
@@ -54,7 +54,7 @@
             bevorzugte_zeiten: '13:25-14:15 Uhr',
             telefon_nr: '1234 567 89 00',
             email_adresse: 'hans@musterma.nn',
-            bewertung_gut: 3,
+            bewertung_gut: 13,
             bewertung_neutral: 1,
             bewertung_schlecht: 0
         }, {
@@ -69,7 +69,7 @@
                 }
             }],
             klassenvorstand: 'SDO',
-            bewertung_gut: 1,
+            bewertung_gut: 5,
             bewertung_neutral: 5,
             bewertung_schlecht: 1
         }];
