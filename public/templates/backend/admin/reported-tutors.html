@@ -1,22 +1,26 @@
-<h1>Gemeldete Tutoren</h1>
-<table>
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Kommentare</th>
-            <th>Aktionen</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr ng-repeat="tutor in vm.reportedTutors">
-            <td>{{ tutor | fullName }}</td>
-            <td>
-                <p ng-repeat="comment in tutor.kommentare">{{ comment }}</p>
-            </td>
-            <td>
-                <button ng-click="vm.disableTutor(tutor)" ng-disabled="tutor.gesperrt">Tutor sperren</button>
-                <button ng-click="vm.ignoreTutor(tutor)">Meldungen entfernen</button>
-            </td>
-        </tr>
-    </tbody>
-</table>
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+        <h1>Gemeldete Tutoren</h1>
+    </div>
+    <div class="col-lg-12 col-md-12">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Beschreibung</th>
+                <th>Aktionen</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="tutor in vm.reportedTutors">
+                <td>{{ tutor | fullName }}</td>
+                <td><p ng-repeat="comment in tutor.kommentare">{{ comment }}</p></td>
+                <td>
+                    <button type="button" ng-click="vm.disableTutor(tutor)" ng-disabled="tutor.isDeaktiviert" class="btn btn-default">Tutor sperren</button>
+                    <button ng-click="vm.ignoreTutor(tutor)" type="button" class="btn btn-default">Meldung entfernen</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
