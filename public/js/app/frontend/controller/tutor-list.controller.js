@@ -89,6 +89,9 @@
             vm.show = true;
         }
 
+        /**
+         * Applies the filters set in the view model and updates the tutor list according to the results.
+         */
         function applyFilter() {
             vm.results = [];
 
@@ -123,7 +126,7 @@
 
         /**
          * Redirects the user to the given tutor's profile.
-         * @param tutor The tutor whose profile the user would like to see
+         * @param {Tutor} tutor The tutor whose profile the user would like to see
          */
         function viewTutor(tutor) {
             $state.go('tutor', {
@@ -133,7 +136,7 @@
 
         /**
          * Processes the list of the subjects the given tutor teaches and returns it as a string.
-         * @param tutor The tutor whose list of subjects should be processed into a string
+         * @param {Tutor} tutor The tutor whose list of subjects should be processed into a string
          * @returns {string} A comma-separated list of subject names as a string
          */
         function getSubjects(tutor) {
