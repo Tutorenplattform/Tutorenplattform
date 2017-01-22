@@ -46,6 +46,10 @@
         function register() {
             var data = angular.copy(vm.fields);
             _.each(data.faecher, castGrade);
+            //TODO: Remove brake
+            window.GLOBAL_TUTOR = data;
+            onTutorRegistered();
+            return;
             TutorService.register(data).then(onTutorRegistered);
 
             function castGrade(fach) {

@@ -3,7 +3,7 @@
     angular.module('tp.shared.controller')
         .controller('TutorProfileController', TutorProfileController);
 
-    TutorProfileController.$inject = ['tutor', '$state', 'TutorService', 'Grade', 'Rating', 'Authentication'];
+    TutorProfileController.$inject = ['tutor', '$state', 'TutorService', 'Grade', 'Rating', 'Authentication', '$stateParams'];
 
     /**
      * This controller provides the background functionality for tutor profile pages on the frontend side of the
@@ -17,10 +17,11 @@
      * @memberOf tp.shared.controller
      * @constructor
      */
-    function TutorProfileController(tutor, $state, TutorService, Grade, Rating, Authentication) {
+    function TutorProfileController(tutor, $state, TutorService, Grade, Rating, Authentication, $stateParams) {
         var vm = this;
 
-        vm.tutor = {
+        //TODO: Remove brake
+        vm.tutor = ($stateParams.id === "6") ? getGlobalTutor() : {
             vorname: "Hans",
             nachname: "Müller",
             klasse: "5BI",
@@ -42,12 +43,31 @@
             bevorzugte_orte: '2. Stock, in der Ecke',
             bevorzugte_zeiten: '13:25-14:15 Uhr',
             telefon_nr: '1234 567 89 00',
-            email_adresse: 'hans@musterma.nn',
+            email_adresse: 'hans@muell.er',
             bewertung_gut: 6,
             bewertung_neutral: 2,
             bewertung_schlecht: 1,
             bewertung: null
         };
+
+        function getGlobalTutor() {
+            var gt = window.GLOBAL_TUTOR;
+            gt.vorname = "Johannes";
+            gt.nachname = "Müller";
+            gt.pk_tutor_tutand_id = 6;
+            gt.faecher[0].fach = {
+                pk_fach_id: gt.faecher[0].fach,
+                name: 'AM'
+            };
+            gt.faecher[0].lehrer = {
+                pk_lehrer_id: gt.faecher[0].lehrer,
+                vorname: 'Reinhard',
+                nachname: 'Gottweis'
+            };
+            gt.bewertung_gut = gt.bewertung_neutral = gt.bewertung_schlecht = 0;
+            gt.bewertung = null;
+            return gt;
+        }
 
         vm.Grade = Grade;
         vm.Rating = Rating;

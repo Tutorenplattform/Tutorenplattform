@@ -53,6 +53,14 @@
 
         var account;
 
+        function FakePromise() {
+            var fake = this;
+            fake.then = function(fn) {
+                fn();
+                return fake;
+            }
+        }
+
         /**
          * The initialization method that must be called whenever the application is first opened.
          */
@@ -72,6 +80,22 @@
          * @returns {Promise} A promise that finishes upon login
          */
         function login(credentials) {
+            //TODO: Remove brake
+            var fakeToken;
+            var fakePromise = new FakePromise();
+            switch (credentials.user_name) {
+                case '1234':
+                    //fakeToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjowLCJwa190dXRvcl90dXRhbmRfaWQiOjMsInZvcm5hbWUiOiJTdXRla2giLCJuYWNobmFtZSI6IlNlZWxlbmZyZXVuZCJ9.H7Fei4n9F9nLR1z4RxjeiCgKI8asoK0vkF3AclCvExI';
+                    fakeToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjowLCJwa190dXRvcl90dXRhbmRfaWQiOjYsInZvcm5hbWUiOiJKb2hhbm5lcyIsIm5hY2huYW1lIjoiTcO8bGxlciJ9.zp57LXUHZY7Kv3msWuH-jlUxZWYC-4gpLlG2fX5nZ2U';
+                    break;
+                case '1235':
+                    fakeToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoyLCJwa190dXRvcl90dXRhbmRfaWQiOjEsInZvcm5hbWUiOiJJc2FiZWxsYSIsIm5hY2huYW1lIjoiRmFzdGVuYmF1ZXIifQ.vyO36ROEX7581RJZib6L18Hci8xI-j7EOKd_7jw11_k';
+                    break;
+                default:
+                    return fakePromise.then(refreshAccount).then(forwardToHome);
+            }
+            $auth.setToken(fakeToken);
+            return fakePromise.then(refreshAccount).then(forwardToHome);
             return $auth.login(credentials).then(refreshAccount).then(forwardToHome);
         }
 
@@ -92,6 +116,9 @@
          * @returns {Promise} A promise that finishes upon logout
          */
         function logout() {
+            //TODO: Remove brake
+            $auth.setToken('-');
+            return new FakePromise().then(refreshAccount).then(forwardToHome);
             return $auth.logout().then(refreshAccount).then(forwardToHome);
         }
 

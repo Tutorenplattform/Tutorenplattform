@@ -153,6 +153,9 @@
             var mailto = 'mailto:' + tutor.email_adresse;
             mailto += '?subject=' + encodeURIComponent(subject);
             mailto += '&body=' + encodeURIComponent(body);
+            //TODO: Remove brake
+            $window.location.href = mailto;
+            return;
             $window.open(mailto);
         }
 
