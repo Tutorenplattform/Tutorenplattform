@@ -59,13 +59,13 @@
             bewertung_schlecht: 0
         }, {
             vorname: "Florian",
-            nachname: "Müller",
+            nachname: "Reiter",
             klasse: "5BI",
             pk_tutor_tutand_id: 3,
             faecher: [{
                 fach: {
                     pk_fach_id: 1,
-                    name: 'E'
+                    name: 'AM'
                 }
             }],
             klassenvorstand: 'SDO',
@@ -76,57 +76,50 @@
 
         vm.viewTutor = viewTutor;
         vm.getSubjects = getSubjects;
-        vm.submit = submit;
+        vm.applyFilter = applyFilter;
 
-        console.log(vm.tutors);
+        init();
 
-        vm.uniqueClass   = _.uniq(_.map(vm.tutors, 'klasse'));
-        vm.uniqueSubject = _.uniq(_.map((_.flatten(_.map(vm.tutors, 'faecher'))), 'fach.name'));
+        function init() {
+            vm.uniqueClass   = _.uniq(_.map(vm.tutors, 'klasse'));
+            vm.uniqueSubject = _.uniq(_.map((_.flatten(_.map(vm.tutors, 'faecher'))), 'fach.name'));
 
-        (_.flatten(_.map(vm.tutors, 'faecher')));
+            _.flatten(_.map(vm.tutors, 'faecher'));
 
-        for(var i = 0; i < vm.tutors.length; i++) {
-            for(var j = 0; j < vm.tutors[i].faecher.length; j++ ) {
-                console.log(vm.tutors[i].faecher[j].fach.name);
-            }
+            vm.show = true;
         }
 
+        function applyFilter() {
+            vm.results = [];
 
-        vm.show = true;
-
-        function submit () {
-
-             vm.results = [];
-
-             var searchField = "nachname",
-                 searchField2 = "klasse",
-                 searchField3 = "name";
+            var searchField = "nachname",
+                searchField2 = "klasse",
+                searchField3 = "name";
 
 
-             var search          = vm.searchName,
-                 search_class    = vm.searchClass,
-                 search_subject  = vm.searchSubject;
+            var search         = vm.searchName,
+                search_class   = vm.searchClass,
+                search_subject = vm.searchSubject;
 
-             var hasSearch          = !(search == null || search == ''),
-                 hasSearch_class    = !(search_class == null || search_class == ''),
-                 hasSearch_subject  = !(search_subject == null || search_subject == '');
+            var hasSearch         = !(search == null || search == ''),
+                hasSearch_class   = !(search_class == null || search_class == ''),
+                hasSearch_subject = !(search_subject == null || search_subject == '');
 
-             vm.filter = hasSearch || hasSearch_class || search_subject;
+            vm.filter = hasSearch || hasSearch_class || search_subject;
 
-             for (var i = 0; i < vm.tutors.length ; i++) {
-                 for(var j = 0; j <vm.tutors[i].faecher.length; j++) {
-                     if (
-                         (!hasSearch || vm.tutors[i][searchField] == search) &&
-                         (!hasSearch_class ||vm.tutors[i][searchField2] == search_class) &&
-                         (!hasSearch_subject || vm.tutors[i].faecher[j].fach[searchField3] == search_subject)
-                     ) {
-                         vm.results.push(vm.tutors[i]);
-                         vm.show = false;
-                     }
-                 }
-             }
-        };
-
+            for (var i = 0; i < vm.tutors.length ; i++) {
+                for(var j = 0; j <vm.tutors[i].faecher.length; j++) {
+                    if (
+                        (!hasSearch || vm.tutors[i][searchField] == search) &&
+                        (!hasSearch_class ||vm.tutors[i][searchField2] == search_class) &&
+                        (!hasSearch_subject || vm.tutors[i].faecher[j].fach[searchField3] == search_subject)
+                    ) {
+                        vm.results.push(vm.tutors[i]);
+                        vm.show = false;
+                    }
+                }
+            }
+        }
 
         /**
          * Redirects the user to the given tutor's profile.
@@ -146,13 +139,6 @@
         function getSubjects(tutor) {
             var subjects = _.map(tutor.faecher, 'fach.name');
             return subjects.join(', ');
-        }
-
-        vm.fachFilter = "0";
-        vm.getFilteredItems = function(t) {
-            var fid = vm.fachFilter;
-            if (!fid || !+fid) return true;
-            return t.faecher[0].fach.pk_fach_id == +fid;
         }
     }
 
