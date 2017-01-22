@@ -14,8 +14,8 @@ body {
 }
 
 .card-block {
-    border-style: solid;
-    border-width: 1px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
     display: table;
     margin: 0 auto;
     text-align: center;
@@ -25,7 +25,15 @@ body {
 }
 
 .rating-view {
-    margin-top: 2rem;
+    margin: 2rem 0;
+}
+
+.rating-view i {
+    margin-right: 8px;
+}
+
+.rating-view i + i {
+    margin-left: 16px;
 }
 
 .report-textarea {
