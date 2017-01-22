@@ -4,7 +4,6 @@ body {
 }
 
 .filter-icon {
-
     display: block;
     text-align: center;
 }
@@ -38,7 +37,7 @@ body {
 
 .report-textarea {
     width: 100%;
-    height: 40rem;
+    height: 20rem;
 }
 
 .contact-textfield {
@@ -60,7 +59,7 @@ body {
 }
 
 .login-left-box-bottom {
-    margin-top: 7rem;
+    margin-top: 4rem;
     margin-bottom: 2rem;
 }
 

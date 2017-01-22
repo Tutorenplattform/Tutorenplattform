@@ -1,36 +1,37 @@
 <div class="container">
-    <div class="row">
-        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 title-box">
-            <h1>Tutorenplattform</h1>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6 col-lg-6 login-left-box">
-            <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 login-left-box-top">
-                <h2>Untertitel</h2>
-            </div>
-            <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 login-left-box-bottom">
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
-                labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et
-                ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum
-                dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore
-                magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
-                clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 title-box">
+                <h1>Tutorenplattform</h1>
             </div>
         </div>
-
-        <div class="col-md-6 col-lg-6 login-right-box">
-            <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 login-right-box-top">
-                <h2>Jetzt mit deinen Moodle Daten anmelden</h2>
+        <div class="row">
+            <div class="col-md-8 col-lg-8 login-left-box">
+                <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+                    <h2>Nachhilfe einfach gemacht!</h2>
+                </div>
+                <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 login-left-box-bottom">
+                    <p>Kinderleicht Tutoren finden und kontaktieren!</p>
+                    <p>Du willst selbst Tutor werden? Hier kannst du dich registrieren!</p>
+                    <p>Dank Präferenzangaben ist das Ausmachen von Terminen kein Problem mehr!</p>
+                </div>
             </div>
-            <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 login-right-box-bottom">
-                <form novalidate ng-submit="vm.login()">
-                    <input class="login-field" type="text" placeholder="Moodle-ID" ng-model="vm.fields.user_name"><br/>
-                    <input class="login-field" type="password" placeholder="Moodle-Passwort" ng-model="vm.fields.passwort"><br/>
-                    <button class="btn btn-default login-button" type="submit">Anmelden</button>
-                </form>
-            </div>
 
+            <div class="col-md-4 col-lg-4 login-right-box well">
+                <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 login-right-box-top">
+                    <h2>Jetzt anmelden</h2>
+                </div>
+                <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 login-right-box-bottom">
+                    <form novalidate ng-submit="vm.login()">
+                        <input class="login-field form-control" type="text" placeholder="Moodle-ID"
+                               ng-model="vm.fields.user_name"><br/>
+                        <input class="login-field form-control" type="password" placeholder="Moodle-Passwort"
+                               ng-model="vm.fields.passwort"><br/>
+                        <button class="btn btn-default login-button" type="submit">Anmelden</button>
+                    </form>
+                </div>
+
+            </div>
         </div>
     </div>
 </div>
