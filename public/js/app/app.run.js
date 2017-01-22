@@ -18,7 +18,7 @@
         var TUTOR = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoxLCJwa190dXRvcl90dXRhbmRfaWQiOjEsInZvcm5hbWUiOiJIYW5zIiwibmFjaG5hbWUiOiJNdXN0ZXJtYW5uIn0._R2QdiZykvZ2UMPMKgSToLxFOCio6yXGRS9YtjL9OEI';
         var ADMIN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoyLCJwa190dXRvcl90dXRhbmRfaWQiOjEsInZvcm5hbWUiOiJJc2FiZWxsYSIsIm5hY2huYW1lIjoiRmFzdGVuYmF1ZXIifQ.vyO36ROEX7581RJZib6L18Hci8xI-j7EOKd_7jw11_k';
         var NONE = '-';
-        Authentication.initialize(TUTAND);
+        Authentication.initialize();
     }
 
     /**
