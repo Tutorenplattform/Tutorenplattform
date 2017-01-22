@@ -33,7 +33,6 @@
 
         $urlRouterProvider.otherwise('/login');
 
-        //TODO: Remove API brakes (resolve)
         $stateProvider
             .state('login', {
                 url: '/login',
@@ -78,7 +77,7 @@
                 },
                 resolve: {
                     'tutors': function(TutorService) {
-                        //return TutorService.all();
+                        return TutorService.all();
                     }
                 }
             })
@@ -94,7 +93,7 @@
                 },
                 resolve: {
                     'tutor': function(TutorService, $stateParams) {
-                        //return TutorService.one($stateParams.id);
+                        return TutorService.one($stateParams.id);
                     }
                 }
             })
@@ -110,10 +109,10 @@
                 },
                 resolve: {
                     'teachers': function(TeacherService) {
-                        //return TeacherService.all();
+                        return TeacherService.all();
                     },
                     'subjects': function(SubjectService) {
-                        //return SubjectService.all();
+                        return SubjectService.all();
                     }
                 },
                 permissions: {
@@ -141,10 +140,10 @@
                 },
                 resolve: {
                     'teachers': function(TeacherService) {
-                        //return TeacherService.all();
+                        return TeacherService.all();
                     },
                     'subjects': function(SubjectService) {
-                        //return SubjectService.all();
+                        return SubjectService.all();
                     }
                 },
                 permissions: {
@@ -185,7 +184,7 @@
                 },
                 resolve: {
                     'teachers': function(TeacherService) {
-                        //return TeacherService.all();
+                        return TeacherService.all();
                     }
                 }
             })
@@ -201,7 +200,7 @@
                 },
                 resolve: {
                     'subjects': function(SubjectService) {
-                        //return SubjectService.all();
+                        return SubjectService.all();
                     }
                 }
             })
@@ -217,7 +216,7 @@
                 },
                 resolve: {
                     'options': function(AdministratorService) {
-                        //return AdministratorService.getOptions();
+                        return AdministratorService.getOptions();
                     }
                 }
             })
@@ -233,7 +232,7 @@
                 },
                 resolve: {
                     'reportedTutors': function(ReportService) {
-                        //return ReportService.all();
+                        return ReportService.all();
                     }
                 }
             })
@@ -249,7 +248,7 @@
                 },
                 resolve: {
                     'tutors': function(TutorService) {
-                        //return TutorService.all();
+                        return TutorService.all();
                     }
                 }
             })
@@ -265,7 +264,7 @@
                 },
                 resolve: {
                     'tutands': function(TutandService) {
-                        //return TutandService.all();
+                        return TutandService.all();
                     }
                 }
             })
@@ -280,7 +279,7 @@
                 },
                 resolve: {
                     'tutor': function(TutorService, $stateParams) {
-                        //return TutorService.one($stateParams.id);
+                        return TutorService.one($stateParams.id);
                     }
                 }
             })
@@ -295,10 +294,10 @@
                 },
                 resolve: {
                     'teachers': function(TeacherService) {
-                        //return TeacherService.all();
+                        return TeacherService.all();
                     },
                     'subjects': function(SubjectService) {
-                        //return SubjectService.all();
+                        return SubjectService.all();
                     }
                 }
             });

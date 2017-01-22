@@ -23,17 +23,9 @@
             faecher: [{}]
         };
 
-        vm.teachers = [
-            {pk_lehrer_id: 1, vorname: 'Reinhard', nachname: 'Gottweis'},
-            {pk_lehrer_id: 2, vorname: 'Stephan', nachname: 'Javurek'},
-            {pk_lehrer_id: 3, vorname: 'Kerstin', nachname: 'Stracke-Weiss'},
-            {pk_lehrer_id: 4, vorname: 'Isabella', nachname: 'Fastenbauer'}
-        ];
+        vm.teachers = teachers;
 
-        vm.subjects = [
-            {pk_fach_id: 1, name: 'AM'},
-            {pk_fach_id: 2, name: 'E'}
-        ];
+        vm.subjects = subjects;
 
         vm.register = register;
         vm.addSubject = addSubject;

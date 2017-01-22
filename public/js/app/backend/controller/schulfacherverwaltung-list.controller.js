@@ -10,7 +10,7 @@
 
         vm.refreshSubjects = refreshSubjects;
 
-        vm.subjects = [{id: 1, subject_name: 'Subject'}];
+        vm.subjects = subjects;
 
         function refreshSubjects() {
             SubjectService.refresh();

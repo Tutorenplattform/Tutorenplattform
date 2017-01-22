@@ -57,10 +57,6 @@
          * The initialization method that must be called whenever the application is first opened.
          */
         function initialize(token) {
-            //TODO: Remove brake
-            if (typeof token !== 'undefined') {
-                $auth.setToken(token);
-            }
             refreshAccount();
         }
 
@@ -101,6 +97,7 @@
         function promote() {
             if (isAuthenticated()) {
                 account.type = UserType.Tutor;
+                //TODO: Update token
             }
         }
 

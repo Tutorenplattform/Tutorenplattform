@@ -15,11 +15,7 @@
     function TutandManagementController(tutands, TutandService) {
         var vm = this;
 
-        vm.tutands = [{
-            vorname: "Hans",
-            nachname: "Mustermann",
-            moodle_benutzername: "3125"
-        }];
+        vm.tutands = tutands;
 
         vm.destroyTutand = destroyTutand;
 
