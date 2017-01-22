@@ -3,7 +3,7 @@
     angular.module('tp.shared.service')
         .service('TutorService', TutorService);
 
-    TutorService.$inject = ['Restangular', '$window'];
+    TutorService.$inject = ['Restangular', '$window', 'Authentication'];
 
     /**
      * A tutor user teaching tutands.
@@ -66,10 +66,11 @@
      * This service provides methods to interact with the server-side REST API regarding all actions concerning tutors.
      * @param {Restangular} Restangular A service providing short-hand methods for Angular's $http service
      * @param {$window} $window Angular's wrapper around the global window object
+     * @param {Authentication} Authentication The service used to interact with the current active user session
      * @memberOf tp.shared.service
      * @constructor
      */
-    function TutorService(Restangular, $window) {
+    function TutorService(Restangular, $window, Authentication) {
         var service = this;
 
         var tutorRest = Restangular.all('tutors');
@@ -89,6 +90,8 @@
          * @returns {Promise} A promise that finishes upon receiving the HTTP response
          */
         function all(constraints) {
+            constraints = constraints || {};
+            angular.extend(constraints, getUserField());
             return tutorRest.customGET('', constraints);
         }
 
@@ -98,7 +101,7 @@
          * @returns {Promise} A promise that finishes upon receiving the HTTP response
          */
         function one(id) {
-            return tutorRest.one(id);
+            return tutorRest.customGET(id, getUserField());
         }
 
         /**
@@ -107,6 +110,7 @@
          * @returns {Promise} A promise that finishes upon receiving the HTTP response
          */
         function register(tutor) {
+            angular.extend(tutor, getUserField());
             return tutorRest.post(tutor);
         }
 
@@ -135,6 +139,7 @@
          * @returns {Promise} A promise that finishes upon receiving the HTTP response
          */
         function report(tutor, report) {
+            angular.extend(report, getUserField());
             return tutor.post('report', report);
         }
 
@@ -158,10 +163,19 @@
          * @returns {Promise} A promise that finishes upon receiving the HTTP response
          */
         function rate(tutor, rating) {
-            var data = {
-                bewertung: rating.value
-            };
+            var data = getUserField();
+            data.bewertung = rating.value;
             return tutor.post('rate', data);
+        }
+
+        /**
+         * Returns an Object with user information for requests.
+         * @returns {Object} An object containing user-related data
+         */
+        function getUserField() {
+            return {
+                nutzer: Authentication.getAccountInfo().pk_tutor_tutand_id
+            };
         }
     }
 
