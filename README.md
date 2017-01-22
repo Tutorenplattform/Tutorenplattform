@@ -2,7 +2,20 @@
 
 ## Dokumentation
 
-Die JSDoc-Dokumentation kann [hier](http://htmlpreview.github.io/?https://github.com/Tutorenplattform/Tutorenplattform/blob/master/jsdoc/index.html) online eingesehen werden.
+### AngularJS-Frontend-Applikation
+
+Die JSDoc-Dokumentation zur Frontend-Applikation kann [hier](http://htmlpreview.github.io/?https://github.com/Tutorenplattform/Tutorenplattform/blob/master/jsdoc/index.html) online eingesehen werden.
+
+## Branch-Information
+
+### ```master```
+Auf dem Hauptbranch ```master``` befindet sich eine lauffähige Version der Applikation mit passenden Dummy-Daten. Es sind nur wenige Workarounds vorhanden.
+
+### ```clean```
+Auf dem Branch ```clean``` befindet sich eine nicht vollständig lauffähige Version der Applikation. Es sind keine Dummy-Daten oder Workarounds vorhanden.
+
+### ```demo```
+Auf dem Branch ```demo``` befindet sich eine lauffähige Version der Applikation mit optimierten Dummy-Daten. Es sind einige Workarounds vorhanden, um eine Demo zu Login, Tutorenliste, Tutorenprofil, Tutorbenachrichtigung und Tutorenregistrierung geben zu können.
 
 ## Einrichtung
 
