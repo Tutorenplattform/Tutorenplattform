@@ -1,38 +1,40 @@
 <div class="row">
+    <div class="col-md-1 col-sm-1 col-xs-12">
+        <button class="btn btn-primary" ng-click="vm.applyFilter()">
+            <span class="glyphicon glyphicon-filter"></span>
+        </button>
+    </div>
     <div class="col-md-2 col-sm-12 col-xs-12">
-        <div class="input-group">
-            <button ng-click="vm.submit()"><span class="glyphicon glyphicon-filter input-group-addon" id="search-name-icon"></span></button>
-            <input type="text" ng-model="vm.searchName" class="form-control" placeholder="Nach Name filtern" aria-describedby="search-name-icon">
+        <div>
+            <input type="text" ng-model="vm.searchName" class="form-control" placeholder="Nach Name filtern...">
         </div>
     </div>
-
     <div class="col-md-2 col-sm-12 col-xs-12">
         <div class="form-group">
-            <select class="form-control" ng-options="value as value for value in vm.uniqueClass |orderBy:'klasse'" ng-model="vm.searchClass">
-                <option value="">Select default</option>
+            <select class="form-control" ng-options="value as value for value in vm.uniqueClass | orderBy:'klasse'"
+                    ng-model="vm.searchClass">
+                <option value="">Alle Klassen</option>
             </select>
         </div>
     </div>
-
     <div class="col-md-2 col-sm-12 col-xs-12">
         <div class="form-group">
 
-            <select class="form-control" ng-options="value as value for value in vm.uniqueSubject" ng-model="vm.searchSubject">
-                <option value="">Select default</option>
+            <select class="form-control" ng-options="value as value for value in vm.uniqueSubject"
+                    ng-model="vm.searchSubject">
+                <option value="">Alle Fächer</option>
             </select>
 
         </div>
     </div>
-
     <div class="col-md-2 col-sm-12 col-xs-12">
-        <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-sort-by-attributes-alt"></i>Bewertung</button>
+        <button class="btn btn-default" type="button">
+            <i class="glyphicon glyphicon-sort-by-attributes-alt"></i>
+            Bewertung
+        </button>
     </div>
-
-
-
 </div>
 <div class="row">
-
     <div ng-show="vm.show" ng-repeat="tutor in vm.tutors" class="card col-sm-6 col-lg-3 col-md-6">
         <div class="card-block" style="width:25rem;">
             <h3 class="card-title">{{ tutor | fullName }}</h3>
@@ -51,9 +53,7 @@
             <a ng-click="vm.viewTutor(tutor)" class="btn btn-primary">Mehr erfahren</a>
         </div>
     </div>
-
-
-    <div ng-show="!vm.show" ng-repeat="tutor in vm.results" class="card col-sm-6 col-lg-3 col-md-6">
+    <div ng-hide="vm.show" ng-repeat="tutor in vm.results" class="card col-sm-6 col-lg-3 col-md-6">
         <div class="card-block" style="width:25rem;">
             <h3 class="card-title">{{ tutor | fullName }}</h3>
             <h4>Schulfächer</h4>
@@ -71,8 +71,4 @@
             <a ng-click="vm.viewTutor(tutor)" class="btn btn-primary">Mehr erfahren</a>
         </div>
     </div>
-
-
-
-
 </div>
